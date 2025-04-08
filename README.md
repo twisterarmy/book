@@ -29,8 +29,11 @@ mdbook serve --open
 Please do not make changes directly; this project uses `build.sh` to dynamically generate data from different sources.
 Instead, submit your edits to following Wiki:
 
-* [About](https://github.com/twisterarmy/book/wiki)
-* [twister-core](https://github.com/twisterarmy/twister-core/wiki)
-* [twister-seeder](https://github.com/twisterarmy/twister-seeder/wiki)
+* Summary
+  * [About](https://github.com/twisterarmy/book/wiki)
+* Client applications
+  * [twister-core](https://github.com/twisterarmy/twister-core/wiki)
+* Network tools
+  * [twister-seeder](https://github.com/twisterarmy/twister-seeder/wiki)
 
 Feel free to open an [Issue](https://github.com/twisterarmy/book/issues) if you have any questions!
