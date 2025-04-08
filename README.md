@@ -27,9 +27,9 @@ mdbook serve --open
 ## Contribute
 
 Please do not make changes directly; this project uses `build.sh` to dynamically generate data from different sources.
-Instead, submit your edits there:
+Instead, submit your edits to following Wiki:
 
-* [about](https://github.com/twisterarmy/book/wiki)
+* [About](https://github.com/twisterarmy/book/wiki)
 * [twister-core](https://github.com/twisterarmy/twister-core/wiki)
 * [twister-seeder](https://github.com/twisterarmy/twister-seeder/wiki)
 
