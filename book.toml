@@ -1,0 +1,6 @@
+[book]
+authors = ["twisterarmy"]
+language = "en"
+multilingual = false
+src = "src"
+title = "The twister p2p book"
