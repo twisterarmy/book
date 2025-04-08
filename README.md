@@ -1,6 +1,6 @@
 # The twister p2p book
 
-Community-driven guide for [twister p2p](http://twister.net.co/) microblogging platform, based on Wiki data from various community [repositories](https://github.com/orgs/twisterarmy/repositories). It uses the [mdBook](https://github.com/rust-lang/mdBook) builder written in Rust to create a static HTML book, which is also available for online reading at [twisterarmy.github.io](https://twisterarmy.github.io/book) website.
+Community-driven guide for [twister p2p](http://twister.net.co/), based on Wiki data from various community [repositories](https://github.com/orgs/twisterarmy/repositories). It uses the [mdBook](https://github.com/rust-lang/mdBook) builder to create a static HTML book, which is also available for online reading at [twisterarmy.github.io](https://twisterarmy.github.io/book) website.
 
 ## Download
 
