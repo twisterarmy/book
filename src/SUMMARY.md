@@ -1,9 +1,15 @@
 # Summary
 
 - [About](./about/Home.md)
+
+# Client applications
+
 - [twister-core](twister-core/Home.md)
     - [Usage](twister-core/Usage.md)
     - [Network support](twister-core/Support-the-network.md)
+
+# Network tools
+
 - [twister-seeder](twister-seeder/Home.md)
     - [Install](twister-seeder/Install.md)
     - [Domain setup](twister-seeder/Domain-setup.md)
