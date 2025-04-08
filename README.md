@@ -1,4 +1,4 @@
-# The twister p2p book
+# The twister P2P Book
 
 Community-driven guide to [twister p2p](http://twister.net.co/), based on Wiki data from various community [repositories](https://github.com/orgs/twisterarmy/repositories).
 
