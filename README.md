@@ -4,7 +4,7 @@ Community-driven guide for [twister p2p](http://twister.net.co/), based on Wiki 
 
 ## Download
 
-See [Releases](https://github.com/twisterarmy/book/releases) to download precompiled HTML version!
+See [Releases](https://github.com/twisterarmy/book/releases) to download stable HTML build!
 
 ## Build
 
