@@ -4,3 +4,8 @@ language = "en"
 multilingual = false
 src = "src"
 title = "The twister P2P Book"
+
+[output.html]
+git-repository-url = "https://github.com/twisterarmy/book"
+git-repository-icon = "fa-github"
+# edit-url-template = "https://github.com/twisterarmy/book/edit/main/{path}"
