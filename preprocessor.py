@@ -18,7 +18,7 @@ if __name__ == '__main__':
         return '<div class="breadcrumbs">' + ' &raquo; '.join(breadcrumbs) + '</div>\n\n' + section['Chapter']['content']
 
     def version(section, timestamp):
-        return section['Chapter']['content'] + '\n\n<div class="version">Revision: <strong>{} / {}</strong></div>'.format(time.strftime("%Y.%m"), time.timestamp())
+        return section['Chapter']['content'] + '\n\n<div class="version">Generated at: <strong>{} / {}</strong></div>'.format(time.strftime("%Y.%m"), time.timestamp())
 
     # apply `version` for the first section
     book['sections'][0]['Chapter']['content'] = version(book['sections'][0], time)
