@@ -23,7 +23,7 @@ if __name__ == '__main__':
     for section in book['sections'][1:]:
         if 'Chapter' in section:
             for sub_item in section['Chapter']['sub_items']:
-                if 'Chapter' in sub_item: # @TODO wants recursive patch to support child sub_items
+                if 'Chapter' in sub_item: # @TODO wants recursive patch?
                     sub_item['Chapter']['content'] = patch(sub_item, time)
             section['Chapter']['content'] = patch(section, time)
 
