@@ -24,6 +24,14 @@ else
     git clone $S $T
 fi
 
+S=https://github.com/twisterarmy/twisterad.wiki.git
+T=src/twisterad
+if [ -d "$T" ]; then
+    git -C $T pull
+else
+    git clone $S $T
+fi
+
 mdbook build
 
 find book/ -name ".git" -type d -exec rm -rf {} +

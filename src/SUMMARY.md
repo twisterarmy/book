@@ -8,6 +8,12 @@
     - [Usage](./twister-core/Usage.md)
     - [Network support](./twister-core/Support-the-network.md)
 
+# Mining tools
+
+- [twisterad](./twisterad/Home.md)
+    - [Install](./twisterad/Install.md)
+    - [Usage](./twisterad/Usage.md)
+
 # Network tools
 
 - [twister-seeder](./twister-seeder/Home.md)
