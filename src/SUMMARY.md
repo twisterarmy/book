@@ -1,6 +1,7 @@
 # Summary
 
 - [About](./about/Home.md)
+    - [Releases](./about/Releases.md)
     - [Contribution](./about/Contribution.md)
 
 # Client applications
