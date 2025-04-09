@@ -20,6 +20,10 @@ if __name__ == '__main__':
     def version(section, timestamp):
         return section['Chapter']['content'] + '\n\n<div class="version">Revision: <strong>{} / {}</strong></div>'.format(time.strftime("%Y.%m"), time.timestamp())
 
+    # apply `version` for the first section
+    book['sections'][0]['Chapter']['content'] = version(book['sections'][0], time)
+
+    # apply `breadcrumbs` + `version` for the next sections
     for section in book['sections'][1:]:
         if 'Chapter' in section:
             for sub_item in section['Chapter']['sub_items']:
