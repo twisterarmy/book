@@ -25,3 +25,5 @@ else
 fi
 
 mdbook build
+
+find book/ -name ".git" -type d -exec rm -rf {} +
