@@ -9,9 +9,16 @@ if __name__ == '__main__':
 
     context, book = json.load(sys.stdin)
     timestamp = datetime.datetime.now().timestamp()
+
     for section in book['sections'][1:]:
+
         if 'Chapter' in section:
-            section['Chapter']['content'] = '<div class="breadcrumbs">' + section['Chapter']['name'] + '</div>\n\n' \
+
+            breadcrumbs = section['Chapter']['name']
+            for parent_name in section['Chapter']['parent_names']:
+                breadcrumbs += ' &bull; ' + parent_name
+
+            section['Chapter']['content'] = '<div class="breadcrumbs">' + breadcrumbs + '</div>\n\n' \
                 + section['Chapter']['content'] + \
                     '<div class="version">Generated at <strong>{}</strong></div>'.format(timestamp)
 
