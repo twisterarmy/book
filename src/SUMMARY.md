@@ -7,6 +7,8 @@
 
 - [twister-core](./twister-core/Home.md)
     - [Usage](./twister-core/Usage.md)
+    - [Administration](./twister-core/Administration.md)
+    - [Performance](./twister-core/Performance.md)
     - [Network support](./twister-core/Support-the-network.md)
 
 # Mining tools
