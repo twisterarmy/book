@@ -2,6 +2,7 @@
 
 - [About](./about/Home.md)
     - [Releases](./about/Releases.md)
+    - [Build](./about/Build.md)
     - [Contribution](./about/Contribution.md)
 
 # Client applications
