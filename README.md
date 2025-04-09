@@ -38,6 +38,9 @@ Instead, submit your edits to following Wiki:
   * [About](https://github.com/twisterarmy/book/wiki)
 * Client applications
   * [twister-core](https://github.com/twisterarmy/twister-core/wiki)
+  * [twister-html](https://github.com/twisterarmy/twister-html/wiki)
+* Mining applications
+  * [twisterad](https://github.com/twisterarmy/twisterad/wiki)
 * Network tools
   * [twister-seeder](https://github.com/twisterarmy/twister-seeder/wiki)
 
