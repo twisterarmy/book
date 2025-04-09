@@ -15,7 +15,7 @@ if __name__ == '__main__':
         for parent_name in section['Chapter']['parent_names']:
             breadcrumbs.append(parent_name)
         breadcrumbs.append(section['Chapter']['name'])
-        return '<div class="breadcrumbs">' + ' &bull; '.join(breadcrumbs) + '</div>\n\n' + section['Chapter']['content']
+        return '<div class="breadcrumbs">' + ' &raquo; '.join(breadcrumbs) + '</div>\n\n' + section['Chapter']['content']
 
     def version(section, timestamp):
         return section['Chapter']['content'] + '\n\n<div class="version">Revision: <strong>{} / {}</strong></div>'.format(time.strftime("%Y.%m"), time.timestamp())
