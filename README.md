@@ -14,9 +14,10 @@ See [Releases](https://github.com/twisterarmy/book/releases) to download stable 
 > [!NOTE]
 > Install following dependencies to continue:
 > * `rustc`, `cargo` - see [rustup](https://rustup.rs/)
+>  * `cargo install mdbook` - [mdBook](https://rust-lang.github.io/mdBook/) builder CLI
+>  * `cargo install mdbook-alerts` - preprocessor to add [GitHub Flavored Markdown's Alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)
 > * `python3` - to run the `preprocessor.py` on build
 
-* `cargo install mdbook` - requires [rustup](https://rustup.rs/)
 * `git clone https://github.com/twisterarmy/book.git && cd book`
 * `chmod +x build.sh`
 * `./build.sh`

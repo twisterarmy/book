@@ -11,5 +11,6 @@ git-repository-url = "https://github.com/twisterarmy/book"
 git-repository-icon = "fa-github"
 # edit-url-template = "https://github.com/twisterarmy/book/edit/main/{path}"
 
+[preprocessor.alerts]
 [preprocessor.preprocessor]
 command = "python3 preprocessor.py"
