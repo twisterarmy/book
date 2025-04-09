@@ -16,7 +16,7 @@ if __name__ == '__main__':
             breadcrumbs.append(parent_name)
         breadcrumbs.append(section['Chapter']['name'])
         return (
-            '<div class="breadcrumbs">' + ' &bull; '.join(breadcrumbs) + '</div>\n\n' + section['Chapter']['content'] +
+            '<div class="breadcrumbs">' + ' &bull; '.join(breadcrumbs) + '</div>\n\n' + section['Chapter']['content'] + '\n\n'
             '<div class="version">Revision: <strong>{} / {}</strong></div>'.format(time.strftime("%Y.%m"), time.timestamp())
         )
 
