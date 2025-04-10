@@ -1,5 +1,8 @@
+# local repositories for the book sources
 git
-# todo: remove following lines on initial release!
+
+# todo:
+# please remove following lines before making the initial release!
 src
 !src/SUMMARY.md
 book
