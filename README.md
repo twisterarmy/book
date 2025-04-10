@@ -19,7 +19,7 @@ See [Releases](https://github.com/twisterarmy/book/releases) to download stable 
 > * `python3` - to run the `preprocessor.py` on build
 
 > [!IMPORTANT]
-> `build.sh` script contains `rm` command for the relative paths,\
+> `build.sh` script implementation contains `rm` command for the relative paths,\
 > ensure you are in the current project directory to continue!
 
 * `git clone https://github.com/twisterarmy/book.git && cd book`
