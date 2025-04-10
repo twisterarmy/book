@@ -10,6 +10,7 @@ if __name__ == '__main__':
     context, book = json.load(sys.stdin)
     time = datetime.datetime.now()
 
+    # appends the breadcrumbs version to the content header
     def breadcrumbs(section):
         breadcrumbs = []
         for parent_name in section['Chapter']['parent_names']:
@@ -17,6 +18,7 @@ if __name__ == '__main__':
         breadcrumbs.append(section['Chapter']['name'])
         return '<div class="breadcrumbs">' + ' &raquo; '.join(breadcrumbs) + '</div>\n\n' + section['Chapter']['content']
 
+    # appends the timestamp version to the content footer
     def version(section, timestamp):
         return section['Chapter']['content'] + '\n\n<div class="version">Generated at: <strong>{} / {}</strong></div>'.format(time.strftime("%Y.%m"), time.timestamp())
 
