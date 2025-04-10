@@ -9,6 +9,7 @@
 
 - [twister-core](./twister-core/Home.md)
     - [Usage](./twister-core/Usage.md)
+    - [Profile](./twister-core/Profile.md)
     - [Administration](./twister-core/Administration.md)
     - [Performance](./twister-core/Performance.md)
     - [Network support](./twister-core/Support-the-network.md)
