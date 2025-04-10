@@ -11,24 +11,31 @@ See [Releases](https://github.com/twisterarmy/book/releases) to download stable 
 
 ## Build
 
-> [!NOTE]
-> Install following dependencies to continue:
-> * `rustc`, `cargo` - see [rustup](https://rustup.rs/)
->  * `cargo install mdbook` - [mdBook](https://rust-lang.github.io/mdBook/) builder CLI
->  * `cargo install mdbook-alerts` - preprocessor to add [GitHub Flavored Markdown's Alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)
-> * `python3` - to run the `preprocessor.py` on build
+### Dependencies
 
-> [!IMPORTANT]
-> Current implementation of the `build.sh` script includes `rm` command to clean up the relative paths,\
-> ensure you are in the current project directory to continue!
+* `rustc`, `cargo` - see [rustup](https://rustup.rs/)
+  * `cargo install mdbook` - [mdBook](https://rust-lang.github.io/mdBook/) builder CLI
+  * `cargo install mdbook-alerts` - preprocessor to add [GitHub Flavored Markdown's Alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)
+* `python3` - to run the `preprocessor.py` on build
+
+### Get this builder
 
 * `git clone https://github.com/twisterarmy/book.git && cd book`
 * `chmod +x build.sh`
+
+### Get the book sources
+
+> [!IMPORTANT]
+> Current `build.sh` implementation operates `rm` command to clean up the relative paths,\
+> ensure you are still in the `book` project directory to continue!
+
 * `./build.sh`
 
 ## Launch
 
-To read in the browser using a local server, run the following command after [build](#build):
+Compiled HTML version should be available in the `/book` directory.
+
+To read in the browser using a local server, run:
 
 ``` bash
 mdbook serve --open
