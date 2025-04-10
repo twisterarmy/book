@@ -3,6 +3,6 @@ git
 
 # todo:
 # please remove following lines before making the initial release!
-src
+src/*
 !src/SUMMARY.md
 book
