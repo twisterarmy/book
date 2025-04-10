@@ -1,2 +1,5 @@
-book
 git
+# todo: remove following lines on initial release!
+src
+!src/SUMMARY.md
+book
