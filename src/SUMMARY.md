@@ -22,6 +22,7 @@
             - [libtorrent on Ubuntu](./twister-core/libtorrent-build-on-ubuntu.md)
 - [Usage](./twister-core/usage.md)
     - [Profile](./twister-core/profile.md)
+    - [Remote node](./twister-core/remote-node.md)
     - [Administration](./twister-core/administration.md)
     - [Performance](./twister-core/performance.md)
 - [Support the network](./twister-core/support-the-network.md)
