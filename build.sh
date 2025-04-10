@@ -38,7 +38,7 @@ fi
 
 T=src/twister-core
 rm -rf $T
-mkdir -p $T/miguelfreitas/CudaMiner-twister
+mkdir -p $T/miguelfreitas
 mkdir -p $T/twisterarmy
 
 S=git/miguelfreitas-twister-core
@@ -49,8 +49,11 @@ cp $S/Build-native-Windows-client-using-Gitian.md $T/miguelfreitas/build-native-
 cp $S/libtorrent-build-on-Ubuntu.md $T/libtorrent-build-on-ubuntu.md
 
 cp $S/Popular-accounts-you-would-like-to-follow.md src/popular-accounts-to-follow.md
-cp $S/mining.md src/CudaMiner-twister/index.md
 cp $S/twister白皮书.md src/twister白皮书.md
+
+rm -rf src/CudaMiner-twister
+mkdir -p src/CudaMiner-twister
+cp $S/mining.md src/CudaMiner-twister/index.md
 
 S=git/twisterarmy-twister-core
 cp $S/Home.md $T/about.md
