@@ -46,6 +46,7 @@ Instead, submit your edits to following Wiki:
   * [twisterarmy](https://github.com/twisterarmy/twister-core/wiki)
 * Mining tools
   * [twisterad](https://github.com/twisterarmy/twisterad/wiki)
+  * [CudaMiner-twister](https://github.com/miguelfreitas/twister-core/wiki/mining)
 * Network tools
   * [twister-seeder](https://github.com/twisterarmy/twister-seeder/wiki)
 
