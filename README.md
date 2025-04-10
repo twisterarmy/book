@@ -43,8 +43,8 @@ mdbook serve --open
 
 ## Contribute
 
-Please do not make changes directly; this project uses `build.sh` to dynamically generate data from different sources.
-Instead, submit your edits to following Wiki:
+This project uses `build.sh` to aggregate the book data from different sources.\
+If you want to make any changes, please submit your edits to the relevant Wiki providers:
 
 * Summary
   * [About](https://github.com/twisterarmy/book/wiki)
