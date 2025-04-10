@@ -22,17 +22,19 @@ if __name__ == '__main__':
     def version(section, timestamp):
         return section['Chapter']['content'] + '\n\n<div class="version">Generated at: <strong>{}</strong></div>'.format(time)
 
+    # apply patch function to given `section`
+    def process(section, time):
+        if 'Chapter' in section:
+            section['Chapter']['content'] = breadcrumbs(section)
+            section['Chapter']['content'] = version(section, time)
+            for sub_item in section['Chapter'].get('sub_items', []):
+                process(sub_item, time)
+
     # apply `version` for the first section
     book['sections'][0]['Chapter']['content'] = version(book['sections'][0], time)
 
     # apply `breadcrumbs` + `version` for the next sections
     for section in book['sections'][1:]:
-        if 'Chapter' in section:
-            for sub_item in section['Chapter']['sub_items']:
-                if 'Chapter' in sub_item: # @TODO wants recursive patch?
-                    sub_item['Chapter']['content'] = breadcrumbs(sub_item)
-                    sub_item['Chapter']['content'] = version(sub_item, time)
-            section['Chapter']['content'] = breadcrumbs(section)
-            section['Chapter']['content'] = version(section, time)
+        process(section, time)
 
     print(json.dumps(book))
