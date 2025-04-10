@@ -37,9 +37,9 @@ Instead, submit your edits to following Wiki:
 
 * Summary
   * [About](https://github.com/twisterarmy/book/wiki)
-* Client applications
-  * [twister-core](https://github.com/twisterarmy/twister-core/wiki)
-  * [twister-html](https://github.com/twisterarmy/twister-html/wiki)
+* twister-core
+  * [miguelfreitas](https://github.com/miguelfreitas/twister-core/wiki)
+  * [twisterarmy](https://github.com/twisterarmy/twister-core/wiki)
 * Mining tools
   * [twisterad](https://github.com/twisterarmy/twisterad/wiki)
 * Network tools
