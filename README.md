@@ -23,11 +23,11 @@ See [Releases](https://github.com/twisterarmy/book/releases) to download stable 
 * `git clone https://github.com/twisterarmy/book.git && cd book`
 * `chmod +x build.sh`
 
-### Get the book sources
+### Get latest book sources
 
 > [!IMPORTANT]
 > Current `build.sh` implementation operates `rm` command to clean up the relative paths,\
-> ensure you are still in the `book` project directory to continue!
+> ensure you are still in this project directory to continue!
 
 * `./build.sh`
 
