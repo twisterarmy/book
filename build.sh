@@ -63,6 +63,7 @@ cp $S/Build-on-Linux.md $T/twisterarmy/build-on-linux.md
 cp $S/Administration.md $T/administration.md
 cp $S/Performance.md $T/performance.md
 cp $S/Profile.md $T/profile.md
+cp $S/Yggdrasil.md $T/yggdrasil-ipv6.md
 cp $S/Remote-node.md $T/remote-node.md
 cp $S/Support-the-network.md $T/support-the-network.md
 cp $S/Usage.md $T/usage.md
