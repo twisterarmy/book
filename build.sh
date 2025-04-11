@@ -17,6 +17,7 @@ cp $T/Home.md $D/index.md
 cp $T/Contribution.md $D/contribution.md
 cp $T/Build.md $D/build.md
 cp $T/Releases.md $D/releases.md
+cp $T/Thanks.md $D/thanks.md
 
 # twister-core
 

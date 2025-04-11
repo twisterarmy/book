@@ -4,6 +4,7 @@
     - [Releases](./about/releases.md)
     - [Build](./about/build.md)
     - [Contribution](./about/contribution.md)
+    - [Thanks](./about/thanks.md)
 
 # twister-core
 
