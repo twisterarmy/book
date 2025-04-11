@@ -80,10 +80,12 @@ fi
 D=src/twister-seeder
 mkdir -p $D
 rm -rf $D/*
+mkdir -p $D/twisterarmy
 cp $T/Home.md $D/index.md
 cp $T/Announce-new-seed.md $D/announce-new-seed.md
 cp $T/Domain-setup.md $D/domain-setup.md
-cp $T/Install.md $D/install.md
+cp $T/Source-providers.md $D/install-options.md
+cp $T/Install.md $D/twisterarmy/install.md
 cp $T/Storage-location.md $D/storage-location.md
 cp $T/Troubleshooting.md $D/troubleshooting.md
 cp $T/Usage-examples.md $D/usage-examples.md

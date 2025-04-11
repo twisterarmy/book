@@ -37,7 +37,9 @@
 # Network tools
 
 - [twister-seeder](./twister-seeder/index.md)
-    - [Install](./twister-seeder/install.md)
+    - [Install options](./twister-seeder/install-options.md)
+        - [@twisterarmy branch](./twister-seeder/twisterarmy/install.md)
+        - [@miguelfreitas branch]()
     - [Domain setup](./twister-seeder/domain-setup.md)
     - [Usage examples](./twister-seeder/usage-examples.md)
     - [Storage location](./twister-seeder/storage-location.md)
