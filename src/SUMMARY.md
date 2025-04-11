@@ -10,7 +10,7 @@
 - [Introduction](./twister-core/about.md)
 - [Install]()
     - [Desktop bundle](./twister-core/desktop-bundle.md)
-    - [Build from source]()
+    - [Build from source](./twister-core/build-from-source.md)
         - [@twisterarmy branch]()
             - [Fedora / Debian / Ubuntu](./twister-core/twisterarmy/build-on-linux.md)
         - [@miguelfreitas branch]()

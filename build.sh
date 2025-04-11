@@ -65,6 +65,7 @@ cp $S/Profile.md $T/profile.md
 cp $S/Remote-node.md $T/remote-node.md
 cp $S/Support-the-network.md $T/support-the-network.md
 cp $S/Usage.md $T/usage.md
+cp $S/Source-options.md $T/build-from-source.md
 
 # twister-seeder
 
