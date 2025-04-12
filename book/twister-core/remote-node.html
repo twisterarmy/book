@@ -1,0 +1,484 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Remote node - The twister P2P Book</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The twister P2P Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/twisterarmy/book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="breadcrumbs">Usage &raquo; Remote node</div>
+<style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.25em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(154, 103, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+</style>
+<p>Remote node running is useful in cases where you want to access twister from a mobile device or support the network by launching a public peer with a web UI.</p>
+<h2 id="setup-with-cli-tool"><a class="header" href="#setup-with-cli-tool">Setup with CLI tool</a></h2>
+<p>The simplest way to get started on Debian systems is by using the <a href="https://github.com/twisterarmy/twister-cli-installer">twister-cli-installer</a> script. It provides guiding questions that helps you to build the <code>twister-core</code>, <code>twister-html</code>, and set up a self-signed TLS certificate for secure connection.</p>
+<h2 id="manual-setup"><a class="header" href="#manual-setup">Manual setup</a></h2>
+<p>Login to the remote server as <code>root</code> with SSH:</p>
+<pre><code class="language-bash">ssh root@hostname
+</code></pre>
+<h3 id="firewall-configuration"><a class="header" href="#firewall-configuration">Firewall configuration</a></h3>
+<p>Open <code>28332</code> port for the external access:</p>
+<pre><code class="language-bash">ufw allow from EXPECTED_REMOTE_IP to any port 28332
+</code></pre>
+<ul>
+<li>replace <code>EXPECTED_REMOTE_IP</code> with your value</li>
+<li>the port <code>28332</code> may be different if you are running <code>twisterd</code> with a custom <code>-rpcport</code> argument value</li>
+</ul>
+<p>Enable the firewall:</p>
+<div class="mdbook-alerts mdbook-alerts-caution">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  caution
+</p>
+<p>If you're enabling <code>ufw</code> for the first time, before continuing with the next command, make sure that port <code>22</code> (<code>ssh</code>) is in the whitelist to prevent connectivity issues!</p>
+</div>
+<pre><code class="language-bash">ufw enable
+</code></pre>
+<p>Check firewall status:</p>
+<pre><code class="language-bash">ufw status
+</code></pre>
+<div class="mdbook-alerts mdbook-alerts-tip">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tip
+</p>
+<p>If you have a dynamic client IP, take a look at <a href="https://yggdrasil-network.github.io/">Yggdrasil</a>, which allows you to generate a permanent static IPv6 address for the local network and whitelist it in the firewall rules; in this case, you may also skip the TLS connection setup, as Yggdrasil encrypts all traffic, including plain HTTP traffic that comes through its tun interface.</p>
+</div>
+<h3 id="system"><a class="header" href="#system">System</a></h3>
+<h4 id="create-system-user"><a class="header" href="#create-system-user">Create system user</a></h4>
+<p>Create separated system user for <code>twisterd</code> process:</p>
+<pre><code class="language-bash">useradd -m twister
+</code></pre>
+<h4 id="create-systemd-unit"><a class="header" href="#create-systemd-unit">Create systemd unit</a></h4>
+<p>It is useful to operate remote <code>twisterd</code> process with <code>systemd</code>.
+Let's create its configuration file:</p>
+<pre><code class="language-/etc/systemd/system/twister.service">[Unit]
+After=network.target
+
+[Service]
+Type=simple
+User=twister
+Group=twister
+# this option is not necessary
+WorkingDirectory=/home/twister
+# provide real path or additional arguments here if wanted
+ExecStart=/home/twister/twister-core/twisterd
+# where to save the logs
+StandardOutput=file:/home/twister/twisterd-debug.log
+StandardError=file:/home/twister/twisterd-error.log
+# you may remove this option to capture the failure event
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<ul>
+<li><code>systemctl daemon-reload</code> - apply <code>systemd</code> update</li>
+<li><code>systemctl enable twister</code> - launch <code>twisterd</code> on system startup</li>
+</ul>
+<p>Now login to the system user created:</p>
+<pre><code class="language-bash">su twister
+</code></pre>
+<ul>
+<li>navigate to the home directory by using the <code>cd</code> command without arguments</li>
+</ul>
+<h3 id="user-environment-setup"><a class="header" href="#user-environment-setup">User environment setup</a></h3>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>Make sure you are in the <code>/home/twister</code> directory, which was created in the previous steps, to continue</p>
+</div>
+<h4 id="install-twister-core"><a class="header" href="#install-twister-core">Install twister-core</a></h4>
+<p>Build <code>twisterd</code> from the <code>twister-core</code> sources inside this home, or simply copy the <code>twisterd</code> binary to <code>/home/twister/twister-core/twisterd</code> directory (as expected in the <code>ExecStart</code> option above).</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>If you are copying the binary, do not forget to give it execution permissions:</p>
+<pre><code class="language-bash">chmod +x path/to/twisterd
+</code></pre>
+</div>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>It is important to init <code>twisterd</code> from this user to apply the correct permissions for <code>systemd</code> process!</p>
+</div>
+<h4 id="generate-self-signed-certificate"><a class="header" href="#generate-self-signed-certificate">Generate self-signed certificate</a></h4>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>You may skip this step if you're using a connection within your local network or if you're connected through encrypted tunnels like a VPN or <a href="https://yggdrasil-network.github.io/">Yggdrasil</a></p>
+</div>
+<pre><code class="language-bash">openssl req -x509\
+            -newkey rsa:4096\
+            -keyout /home/twister/.twister/key.pem\
+            -out /home/twister/.twister/cert.pem\
+            -days 365 -nodes
+</code></pre>
+<ul>
+<li>with the example above, you will want to create a new certificate after <code>365</code> days!</li>
+</ul>
+<h4 id="setup-rpc-authorization"><a class="header" href="#setup-rpc-authorization">Setup RPC authorization</a></h4>
+<p>Edit your <code>/home/twister/.twister/twister.conf</code> file:</p>
+<pre><code>rpcallowip=EXPECTED_REMOTE_IP
+rpcuser=RPC_USER_NAME
+rpcpassword=RPC_PASSWORD
+rpcsslcertificatechainfile=/home/twister/.twister/cert.pem
+rpcsslprivatekeyfile=/home/twister/.twister/key.pem
+rpcssl=1
+</code></pre>
+<ul>
+<li>replace <code>EXPECTED_REMOTE_IP</code>, <code>RPC_USER_NAME</code>, <code>RPC_PASSWORD</code> with your values;</li>
+<li>if you have a dynamic client IP, you may use <code>*</code> as the <code>rpcallowip</code> value, but this option is not recommended without additional firewall rules!</li>
+<li>when using a connection setup with SSL enabled, in some cases, try launching <code>twisterd</code> with the <code>-rpcssl</code> argument instead of defining it in the <code>twister.conf</code> file.</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-caution">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  caution
+</p>
+<p>The <code>RPC_USER_NAME</code> and <code>RPC_USER_NAME</code> values are not same as your twister wallet keys - never use the latter for any kind of client authorization!</p>
+</div>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>For the RPC login, feel free to generate any credentials you like and it's better to make the values stronger than something like <code>qwerty</code>!</p>
+</div>
+<p>Now exit from the current user session:</p>
+<pre><code class="language-bash">exit
+</code></pre>
+<h3 id="launch-twisterd"><a class="header" href="#launch-twisterd">Launch twisterd</a></h3>
+<p>From the current <code>root</code> session, launch our newly created <code>systemd</code> service (which will start the <code>twisterd</code> process from the <code>twister</code> user):</p>
+<pre><code class="language-bash">systemctl start twister
+</code></pre>
+<ul>
+<li><code>systemctl status twister</code> - check if everything is working</li>
+</ul>
+<h2 id="testing-remote-connection"><a class="header" href="#testing-remote-connection">Testing remote connection</a></h2>
+<h3 id="web-ui"><a class="header" href="#web-ui">Web UI</a></h3>
+<ol>
+<li>Open following address in your browser: <code>https://SERVER_IP:28332/</code>
+<ul>
+<li>or use <code>http</code> if the TLS certificate is not in use</li>
+</ul>
+</li>
+<li>Enter your <code>RPC_USER_NAME</code> and <code>RPC_PASSWORD</code> on the authorization dialog</li>
+</ol>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>If you can't authenticate to the Web UI with the correct credentials provided in the <code>twister.conf</code>, make sure that your <em>strong</em> login or password in the URL request has special characters encoded (see <a href="https://www.ietf.org/rfc/rfc2396.txt">2.2. Reserved Characters</a>).</p>
+</div>
+<h3 id="rpc-api"><a class="header" href="#rpc-api">RPC API</a></h3>
+<p>For the RPC API, use the same <code>RPC_USER_NAME</code> and <code>RPC_PASSWORD</code> for <code>SERVER_IP:28332</code> as you would when using the HTTP protocol; also, provide the actual scheme to connect.</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>If the connection is configured with a self-signed certificate (as in the examples above), please ensure that your client application is configured to ignore any related warnings.</p>
+</div>
+<h2 id="final-tips"><a class="header" href="#final-tips">Final tips</a></h2>
+<h3 id="ssh-login-without-password"><a class="header" href="#ssh-login-without-password">SSH login without password</a></h3>
+<p>You can simply log in to the remote host account using your SSH key instead of the system user password.</p>
+<p>Run from the client host:</p>
+<pre><code class="language-bash">ssh-copy-id twister@REMOTE_HOST_IP
+</code></pre>
+<ul>
+<li>where <code>REMOTE_HOST_IP</code> is the host IP of your remote twister node</li>
+<li>provide the <code>-p</code> argument if your host is configured to use a non-default SSH port (other than <code>22</code>)</li>
+</ul>
+<h3 id="improve-security"><a class="header" href="#improve-security">Improve security</a></h3>
+<h4 id="use-strong-rpc-credentials"><a class="header" href="#use-strong-rpc-credentials">Use strong RPC credentials</a></h4>
+<p>Do not use the default <code>user:pwd</code> for the remote twister node. Consider using random, strong RPC login credentials when any of your ports are open to external connections.</p>
+<h4 id="run-public-peer-with-secure-options"><a class="header" href="#run-public-peer-with-secure-options">Run public peer with secure options</a></h4>
+<p>If you do not plan to use a remote node with an account, run <code>twisterd</code> with the <code>-public_server_mode</code> argument to restrict unsafe commands (e.g., wallet operations).</p>
+<h4 id="install-fail2ban"><a class="header" href="#install-fail2ban">Install fail2ban</a></h4>
+<p>If you are running a public peer server with remote control through SSH, consider installing the <a href="http://www.fail2ban.org/">fail2ban</a> daemon, which will block connections to port <code>22</code> (or another port) after an invalid login attempt (for <code>15</code> minutes by default).</p>
+<h4 id="randomize-ports"><a class="header" href="#randomize-ports">Randomize ports</a></h4>
+<p>Use a non-default SSH port to confuse bots and prevent your logs from growing.</p>
+<h4 id="prioritize-using-a-firewall"><a class="header" href="#prioritize-using-a-firewall">Prioritize using a firewall</a></h4>
+<p>Configure firewall/iptables rules to restrict access by using only whitelisted values.</p>
+<h3 id="remote-host-administration"><a class="header" href="#remote-host-administration">Remote host administration</a></h3>
+<p>Refer to the Administration page for a useful collection of CLI recipes!</p>
+<div class="version">Generated at: <strong>2025.04</strong></div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../twister-core/profile.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../twister-core/administration.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../twister-core/profile.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../twister-core/administration.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

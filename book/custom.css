@@ -1,0 +1,11 @@
+.breadcrumbs {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.version {
+    font-size: 1.4rem;
+    margin-top: 48px;
+    opacity: 0.6;
+    text-align: center;
+}

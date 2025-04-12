@@ -1,0 +1,569 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Visual Studio 2010 - The twister P2P Book</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The twister P2P Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/twisterarmy/book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; Visual Studio 2010</div>
+<style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.25em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(154, 103, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+</style>
+<h2 id="qa"><a class="header" href="#qa">Q/A</a></h2>
+<p><em>What is this?</em><br />
+This page contains instructions on how to build twister with Visual Studio 2010.</p>
+<p><em>Is this relevant for me if I want to run twister on Windows?</em><br />
+No. If you just need to run twister, please get the twister build based on Cygwin as it is more stable at this time. This is for people who are familiar with Visual Studio and want to develop/debug twister there.</p>
+<p><em>Does it really work?</em><br />
+Not exactly. It builds and runs. You can open the GUI and start using it. It crashes after a while though. But this is just a matter of debugging it. From what I see, most of the problems are related to STL usage and MS specifics in this area.</p>
+<p><em>Why don't you make it work?</em><br />
+I don't have as much time to work on this as I would like. I would greatly appreciate if a younger C++ padawan would take a look at it and fix it. If not, I will probably fix it myself eventually.</p>
+<h2 id="how-to-build-twister-with-vs-2010-vc-10"><a class="header" href="#how-to-build-twister-with-vs-2010-vc-10">How to build twister with VS 2010 (VC 10)</a></h2>
+<p>1.) Download twister-core, put it into c:\twister\twister-core</p>
+<p>2.) Download OpenSSL 1.0.1c, put it into c:\twister\twister-core\openssl-1.0.1c (see below on how to build it)</p>
+<p>3.) Download Boost 1.43.0, put it into c:\twister\twister-core\boost_1_43_0 (see below on how to build it)</p>
+<p>4.) Download Berkeley DB 4.8.30.NC, put it into c:\twister\twister-core\db-4.8.30.NC (see below on how to build it)</p>
+<p>5.) Download ittypes.h (from https://code.google.com/p/msinttypes) and put it into c:\twister\vcbuild\include</p>
+<p>6.) Create the environmental variable TWISTER_CORE and set it to c:\twister\twister-core</p>
+<p>7.) Create the environmental variable LIBTORRENT and set it to c:\twister\twister-core\libtorrent</p>
+<p>8.) Create the environmental variable OPENSSL and set it to c:\twister\twister-core\openssl-1.0.1c</p>
+<p>9.) Create the environmental variable BOOST_ROOT and set it to c:\twister\twister-core\boost_1_43_0</p>
+<p>10.) Create the environmental variable BERKELEY_DB and set it to c:\twister\twister-core\db-4.8.30.NC</p>
+<p>11.) Create a Win32 Console Application project named "twisterd" in c:\twister\twister-core\vcbuild. Under Additional options, select Empty project.</p>
+<p>12.) Add source files to the project in the following way:</p>
+<pre><code>[Source Files]
+  (stuff from c:\twister\twister-core\src)
+  addrman.cpp
+  alert.cpp
+  bitcoind.cpp
+  bitcoinrpc.cpp
+  bloom.cpp
+  chainparams.cpp
+  checkpoints.cpp
+  core.cpp
+  crypter.cpp
+  db.cpp
+  hash.cpp
+  init.cpp
+  key.cpp
+  keystore.cpp
+  leveldb.cpp
+  main.cpp
+  net.cpp
+  netbase.cpp
+  noui.cpp
+  protocol.cpp
+  rpcblockchain.cpp
+  rpcdump.cpp
+  rpcmining.cpp
+  rpcnet.cpp
+  rpcrawtransaction.cpp
+  rpcwallet.cpp
+  script.cpp
+  scrypt-sse2.cpp
+  scrypt.cpp
+  sync.cpp
+  twister.cpp
+  twister_utils.cpp
+  txdb.cpp
+  util.cpp
+  version.cpp
+  wallet.cpp
+  walletdb.cpp
+  [leveldb] (stuff from c:\twister\twister-core\src\leveldb)
+    [db]
+      builder.cc
+      c.cc
+      dbformat.cc
+      db_impl.cc
+      db_iter.cc
+      filename.cc
+      log_reader.cc
+      log_writer.cc
+      memtable.cc
+      repair.cc
+      table_cache.cc
+      version_edit.cc
+      version_set.cc
+      write_batch.cc
+    [helpers]
+      [memenv]
+        memenv.cc
+    [port]
+      port_win.cc
+    [table]
+      block.cc
+      block_builder.cc
+      filter_block.cc
+      format.cc
+      iterator.cc
+      merger.cc
+      table.cc
+      table_builder.cc
+      two_level_iterator.cc
+    [util]
+      arena.cc
+      bloom.cc
+      cache.cc
+      coding.cc
+      comparator.cc
+      crc32c.cc
+      env.cc
+      env_win.cc
+      filter_policy.cc
+      hash.cc
+      histogram.cc
+      logging.cc
+      options.cc
+      status.cc
+      testharness.cc
+      testutil.cc
+  [libtorrent] (stuff from c:\twister\twister-core\libtorrent\src)
+    alert.cpp
+    alert_manager.cpp
+    allocator.cpp
+    asio.cpp
+    asio_ssl.cpp
+    assert.cpp
+    bandwidth_limit.cpp
+    bandwidth_manager.cpp
+    bandwidth_queue_entry.cpp
+    bloom_filter.cpp
+    broadcast_socket.cpp
+    bt_peer_connection.cpp
+    chained_buffer.cpp
+    connection_queue.cpp
+    ConvertUTF.cpp
+    create_torrent.cpp
+    disk_buffer_holder.cpp
+    disk_buffer_pool.cpp
+    disk_io_thread.cpp
+    entry.cpp
+    enum_net.cpp
+    error_code.cpp
+    escape_string.cpp
+    file.cpp
+    file_pool.cpp
+    file_storage.cpp
+    gzip.cpp
+    hasher.cpp
+    http_connection.cpp
+    http_parser.cpp
+    http_seed_connection.cpp
+    http_stream.cpp
+    http_tracker_connection.cpp
+    i2p_stream.cpp
+    identify_client.cpp
+    instantiate_connection.cpp
+    ip_filter.cpp
+    ip_voter.cpp
+    lazy_bdecode.cpp
+    logger.cpp
+    lsd.cpp
+    lt_trackers.cpp
+    magnet_uri.cpp
+    metadata_transfer.cpp
+    natpmp.cpp
+    packet_buffer.cpp
+    parse_url.cpp
+    peer_connection.cpp
+    pe_crypto.cpp
+    piece_picker.cpp
+    policy.cpp
+    puff.cpp
+    random.cpp
+    rsa.cpp
+    rss.cpp
+    session.cpp
+    session_impl.cpp
+    settings.cpp
+    sha1.cpp
+    smart_ban.cpp
+    socket_io.cpp
+    socket_type.cpp
+    socks5_stream.cpp
+    stat.cpp
+    storage.cpp
+    string_util.cpp
+    thread.cpp
+    time.cpp
+    timestamp_history.cpp
+    torrent.cpp
+    torrent_handle.cpp
+    torrent_info.cpp
+    tracker_manager.cpp
+    udp_socket.cpp
+    udp_tracker_connection.cpp
+    upnp.cpp
+    utf8.cpp
+    utp_socket_manager.cpp
+    utp_stream.cpp
+    ut_metadata.cpp
+    ut_pex.cpp
+    web_connection_base.cpp
+    web_peer_connection.cpp
+    GeoIP.c
+    mpi.c
+    [kademlia]
+      dht_get.cpp
+      dht_tracker.cpp
+      find_data.cpp
+      logging.cpp
+      node.cpp
+      node_id.cpp
+      refresh.cpp
+      routing_table.cpp
+      rpc_manager.cpp
+      traversal_algorithm.cpp
+</code></pre>
+<p>13.) Open properties for libtorrent\alert.cpp, go to C/C++ / Output Files, set Object File Name to $(IntDir)libtorrent_alert.obj</p>
+<p>14.) Open properties for leveldb\util\bloom.cc, go to C/C++ / Output Files, set Object File Name to $(IntDir)leveldb_util_bloom.obj</p>
+<p>15.) Open properties for leveldb\util\hash.cc, go to C/C++ / Output Files, set Object File Name to $(IntDir)leveldb_util_hash.obj</p>
+<p>16.) Apply patches to source files (see below)</p>
+<p>17.) Open the project Property Pages. (The instructions that follow are for the Win32 platform and debug configuration.)</p>
+<p>18.) Add the following folders to Additional Include Directories under C/C++ / General:</p>
+<pre><code>$(LIBTORRENT)\include
+$(BOOST_ROOT)
+$(OPENSSL)\inc32
+$(TWISTER_CORE)\vcbuild\include
+$(TWISTER_CORE)\src
+$(TWISTER_CORE)\src\leveldb
+$(TWISTER_CORE)\src\leveldb\include
+$(TWISTER_CORE)\src\leveldb\helpers
+$(BERKELEY_DB)\build_windows
+</code></pre>
+<p>19.) Add the following definitions to Preprocessor Definitions under C/C++ / Preprocessor:</p>
+<pre><code>WIN32
+_DEBUG
+_CONSOLE
+WIN32_LEAN_AND_MEAN
+_WIN32_WINNT=0x0501
+_MSC_VER=1600
+_CRT_SECURE_NO_DEPRECATE
+BOOST_ASIO_HASH_MAP_BUCKETS=1021
+BOOST_FILESYSTEM_VERSION=2
+WITH_SHIPPED_GEOIP_H
+BOOST_ASIO_SEPARATE_COMPILATION
+BOOST_ASIO_ENABLE_CANCELIO
+TORRENT_USE_OPENSSL
+NOMINMAX
+__PRETTY_FUNCTION__=__FUNCTION__
+BOOST_HAS_STDINT_H
+LEVELDB_PLATFORM_WINDOWS
+OS_WIN
+</code></pre>
+<p>20.) Add the following folders to Additional Library Directories under Linker / General:</p>
+<pre><code>$(BOOST_ROOT)\stage\lib
+$(OPENSSL)\out32
+$(BERKELEY_DB)\build_windows\Win32\Debug
+</code></pre>
+<p>21.) Add the following libs to Additional Dependencies under Linker / Input:</p>
+<pre><code>libeay32.lib
+ssleay32.lib
+shlwapi.lib
+libdb48d.lib
+</code></pre>
+<p>22.) Copy libdb48d.dll from c:\twister\twister-core\db-4.8.30.NC\build_windows\Win32\Debug to c:\twister\twister-core\vcbuild\Debug</p>
+<p>23.) Hit F5 and keep your fingers crossed (this will take some time)</p>
+<h2 id="building-openssl-101c"><a class="header" href="#building-openssl-101c">Building OpenSSL 1.0.1c</a></h2>
+<p>1.) Download and install ActivePerl (http://www.activestate.com/activeperl/downloads)</p>
+<p>2.) Download and install NASM (http://www.nasm.us)</p>
+<p>3.) Create the environmental variable NASM and set it to the NASM folder, e.g. C:\Program Files (x86)\NASM</p>
+<p>4.) Start Visual Studio Command Prompt</p>
+<p>5.) Run the following commands:</p>
+<blockquote>
+<p>cd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin
+vcvars32.bat
+cd c:\twister\twister-core\openssl-1.0.1c
+perl Configure VC-WIN32 --prefix="%OPENSSL%"
+"%NASM%"\nasmpath.bat
+call ms\do_nasm
+nmake -f ms\nt.makdir</p>
+</blockquote>
+<p>This produces exe and lib files in c:\twister\twister-core\openssl-1.0.1c\out32, and header files in c:\twister\twister-core\openssl-1.0.1c\inc32.</p>
+<p>Note: Making vcvars32.bat work is a real pain in the a**. It contains a lot of statements containing environmental variables surrounded by quotes such as <tt>set "PATH=%WindowsSdkDir%bin\NETFX 4.0 Tools;%WindowsSdkDir%bin;%PATH%"</tt> and <tt>if exist "%VSINSTALLDIR%Team Tools\Performance Tools" set ...</tt>. The problem occurs when the value of one of these variables also contains quotes. If you get an error saying something like "\Microsoft\Microsoft was unexpected at this time", your best bet is to make sure that the value of the environmental var PATH does not contain any quotes.</p>
+<h2 id="building-boost-1430"><a class="header" href="#building-boost-1430">Building Boost 1.43.0</a></h2>
+<p>1.) Start Visual Studio Command Prompt</p>
+<p>2.) Run the following commands:</p>
+<blockquote>
+<p>cd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin
+vcvars32.bat
+cd c:\twister\twister-core\boost_1_43_0
+bootstrap.bat
+bjam toolset=msvc-10.0 --build-type=complete stage</p>
+</blockquote>
+<p>This process takes some time. It produces lib files in c:\twister\twister-core\boost_1_43_0\stage\libs.</p>
+<p>Note: If vcvars32.bat and/or bootstrap.bat fails, see the comment above on why this happens and how to fix it.</p>
+<h2 id="building-berkeley-db-4830nc"><a class="header" href="#building-berkeley-db-4830nc">Building Berkeley DB 4.8.30.NC</a></h2>
+<p>Coming soon...</p>
+<p>(Patches also coming soon.)</p>
+<div class="version">Generated at: <strong>2025.04</strong></div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../twister-core/miguelfreitas/build-native-windows-client-using-gitian.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../twister-core/libtorrent-build-on-ubuntu.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../twister-core/miguelfreitas/build-native-windows-client-using-gitian.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../twister-core/libtorrent-build-on-ubuntu.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
