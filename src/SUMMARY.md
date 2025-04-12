@@ -34,7 +34,7 @@
 - [twisterad](./twisterad/index.md)
     - [Install](./twisterad/install.md)
     - [Usage](./twisterad/usage.md)
-- [CudaMiner](./CudaMiner-twister/index.md)
+- [CudaMiner](./cudaminer-twister/index.md)
 
 # Network tools
 

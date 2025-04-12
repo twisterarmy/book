@@ -52,9 +52,9 @@ cp $S/libtorrent-build-on-Ubuntu.md $T/libtorrent-build-on-ubuntu.md
 cp $S/Popular-accounts-you-would-like-to-follow.md src/popular-accounts-to-follow.md
 cp $S/twister白皮书.md src/twister白皮书.md
 
-rm -rf src/CudaMiner-twister
-mkdir -p src/CudaMiner-twister
-cp $S/mining.md src/CudaMiner-twister/index.md
+rm -rf src/cudaminer-twister
+mkdir -p src/cudaminer-twister
+cp $S/mining.md src/cudaminer-twister/index.md
 
 S=git/twisterarmy-twister-core
 cp $S/Home.md $T/about.md
