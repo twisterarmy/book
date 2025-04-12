@@ -1,0 +1,55 @@
+# Common
+* @**echotest** Echo [Echo test for your twists (up to 5 minutes delay, please have patience)]
+* @**tiktok** Tiktok [UTC Hourly heartbeat]
+* @**potm** Phase of the Moon
+
+# English
+* @**twister** twister [twister announcements. low volume.]
+* @**mfreitas** Miguel Freitas [hacking twister in spare time]
+* @**letstwist** Let's Twist! [Git commits for twister-core and twister-html]
+* @**newusers** New users [Announcing new users as they register in the blockchain]
+* @**blockhash** Block Hash [Counting the blocks in the Twister blockchain]
+* @**userstats** Twister User Stats [Some infos about twister users, http://yazgi.net/twister/users]
+* @**calm_client** Calm [Calm is an alternative client for twister, https://github.com/iHedgehog/twister-calm]
+* @**theme_nin** Nin Theme [Twister Theme Nin, https://github.com/myleneb/twister-nin]
+* @**hn** Hacker News [https://news.ycombinator.com/]
+* @**bbc_world** BBC World News [BBC World News is the BBC's international news and current affairs television channel, http://www.bbc.com/news/world/]
+* @**intercept** The // Intercept [Fearless, adversarial journalism, https://firstlook.org/theintercept]
+* @**colossal** Colossal [Art, design, and visual culture, http://www.thisiscolossal.com/]
+* @**rt_com** [Russian propaganda TV network, http://rt.com/]
+* @**lgbt** LGBT [Lesbian, gay, bisexual, and transgender]
+* @**soltempore** Sol Tempore [https://twitter.com/soltempore]
+* @**fourtwenty** 16:20 [There's one every hour somewhere, http://is.gd/fourtwenty]
+* @**torrentfreak_com** TorrentFreak [Breaking File-sharing, Copyright and Privacy News, http://torrentfreak.com/]
+* @**schneier_sec** Schneier on Security [A relay from Schneier's blog, https://www.schneier.com/]
+* @**smashingmag** Smashing Magazine [Smashing Magazine is an online magazine for professional Web designers and developers, with a focus on useful techniques, best practices and valuable resources, http://smashingmagazine.com/]
+* @**manliness** The Art of Manliness [Reviving the lost art of manliness since 2008, http://www.artofmanliness.com/]
+* @**meduza_en** Meduza.io #en [The Real Russia, Today, https://meduza.io/en]
+
+# French
+* @**lemonde_rss** Le Monde [Je vous apporte le RSS du Monde.fr sur un plateau d'argent!, http://lemonde.fr/]
+
+# Russian
+* @**rutwister** RU - Twister [Новости Twister'a на русском]
+* @**rublacklist** РосКомСвобода [http://rublacklist.net/]
+* @**i2pnews** I2P news [Новости из мира I2P]
+* @**habr_ru** Habrahabr.ru [http://habrahabr.ru/]
+* @**geektimes** GeekTimes [http://geektimes.ru/]
+* @**piratemedia** Pirate MEDIA [Информационно-новостной портал Пиратской партии России, http://piratemedia.net/]
+* @**slon_ru** Slon.ru [Деловые новости и блоги, http://slon.ru/]
+* @**theins_ru** The Insider [Журнал о расследованиях, http://theins.ru/]
+* @**bbc_russian** BBC Russian [Русская служба BBC, http://www.bbc.co.uk/russian/]
+* @**sputnikipogrom** Sputnik & Pogrom [Спутник и погром, http://sputnikipogrom.com/]
+* @**b0ltai** Shaltay Boltay - Ретранслятор [http://b0ltai.org/]
+* @**petrimazepa** Пётр и Мазепа - Ретранслятор [http://petrimazepa.com]
+* @**apparat_cc** Apparat [Журнал о новом обществе, http://apparat.cc/]
+* @**meduza_io** Meduza [Meduza — новости возвращаются, https://www.meduza.io/]
+* @**tvrain** Телеканал ДОЖДЬ [Все новости телеканала ДОЖДЬ, http://tvrain.ru/]
+* @**besttoday_ru** BesTToday [Besttoday.ru - всё самое лучшее в блогах, http://besttoday.ru/]
+
+# Chinese
+* @**bbc_zhongwen** BBC Chinese [新闻主页, http://bbcchinese.com/]
+* @**reuterscn** Reuters 路透中文 [http://cn.reuters.com/]
+* @**voa_cn** 美国之音中文网 [http://voachinese.com/]
+* @**newscn** 喧哗社 [信息的自由流动是辟谣的最佳方式]
+* @**freeweibo** 自由微博 [最新最热微博(包括屏蔽的)机器人。数据由自由微博http://Freeweibo.com 提供。]
