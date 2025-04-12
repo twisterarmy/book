@@ -1,8 +1,2 @@
 # local repositories for the book sources
 git
-
-# todo:
-# please remove following lines before making the initial release!
-src/*
-!src/SUMMARY.md
-book
