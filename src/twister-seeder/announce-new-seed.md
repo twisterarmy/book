@@ -1,7 +1,5 @@
 To make new `twister-seeder` visible for other peers, create new PR to following lines:
 
-* [twister-core](https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/chainparams.cpp#L218)
-* [twister-seeder](https://github.com/twisterarmy/twister-seeder/blob/twisterarmy/main.cpp#L426)
-
-Optionally,\
-submit new PR to the [Network page](https://github.com/twisterarmy/twisterarmy.github.io/blob/main/network.html), which is displayed on the [community website](https://twisterarmy.github.io/network)!
+* [twister-core](https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/chainparams.cpp#L218) ([example](https://github.com/twisterarmy/twister-core/commit/5f85a86b102d98c19600e15a97dab4649e0e581d))
+* [twister-seeder](https://github.com/twisterarmy/twister-seeder/blob/twisterarmy/main.cpp#L426) ([example](https://github.com/twisterarmy/twister-seeder/commit/9b4e7407b5f9517f189c295fffec87e378ceeae3))
+* optionally, submit new PR to the [Network page](https://github.com/twisterarmy/twisterarmy.github.io/blob/main/network.html), which is displayed on the [community website](https://twisterarmy.github.io/network) ([example](https://github.com/twisterarmy/twisterarmy.github.io/commit/39c2c41e9da2d81260443b687f200af322077a64))

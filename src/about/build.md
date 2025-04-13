@@ -29,3 +29,6 @@ To read in the browser using a local server, run:
 ``` bash
 mdbook serve --open
 ```
+
+> [!NOTE]
+> The `serve` option generates additional content for local reading; do not use its output for `/book` contributions!

@@ -283,17 +283,47 @@
 </p>
 <p>This option disables finding peers using DNS lookup (<code>-dnsseed</code> argument will be ignored)</p>
 </div>
+<h3 id="connect-some-network-only"><a class="header" href="#connect-some-network-only">Connect some network only</a></h3>
+<p>By default, <code>twisterd</code> accepts connections from all available network interfaces. This option can be helpful in situations where you are using some <a href="#connect-with-proxy">proxy</a> that does not support certain address families, such as how <a href="#yggstack">yggstack</a> does not support IPv4.</p>
+<p>To use only the IPv6 network family, launch <code>twisterd</code> with the <code>-onlynet=IPv6</code> flag:</p>
+<pre><code class="language-bash">./twisterd -onlynet=IPv6
+</code></pre>
+<ul>
+<li><code>IPv4</code>|<code>IPv6</code>|<code>Tor</code> - see also <code>./twisterd --help</code></li>
+</ul>
+<h3 id="connect-with-proxy"><a class="header" href="#connect-with-proxy">Connect with proxy</a></h3>
+<h4 id="yggstack"><a class="header" href="#yggstack">yggstack</a></h4>
+<p><a href="https://github.com/yggdrasil-network/yggstack">yggstack</a> is a proxy server for Yggdrasil that allows you to use this network without installing the full node. It is especially useful in cases where you don't want to grant root access to the Yggdrasil service, as such access is required to operate the network configuration during the startup of a new interface.</p>
+<p>According to the <a href="https://github.com/yggdrasil-network/yggstack#introduction">README</a>:</p>
+<blockquote>
+<p>Yggstack fills the gap by providing SOCKS5 proxy server and TCP port forwarder functionality similar to TOR router. It also can serve as a standalone network node to connect network segments.</p>
+</blockquote>
+<p><strong>How to use</strong></p>
+<p>First, run <code>yggstack</code> with the following arguments (replace the values with your own):</p>
+<pre><code class="language-bash">./yggstack -useconffile path/to/yggdrasil.conf -socks 127.0.0.1:1080
+</code></pre>
+<p>Now start <code>twisterd</code> with at least the following setup:</p>
+<pre><code class="language-bash">./twisterd -proxy=127.0.0.1:1080 -socks=5 -onlynet=IPv6
+</code></pre>
+<ul>
+<li>the <code>-socks=5</code> argument is not necessary, as version <code>5</code> should be the default (just make sure it is)</li>
+<li>it is important to run connection with <code>-onlynet=IPv6</code> because <code>yggstack</code> operates with Yggdrasil's IPv6 addresses, while <code>twisterd</code> expects all networks by default (see <a href="https://github.com/twisterarmy/twister-core/issues/16">#16</a> and <a href="#connect-some-network-only">onlynet</a> argument usage for details)</li>
+</ul>
 <h3 id="bind-on-given-address"><a class="header" href="#bind-on-given-address">Bind on given address</a></h3>
-<p>By launching <code>twisterd</code> with the following example, your peer will listen for connections only on this address. Internet users will no longer be able to connect to your peer using the clearnet IPv4/IPv6!</p>
+<p>The <code>bind</code> argument may be useful in cases where you have more than one IPv4 or IPv6 interface, such as when using Yggdrasil alongside an Internet IPv6 connection, or when Yggdrasil is configured with a subnet mask (e.g., <code>[300:17a8:aabf:108f::33]</code>), and you want to use only that specific interface to launch <code>twisterd</code> and listen connections on it.</p>
+<p>This is also relevant if you are running multiple <code>twisterd</code> nodes on the same host and want to bind a static address for a specific RPC API configuration.</p>
 <pre><code class="language-bash">./twisterd -bind=[HOST]:PORT
 </code></pre>
 <ul>
 <li>to get your current Yggdrasil <code>[HOST]</code>, run: <code>sudo yggdrasilctl getself</code></li>
 </ul>
-<h3 id="disable-ipv4-connections"><a class="header" href="#disable-ipv4-connections">Disable IPv4 connections</a></h3>
-<p>To ignore the unused IPv4 interface, use the <code>-onlynet=IPv6</code> flag:</p>
-<pre><code class="language-bash">./twisterd -onlynet=IPv6
-</code></pre>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>The <code>bind</code> option does not decrease your connectivity level; see <a href="#connect-some-network-only">onlynet</a> option for that purpose!</p>
+</div>
 <h2 id="firewall-examples"><a class="header" href="#firewall-examples">Firewall examples</a></h2>
 <p>Some tips for tuning your iptables</p>
 <h3 id="restrict-02007-range"><a class="header" href="#restrict-02007-range">Restrict 0200::/7 range</a></h3>
@@ -311,10 +341,11 @@
 <tr><td style="text-align: left">[301:5eb5:f061:678e::33]</td><td style="text-align: left">28333</td><td style="text-align: left">29333</td><td style="text-align: left">2023</td></tr>
 </tbody></table>
 </div>
-<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<h2 id="related-software"><a class="header" href="#related-software">Related software</a></h2>
+<p>Some other Yggdrasil-based software you might want to try:</p>
 <ul>
-<li><a href="https://github.com/yggdrasil-network/yggstack">yggstack</a> - access Yggdrasil through SOCKS proxy without exposing your interface to the network</li>
-<li><a href="https://github.com/neilalexander/yggmail">yggmail</a> - end-to-end encrypted email for the mesh networking age</li>
+<li><a href="https://github.com/yggdrasil-network/yggstack">yggstack</a> - access Yggdrasil through SOCKS proxy without exposing your interface to the network;</li>
+<li><a href="https://github.com/neilalexander/yggmail">yggmail</a> - end-to-end encrypted email for the mesh networking age;</li>
 <li><a href="https://github.com/Revertron/Alfis/">Alfis DNS</a> - a peer-to-peer alternative to centralized DNS providers, with native Yggdrasil support, that is also useful for launching a free, independent DNS seeder for the twister network.</li>
 </ul>
 <div class="version">Generated at: <strong>2025.04</strong></div>
