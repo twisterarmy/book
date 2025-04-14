@@ -41,6 +41,6 @@ sudo dnf install git autoconf automake libtool make\
     - `git clone https://github.com/twisterarmy/twister-html.git ~/.twister/html`
 3. Launch twister
     - `./twisterd`
-    - open [http://user:pwd@127.0.0.1:28332](http://user:pwd@127.0.0.1:28332)
-        - optionally, skip the `user:pwd` credentials and log in using the authorization dialog
+    - open [http://127.0.0.1:28332](http://127.0.0.1:28332)
+        - enter `user` and `pwd` in the authorization dialog
     - create your account!
