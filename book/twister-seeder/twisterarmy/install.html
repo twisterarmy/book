@@ -240,7 +240,24 @@
 <li><code>cd twister-seeder</code></li>
 <li><code>make</code></li>
 </ol>
-<p>Compiled <code>dnsseed</code> binary will be placed in the current <code>twister-seeder</code> build location!</p>
+<p>Compiled <code>dnsseed</code> binary will be placed in the current <code>twister-seeder</code> build directory (see also <strong>Storage location</strong>)</p>
+<h4 id="upgrade-from-repository"><a class="header" href="#upgrade-from-repository">Upgrade from repository</a></h4>
+<p>Steps to upgrade your existing <code>twister-seeder</code> from the repository sources:</p>
+<ol>
+<li>stop existing <code>dnsseed</code> process to continue (if active, run <code>pgrep dnsseed</code> to find)
+<ul>
+<li><code>sudo systemctl stop dnsseed</code> - if you're using <code>systemd</code> service</li>
+</ul>
+</li>
+<li><code>cd twister-seeder</code> - navigate <code>twister-seeder</code> sources directory (which contains old <code>dnsseed</code> binary)</li>
+<li><code>git pull</code> - grab latest updates</li>
+<li><code>make</code> - build new version</li>
+<li>start <code>dnsseed</code> process
+<ul>
+<li><code>sudo systemctl start dnsseed</code> - if you're using <code>systemd</code> service</li>
+</ul>
+</li>
+</ol>
 <div class="version">Generated at: <strong>2025.04</strong></div>
                     </main>
 

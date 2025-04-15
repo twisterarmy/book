@@ -1048,6 +1048,25 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 </ul>
 </li>
 </ol>
+<h3 id="upgrade-from-repository"><a class="header" href="#upgrade-from-repository">Upgrade from repository</a></h3>
+<p>Steps to upgrade your existing <code>twister-core</code> and <code>twister-html</code> from the repository sources:</p>
+<ol>
+<li>stop running <code>twisterd</code> process to continue (if active, run <code>pgrep twisterd</code> to find)
+<ul>
+<li><code>sudo systemctl stop twister-service-name</code> - if you're using <code>systemd</code> service</li>
+</ul>
+</li>
+<li><code>cd twister-core</code> - navigate <code>twister-core</code> sources directory (which contains old <code>twisterd</code> binary)</li>
+<li><code>git pull</code> - grab latest updates</li>
+<li><code>make</code> - build new version</li>
+<li><code>cd ~/.twister/html</code> - navigate <code>twister-html</code> installation directory</li>
+<li><code>git pull</code> - grab latest <code>twister-html</code> changes</li>
+<li>start <code>twister-core</code> process
+<ul>
+<li><code>sudo systemctl start twister-service-name</code> - if you're using <code>systemd</code> service</li>
+</ul>
+</li>
+</ol>
 <div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; CentOS 6</div>
 <style>
 .mdbook-alerts {
@@ -3497,10 +3516,10 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 <p>The <code>twister-seeder</code> is based on the <a href="https://github.com/sipa/bitcoin-seeder">bitcoin-seeder</a> so it has similar build requirements</p>
 <h4 id="server"><a class="header" href="#server">Server</a></h4>
 <ul>
-<li>root access</li>
-<li>free port <code>53</code> to launch <code>twister-seeder</code> DNS on it</li>
-<li>domain access with the ability to change <code>NS</code> records</li>
-<li>free centralized domain providers are <a href="twister-seeder/Troubleshooting#domain-provider-disallowed-changes-to-ns-record">not recommended</a></li>
+<li>root access;</li>
+<li>free port <code>53</code> to launch <code>twister-seeder</code> DNS on it;</li>
+<li>domain access with the ability to change <code>NS</code> records;</li>
+<li>free centralized domain providers are not recommended, as they may block <code>NS</code> features.</li>
 </ul>
 <h4 id="client-public-peer"><a class="header" href="#client-public-peer">Client (public peer)</a></h4>
 <p>To be reachable for <code>twister-seeder</code>, the client (<code>twister-core</code> peer) must meet the following requirements:</p>
@@ -3671,7 +3690,24 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 <li><code>cd twister-seeder</code></li>
 <li><code>make</code></li>
 </ol>
-<p>Compiled <code>dnsseed</code> binary will be placed in the current <code>twister-seeder</code> build location!</p>
+<p>Compiled <code>dnsseed</code> binary will be placed in the current <code>twister-seeder</code> build directory (see also <strong>Storage location</strong>)</p>
+<h4 id="upgrade-from-repository-1"><a class="header" href="#upgrade-from-repository-1">Upgrade from repository</a></h4>
+<p>Steps to upgrade your existing <code>twister-seeder</code> from the repository sources:</p>
+<ol>
+<li>stop existing <code>dnsseed</code> process to continue (if active, run <code>pgrep dnsseed</code> to find)
+<ul>
+<li><code>sudo systemctl stop dnsseed</code> - if you're using <code>systemd</code> service</li>
+</ul>
+</li>
+<li><code>cd twister-seeder</code> - navigate <code>twister-seeder</code> sources directory (which contains old <code>dnsseed</code> binary)</li>
+<li><code>git pull</code> - grab latest updates</li>
+<li><code>make</code> - build new version</li>
+<li>start <code>dnsseed</code> process
+<ul>
+<li><code>sudo systemctl start dnsseed</code> - if you're using <code>systemd</code> service</li>
+</ul>
+</li>
+</ol>
 <div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Domain setup</div>
 <style>
 .mdbook-alerts {
@@ -3743,12 +3779,12 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 <h2 id="records-example"><a class="header" href="#records-example">Records example</a></h2>
 <p>Create at least two subdomains in your provider's control panel:</p>
 <ul>
-<li>ns.domain.org
+<li><code>ns.domain.org</code>
 <ul>
 <li><code>A</code>:<code>SERVER_IP</code></li>
 </ul>
 </li>
-<li>seed.domain.org
+<li><code>seed.domain.org</code>
 <ul>
 <li><code>NS</code>:<code>ns.domain.org</code></li>
 </ul>
@@ -3756,17 +3792,17 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 </ul>
 <p>If the provider requires two <code>NS</code> records:</p>
 <ul>
-<li>ns1.domain.org
+<li><code>ns1.domain.org</code>
 <ul>
 <li><code>A</code>:<code>SERVER_IP</code></li>
 </ul>
 </li>
-<li>ns2.domain.org
+<li><code>ns2.domain.org</code>
 <ul>
 <li><code>A</code>:<code>SERVER_IP</code></li>
 </ul>
 </li>
-<li>seed.domain.org
+<li><code>seed.domain.org</code>
 <ul>
 <li><code>NS</code>:<code>ns1.domain.org</code></li>
 <li><code>NS</code>:<code>ns2.domain.org</code></li>
@@ -4152,10 +4188,35 @@ WantedBy=multi-user.target
 
 </style>
 <h2 id="dns-cant-discover-new-peers"><a class="header" href="#dns-cant-discover-new-peers">DNS can't discover new peers</a></h2>
+<h3 id="dns-cache"><a class="header" href="#dns-cache">DNS cache</a></h3>
 <p>First of all, check that the DNS cache has really been updated; it may take some time for the domain settings to change.</p>
-<p>Then, make sure that at least one expected <code>twister-core</code> instance (with port <code>28333</code>) has been online for about one day or more. If you're running <code>twister-core</code> with recently changed random port to <code>28333</code>, try clear the <a href="twister-seeder/Usage#storage">storage</a> cache and restart your <code>twister-seeder</code>; make sure, the <code>twister-core</code> <a href="https://www.yougetsignal.com/tools/open-ports/?port=28333">port is open</a>.</p>
+<h3 id="satisfy-public-peer-requirements"><a class="header" href="#satisfy-public-peer-requirements">Satisfy public peer requirements</a></h3>
+<p>Make sure that at least one expected <code>twister-core</code> instance (with <a href="https://www.yougetsignal.com/tools/open-ports/?port=28333">open port</a> <code>28333</code>) has been online for about one hour or more. This peer should also be synchronized with the network, meaning it should contain the actual blockchain version and have established DHT connection.</p>
+<div class="mdbook-alerts mdbook-alerts-tip">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tip
+</p>
+<p>If you're running <code>twister-core</code> with recently changed random port to <code>28333</code>, follow the <a href="twister-seeder/troubleshooting.html#clear-the-crawl-cache">Clear the crawl cache</a> instructions.</p>
+</div>
+<h3 id="emit-a-signal-from-new-peer"><a class="header" href="#emit-a-signal-from-new-peer">Emit a signal from new peer</a></h3>
 <p>Try sending a new request to your new <code>twister-seeder</code> from the peering <code>twister-core</code>, as your <code>twister-core</code> probably doesn't know about the new <code>twister-seeder</code> since it's not <a href="https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/chainparams.cpp#L218">listed</a> and can't obtain its address from other peers: open the <a href="http://127.0.0.1:28332">web UI</a> and add your <code>seed.domain.org</code> to the <code>DNS to obtain list of peers</code> entry.</p>
-<p>If the <code>twister-seeder</code> outputs <code>0/2 available</code> for a while, and you already running or know an existing <code>twister-core</code> IP with active connections (on port <code>28333</code>), try defining it as the initial peer by temporarily hardcoding the following <a href="https://github.com/twisterarmy/twister-seeder/blob/twisterarmy/main.cpp#L431">line</a> in <code>main.cpp</code>, then recompile and restart <code>dnsseed</code>:</p>
+<h3 id="clear-the-crawl-cache"><a class="header" href="#clear-the-crawl-cache">Clear the crawl cache</a></h3>
+<p>Current <code>twister-seeder</code> implementation may temporarily ban unstable public peers. This behavior is inherited from the legacy <a href="https://github.com/sipa/bitcoin-seeder">bitcoin-seeder</a>, which filters out public peers that are not running on port <code>28333</code> or those with low connectivity.</p>
+<p>To reset <code>twister-seeder</code> crawl cache, run <code>./dnsseed</code> with following options:</p>
+<ul>
+<li><code>--wipeban</code> - wipe list of banned nodes</li>
+<li><code>--wipeignore</code> - wipe list of ignored nodes</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-tip">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tip
+</p>
+<p>To remove all crawler data collected, stop the <code>dnsseed</code> process and remove <code>dnsseed.dat</code> file (see <strong>Storage location</strong> for details) then restart <code>dnsseed</code> in the initial state.</p>
+</div>
+<h3 id="manually-define-a-new-peer"><a class="header" href="#manually-define-a-new-peer">Manually define a new peer</a></h3>
+<p>Finally, if the <code>twister-seeder</code> outputs <code>0/2 available</code> for a while, and you already running or know an existing <code>twister-core</code> IP with active connections (on port <code>28333</code>), try defining it as the initial peer by temporarily hardcoding the following <a href="https://github.com/twisterarmy/twister-seeder/blob/twisterarmy/main.cpp#L431">line</a> in <code>main.cpp</code>, then recompile and restart <code>dnsseed</code>:</p>
 <pre><code class="language-cpp">CDnsSeedOpts *opts = (CDnsSeedOpts *)arg;
 </code></pre>
 <p>add after:</p>
@@ -4176,7 +4237,13 @@ WantedBy=multi-user.target
 </ul>
 </li>
 </ul>
-<p>This solution will work and could be useful in certain situations (e.g., when all other seeds are offline and you are using an existing hostname from <a href="https://twisterarmy.github.io/network">this list</a>)</p>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>This solution is not recommended, but it will work and could be useful in certain situations (e.g., when all other seeds are offline but you are using an existing hostname from <a href="https://twisterarmy.github.io/network">this list</a> and running the public peer with a static IP)</p>
+</div>
 <div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Popular accounts to follow</div>
 <style>
 .mdbook-alerts {

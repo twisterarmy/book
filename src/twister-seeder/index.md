@@ -8,10 +8,10 @@ The `twister-seeder` is based on the [bitcoin-seeder](https://github.com/sipa/bi
 
 #### Server
 
-* root access
-* free port `53` to launch `twister-seeder` DNS on it
-* domain access with the ability to change `NS` records
-* free centralized domain providers are [not recommended](Troubleshooting#domain-provider-disallowed-changes-to-ns-record)
+* root access;
+* free port `53` to launch `twister-seeder` DNS on it;
+* domain access with the ability to change `NS` records;
+* free centralized domain providers are not recommended, as they may block `NS` features.
 
 #### Client (public peer)
 

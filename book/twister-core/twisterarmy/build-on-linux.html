@@ -292,6 +292,25 @@
 </ul>
 </li>
 </ol>
+<h3 id="upgrade-from-repository"><a class="header" href="#upgrade-from-repository">Upgrade from repository</a></h3>
+<p>Steps to upgrade your existing <code>twister-core</code> and <code>twister-html</code> from the repository sources:</p>
+<ol>
+<li>stop running <code>twisterd</code> process to continue (if active, run <code>pgrep twisterd</code> to find)
+<ul>
+<li><code>sudo systemctl stop twister-service-name</code> - if you're using <code>systemd</code> service</li>
+</ul>
+</li>
+<li><code>cd twister-core</code> - navigate <code>twister-core</code> sources directory (which contains old <code>twisterd</code> binary)</li>
+<li><code>git pull</code> - grab latest updates</li>
+<li><code>make</code> - build new version</li>
+<li><code>cd ~/.twister/html</code> - navigate <code>twister-html</code> installation directory</li>
+<li><code>git pull</code> - grab latest <code>twister-html</code> changes</li>
+<li>start <code>twister-core</code> process
+<ul>
+<li><code>sudo systemctl start twister-service-name</code> - if you're using <code>systemd</code> service</li>
+</ul>
+</li>
+</ol>
 <div class="version">Generated at: <strong>2025.04</strong></div>
                     </main>
 

@@ -2,18 +2,18 @@
 
 Create at least two subdomains in your provider's control panel:
 
-* ns.domain.org
+* `ns.domain.org`
   * `A`:`SERVER_IP`
-* seed.domain.org
+* `seed.domain.org`
   * `NS`:`ns.domain.org`
 
 If the provider requires two `NS` records:
 
-* ns1.domain.org
+* `ns1.domain.org`
   * `A`:`SERVER_IP`
-* ns2.domain.org
+* `ns2.domain.org`
   * `A`:`SERVER_IP`
-* seed.domain.org
+* `seed.domain.org`
   * `NS`:`ns1.domain.org`
   * `NS`:`ns2.domain.org`
 

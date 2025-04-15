@@ -228,10 +228,35 @@
 
 </style>
 <h2 id="dns-cant-discover-new-peers"><a class="header" href="#dns-cant-discover-new-peers">DNS can't discover new peers</a></h2>
+<h3 id="dns-cache"><a class="header" href="#dns-cache">DNS cache</a></h3>
 <p>First of all, check that the DNS cache has really been updated; it may take some time for the domain settings to change.</p>
-<p>Then, make sure that at least one expected <code>twister-core</code> instance (with port <code>28333</code>) has been online for about one day or more. If you're running <code>twister-core</code> with recently changed random port to <code>28333</code>, try clear the <a href="Usage#storage">storage</a> cache and restart your <code>twister-seeder</code>; make sure, the <code>twister-core</code> <a href="https://www.yougetsignal.com/tools/open-ports/?port=28333">port is open</a>.</p>
+<h3 id="satisfy-public-peer-requirements"><a class="header" href="#satisfy-public-peer-requirements">Satisfy public peer requirements</a></h3>
+<p>Make sure that at least one expected <code>twister-core</code> instance (with <a href="https://www.yougetsignal.com/tools/open-ports/?port=28333">open port</a> <code>28333</code>) has been online for about one hour or more. This peer should also be synchronized with the network, meaning it should contain the actual blockchain version and have established DHT connection.</p>
+<div class="mdbook-alerts mdbook-alerts-tip">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tip
+</p>
+<p>If you're running <code>twister-core</code> with recently changed random port to <code>28333</code>, follow the <a href="#clear-the-crawl-cache">Clear the crawl cache</a> instructions.</p>
+</div>
+<h3 id="emit-a-signal-from-new-peer"><a class="header" href="#emit-a-signal-from-new-peer">Emit a signal from new peer</a></h3>
 <p>Try sending a new request to your new <code>twister-seeder</code> from the peering <code>twister-core</code>, as your <code>twister-core</code> probably doesn't know about the new <code>twister-seeder</code> since it's not <a href="https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/chainparams.cpp#L218">listed</a> and can't obtain its address from other peers: open the <a href="http://127.0.0.1:28332">web UI</a> and add your <code>seed.domain.org</code> to the <code>DNS to obtain list of peers</code> entry.</p>
-<p>If the <code>twister-seeder</code> outputs <code>0/2 available</code> for a while, and you already running or know an existing <code>twister-core</code> IP with active connections (on port <code>28333</code>), try defining it as the initial peer by temporarily hardcoding the following <a href="https://github.com/twisterarmy/twister-seeder/blob/twisterarmy/main.cpp#L431">line</a> in <code>main.cpp</code>, then recompile and restart <code>dnsseed</code>:</p>
+<h3 id="clear-the-crawl-cache"><a class="header" href="#clear-the-crawl-cache">Clear the crawl cache</a></h3>
+<p>Current <code>twister-seeder</code> implementation may temporarily ban unstable public peers. This behavior is inherited from the legacy <a href="https://github.com/sipa/bitcoin-seeder">bitcoin-seeder</a>, which filters out public peers that are not running on port <code>28333</code> or those with low connectivity.</p>
+<p>To reset <code>twister-seeder</code> crawl cache, run <code>./dnsseed</code> with following options:</p>
+<ul>
+<li><code>--wipeban</code> - wipe list of banned nodes</li>
+<li><code>--wipeignore</code> - wipe list of ignored nodes</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-tip">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tip
+</p>
+<p>To remove all crawler data collected, stop the <code>dnsseed</code> process and remove <code>dnsseed.dat</code> file (see <strong>Storage location</strong> for details) then restart <code>dnsseed</code> in the initial state.</p>
+</div>
+<h3 id="manually-define-a-new-peer"><a class="header" href="#manually-define-a-new-peer">Manually define a new peer</a></h3>
+<p>Finally, if the <code>twister-seeder</code> outputs <code>0/2 available</code> for a while, and you already running or know an existing <code>twister-core</code> IP with active connections (on port <code>28333</code>), try defining it as the initial peer by temporarily hardcoding the following <a href="https://github.com/twisterarmy/twister-seeder/blob/twisterarmy/main.cpp#L431">line</a> in <code>main.cpp</code>, then recompile and restart <code>dnsseed</code>:</p>
 <pre><code class="language-cpp">CDnsSeedOpts *opts = (CDnsSeedOpts *)arg;
 </code></pre>
 <p>add after:</p>
@@ -252,7 +277,13 @@
 </ul>
 </li>
 </ul>
-<p>This solution will work and could be useful in certain situations (e.g., when all other seeds are offline and you are using an existing hostname from <a href="https://twisterarmy.github.io/network">this list</a>)</p>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>This solution is not recommended, but it will work and could be useful in certain situations (e.g., when all other seeds are offline but you are using an existing hostname from <a href="https://twisterarmy.github.io/network">this list</a> and running the public peer with a static IP)</p>
+</div>
 <div class="version">Generated at: <strong>2025.04</strong></div>
                     </main>
 

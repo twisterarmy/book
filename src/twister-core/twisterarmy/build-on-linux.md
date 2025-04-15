@@ -44,3 +44,17 @@ sudo dnf install git autoconf automake libtool make\
     - open [http://127.0.0.1:28332](http://127.0.0.1:28332)
         - enter `user` and `pwd` in the authorization dialog
     - create your account!
+
+### Upgrade from repository
+
+Steps to upgrade your existing `twister-core` and `twister-html` from the repository sources:
+
+1. stop running `twisterd` process to continue (if active, run `pgrep twisterd` to find)
+    - `sudo systemctl stop twister-service-name` - if you're using `systemd` service
+2. `cd twister-core` - navigate `twister-core` sources directory (which contains old `twisterd` binary)
+3. `git pull` - grab latest updates
+4. `make` - build new version
+5. `cd ~/.twister/html` - navigate `twister-html` installation directory
+6. `git pull` - grab latest `twister-html` changes
+8. start `twister-core` process
+    - `sudo systemctl start twister-service-name` - if you're using `systemd` service
