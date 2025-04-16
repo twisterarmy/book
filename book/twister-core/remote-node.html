@@ -408,6 +408,13 @@ rpcssl=1
 <p>If the connection is configured with a self-signed certificate (as in the examples above), please ensure that your client application is configured to ignore any related warnings.</p>
 </div>
 <h2 id="final-tips"><a class="header" href="#final-tips">Final tips</a></h2>
+<h3 id="setup-host-alias"><a class="header" href="#setup-host-alias">Setup host alias</a></h3>
+<p>You can access the remote node using hostname alias instead of the IP address by appending the following line to <code>/etc/hosts</code>:</p>
+<pre><code class="language-bash">REMOTE_HOST_IP twister
+</code></pre>
+<ul>
+<li>replace <code>REMOTE_HOST_IP</code> with actual IP, then open web UI with <a href="http://twister:28332">http://twister:28332</a></li>
+</ul>
 <h3 id="ssh-login-without-password"><a class="header" href="#ssh-login-without-password">SSH login without password</a></h3>
 <p>You can simply log in to the remote host account using your SSH key instead of the system user password.</p>
 <p>Run from the client host:</p>
@@ -429,7 +436,7 @@ rpcssl=1
 <h4 id="prioritize-using-a-firewall"><a class="header" href="#prioritize-using-a-firewall">Prioritize using a firewall</a></h4>
 <p>Configure firewall/iptables rules to restrict access by using only whitelisted values.</p>
 <h3 id="remote-host-administration"><a class="header" href="#remote-host-administration">Remote host administration</a></h3>
-<p>Refer to the Administration page for a useful collection of CLI recipes!</p>
+<p>Refer to the <strong>Administration</strong> page for a useful collection of CLI recipes!</p>
 <div class="version">Generated at: <strong>2025.04</strong></div>
                     </main>
 

@@ -337,11 +337,11 @@ which is also available for online reading at the community <a href="https://twi
 <h2 id="mirrors"><a class="header" href="#mirrors">Mirrors</a></h2>
 <h3 id="internet"><a class="header" href="#internet">Internet</a></h3>
 <ul>
-<li><a href="https://twisterarmy.github.io/book/">https://twisterarmy.github.io/book/</a> - official online version, operated by <a href="https://twisterarmy.github.io/">twisterarmy</a></li>
+<li><a href="https://twisterarmy.github.io/book/">https://twisterarmy.github.io/book/</a> - the official online version with manual updates from the <a href="https://github.com/twisterarmy/book">upstream repository</a>, operated by <a href="https://twisterarmy.github.io/">twisterarmy</a></li>
 </ul>
 <h3 id="yggdrasil"><a class="header" href="#yggdrasil">Yggdrasil</a></h3>
 <ul>
-<li><code>http://[300:17a8:aabf:108f::33]</code> - online version, operated by <a href="https://github.com/YGGverse">YGGverse</a></li>
+<li><code>http://[300:17a8:aabf:108f::33]</code> - an online version with daily auto-updates from the <a href="https://github.com/twisterarmy/book">upstream repository</a>, operated by <a href="https://github.com/YGGverse">YGGverse</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-alerts {
@@ -557,6 +557,33 @@ If you want to make any changes, please submit your edits to the relevant Wiki p
 </li>
 </ul>
 <p>Feel free to open an <a href="https://github.com/twisterarmy/book/issues">Issue</a> if you have any questions!</p>
+<h2 id="run-the-mirror"><a class="header" href="#run-the-mirror">Run the mirror</a></h2>
+<p>Make the book accessible to others by setting up an additional repository or web mirror for online reading!</p>
+<h3 id="repository-mirror"><a class="header" href="#repository-mirror">Repository mirror</a></h3>
+<p>Some self-hosted repository providers, such as <a href="https://about.gitea.com/">Gitea</a>, allow you to easily clone the <a href="https://github.com/twisterarmy/book">upstream repository</a> using web UI and create a mirror out of the box. Follow the software <a href="https://docs.gitea.com/usage/repo-mirror">documentation</a> for details!</p>
+<p>Alternatively, you can set up your own public (or private) repository by running:</p>
+<pre><code class="language-bash">git clone https://github.com/twisterarmy/book.git
+</code></pre>
+<p>and then set up the auto-updates using <code>crontab</code> and <code>git pull</code> command (<a href="about/contribution.html#update-the-mirror-with-crontab">example</a>).</p>
+<h3 id="web-mirror-for-online-reading"><a class="header" href="#web-mirror-for-online-reading">Web mirror for online reading</a></h3>
+<p>The <a href="https://github.com/twisterarmy/book">upstream repository</a> contains a precompiled HTML version in the <a href="https://github.com/twisterarmy/book/tree/main/book">/book</a> directory, which you can set up as the web root in your <a href="https://nginx.org/">nginx</a> or <a href="https://httpd.apache.org/">Apache</a> web server.</p>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>When running the web mirror, make sure the repository root (which contains the <code>.git</code> directory) is located above the web root directory!</p>
+</div>
+<h3 id="update-the-mirror-with-crontab"><a class="header" href="#update-the-mirror-with-crontab">Update the mirror with crontab</a></h3>
+<p>For daily auto-updates, consider using a <code>crontab</code> task with the <code>git pull</code> command running from the cloned book project:</p>
+<pre><code class="language-bash">@daily cd /var/www/book &amp;&amp; /usr/bin/git pull
+</code></pre>
+<ul>
+<li>if the repository is located at <code>/var/www/book</code> and its HTML version is located in the original <code>book</code> directory</li>
+<li>for more <code>crontab</code> examples, visit this beautiful <a href="https://crontab.guru/">guide</a></li>
+</ul>
+<h3 id="announce-new-mirror"><a class="header" href="#announce-new-mirror">Announce new mirror</a></h3>
+<p>If you're the public mirror maintainer, feel free to share your link with others on the <strong>Releases</strong> page in the <strong>Mirrors</strong> section!</p>
 <div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -2480,6 +2507,13 @@ rpcssl=1
 <p>If the connection is configured with a self-signed certificate (as in the examples above), please ensure that your client application is configured to ignore any related warnings.</p>
 </div>
 <h2 id="final-tips"><a class="header" href="#final-tips">Final tips</a></h2>
+<h3 id="setup-host-alias"><a class="header" href="#setup-host-alias">Setup host alias</a></h3>
+<p>You can access the remote node using hostname alias instead of the IP address by appending the following line to <code>/etc/hosts</code>:</p>
+<pre><code class="language-bash">REMOTE_HOST_IP twister
+</code></pre>
+<ul>
+<li>replace <code>REMOTE_HOST_IP</code> with actual IP, then open web UI with <a href="http://twister:28332">http://twister:28332</a></li>
+</ul>
 <h3 id="ssh-login-without-password"><a class="header" href="#ssh-login-without-password">SSH login without password</a></h3>
 <p>You can simply log in to the remote host account using your SSH key instead of the system user password.</p>
 <p>Run from the client host:</p>
@@ -2501,7 +2535,7 @@ rpcssl=1
 <h4 id="prioritize-using-a-firewall"><a class="header" href="#prioritize-using-a-firewall">Prioritize using a firewall</a></h4>
 <p>Configure firewall/iptables rules to restrict access by using only whitelisted values.</p>
 <h3 id="remote-host-administration"><a class="header" href="#remote-host-administration">Remote host administration</a></h3>
-<p>Refer to the Administration page for a useful collection of CLI recipes!</p>
+<p>Refer to the <strong>Administration</strong> page for a useful collection of CLI recipes!</p>
 <div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Administration</div>
 <style>
 .mdbook-alerts {
@@ -2575,14 +2609,21 @@ rpcssl=1
 <p>By default, <code>twisterd</code> will create a profile directory on the same drive where it is launched.</p>
 <p>If you are using a single-board device to run <code>twisterd</code> with default startup options, this could lead to many overwrite operations on the built-in SSD storage and reduce its lifespan. To resolve this, launch <code>./twisterd</code> with the <code>-datadir=DATA</code> <a href="twister-core/Usage#cli-arguments">argument</a>, where <code>DATA</code> is an absolute path to your custom <a href="twister-core/administration.html#profile-data">profile data location</a>. For example, you can specify a location on an external drive (like a USB flash drive) mounted that is easy to replace or extend in size.</p>
 <h4 id="external-drive"><a class="header" href="#external-drive">External drive</a></h4>
+<div class="mdbook-alerts mdbook-alerts-caution">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  caution
+</p>
+<p>Following example requires partial root access; an incorrect drive path identification may cause partition damage, data loss, and make your system unbootable!</p>
+</div>
 <ol>
-<li>connect your drive then run <code>parted -l</code> to check the location, the output should be like <code>/dev/sda</code></li>
+<li>connect your drive then run <code>parted -l</code> or <code>fdisk -l</code> to find its location (e.g. <code>/dev/sda</code> or <code>/dev/mmcblk0</code>)</li>
 <li>navigate to the partition manager for this device using the command <code>parted /dev/sda</code></li>
 <li><code>mklabel gpt</code> - set partition format</li>
 <li><code>mkpart logical ext4 0% 100%</code> - to use all available space</li>
 <li><code>print free</code> check if everything fine here</li>
 <li><code>quit</code> - save and exit</li>
-<li><code>mkfs -t ext4 /dev/sda1</code> - format partition created</li>
+<li><code>mkfs -t ext4 /dev/sda1</code> - format partition created (replace <code>/dev/sda1</code> with your value)</li>
 <li><code>lsblk -o PATH,SIZE,RO,TYPE,MOUNTPOINT,UUID,MODEL</code> - get partition <code>UUID</code></li>
 <li><code>nano /etc/fstab</code> - persist on startup</li>
 </ol>
@@ -2591,7 +2632,7 @@ rpcssl=1
   <span class="mdbook-alerts-icon"></span>
   warning
 </p>
-<p>Before making the following changes, keep in mind that modifying <code>/etc/fstab</code> may cause the system to not boot properly if the external drive is detached!</p>
+<p>Before making the following changes, keep in mind that modifying <code>/etc/fstab</code> may cause the system to not boot properly if some related external drive is detached!</p>
 </div>
 <pre><code># &lt;file system&gt;                      &lt;mount point&gt; &lt;type&gt; &lt;options&gt;                    &lt;dump&gt; &lt;pass&gt;
 ...
@@ -2601,8 +2642,9 @@ UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx /mnt/sda1     ext4  defaults,noatime,rw,use
 <li>save and exit</li>
 </ul>
 <ol start="10">
-<li><code>mv ~/.twister /mnt/sda1/.twister</code></li>
-<li><code>./twisterd -datadir=/mnt/sda1/.twister</code></li>
+<li><code>mv /home/twister/.twister /mnt/sda1/.twister</code> - move profile data from the <code>root</code> as mounded by this user</li>
+<li><code>chown -R twister:twister /mnt/sda1/.twister</code> - since you have copied files as the <code>root</code>, make sure the <code>twister</code> user has permission to access this directory when launching <code>twisterd</code></li>
+<li><code>./twisterd -datadir=/mnt/sda1/.twister</code> - now run <code>twisterd</code> as its regular user</li>
 </ol>
 <h3 id="free-additional-space"><a class="header" href="#free-additional-space">Free additional space</a></h3>
 <p>Before continuing with the options below, try to search for large files inside the user profile under which you are running the <code>twister-core</code> service:</p>
@@ -3323,6 +3365,13 @@ Options:
   -V, --version                Print version
 </code></pre>
 <h2 id="systemd"><a class="header" href="#systemd">systemd</a></h2>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Current (<code>0.3.1</code>) <code>twisterad</code> implementation borrows the <code>twisterd</code> connection through the RPC API. If you are running <code>twisterd</code> as another <code>systemd</code> service and want to stop it (either by using <code>systemctl</code> command or by <code>Exit</code> button on the <a href="http://127.0.0.1:28332/network.html">Network page</a>), it is important to stop the <code>twisterad</code> service first!</p>
+</div>
 <p>To run <code>twisterad</code> as the <code>systemd</code> unit (background process):</p>
 <ul>
 <li><code>cd twisterad</code> - navigate sources directory</li>
@@ -3600,15 +3649,16 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 <p>Original version by <a href="https://github.com/miguelfreitas">@miguelfreitas</a>.</p>
 <p><a href="https://github.com/miguelfreitas/twister-seeder">Source code</a></p>
 <h2 id="twisterarmy-branch-1"><a class="header" href="#twisterarmy-branch-1">@twisterarmy branch</a></h2>
-<p>Contains additional <a href="https://twisterarmy.github.io/network">seeds</a> to improve initial crawl connectivity.</p>
-<div class="mdbook-alerts mdbook-alerts-tip">
-<p class="mdbook-alerts-title">
-  <span class="mdbook-alerts-icon"></span>
-  tip
-</p>
-<p>Some pre-compiled binaries available at the <a href="https://github.com/twisterarmy/twister-seeder/releases">Releases page</a>!</p>
-</div>
-<p><a href="https://github.com/twisterarmy/twister-seeder">Source code</a></p>
+<ul>
+<li>contains additional <a href="https://twisterarmy.github.io/network">seeds</a> to improve initial crawl connectivity;</li>
+<li>starting from stable version <code>0.1.0</code> provides new options:
+<ul>
+<li><code>--stats-renew &lt;seconds&gt;</code> - <code>ThreadStats</code> loop delay in seconds (default 1)</li>
+<li><code>--no-stats</code> - disable the <code>ThreadStats</code> feature</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://github.com/twisterarmy/twister-seeder">Source code</a> | <a href="https://github.com/twisterarmy/twister-seeder/releases">Stable releases</a></p>
 <div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Install options &raquo; @twisterarmy branch</div>
 <style>
 .mdbook-alerts {

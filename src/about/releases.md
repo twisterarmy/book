@@ -26,8 +26,8 @@ For previous stable snaps, refer to the [Releases page](https://github.com/twist
 
 ### Internet
 
-* [https://twisterarmy.github.io/book/](https://twisterarmy.github.io/book/) - official online version, operated by [twisterarmy](https://twisterarmy.github.io/)
+* [https://twisterarmy.github.io/book/](https://twisterarmy.github.io/book/) - the official online version with manual updates from the [upstream repository](https://github.com/twisterarmy/book), operated by [twisterarmy](https://twisterarmy.github.io/)
 
 ### Yggdrasil
 
-* `http://[300:17a8:aabf:108f::33]` - online version, operated by [YGGverse](https://github.com/YGGverse)
+* `http://[300:17a8:aabf:108f::33]` - an online version with daily auto-updates from the [upstream repository](https://github.com/twisterarmy/book), operated by [YGGverse](https://github.com/YGGverse)

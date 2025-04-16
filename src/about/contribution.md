@@ -30,3 +30,40 @@ If you want to make any changes, please submit your edits to the relevant Wiki p
   * [twister-seeder](https://github.com/twisterarmy/twister-seeder/wiki)
 
 Feel free to open an [Issue](https://github.com/twisterarmy/book/issues) if you have any questions!
+
+## Run the mirror
+
+Make the book accessible to others by setting up an additional repository or web mirror for online reading!
+
+### Repository mirror
+
+Some self-hosted repository providers, such as [Gitea](https://about.gitea.com/), allow you to easily clone the [upstream repository](https://github.com/twisterarmy/book) using web UI and create a mirror out of the box. Follow the software [documentation](https://docs.gitea.com/usage/repo-mirror) for details!
+
+Alternatively, you can set up your own public (or private) repository by running:
+
+``` bash
+git clone https://github.com/twisterarmy/book.git
+```
+
+and then set up the auto-updates using `crontab` and `git pull` command ([example](#update-the-mirror-with-crontab)).
+
+### Web mirror for online reading
+
+The [upstream repository](https://github.com/twisterarmy/book) contains a precompiled HTML version in the [/book](https://github.com/twisterarmy/book/tree/main/book) directory, which you can set up as the web root in your [nginx](https://nginx.org/) or [Apache](https://httpd.apache.org/) web server.
+
+> [!IMPORTANT]
+> When running the web mirror, make sure the repository root (which contains the `.git` directory) is located above the web root directory!
+
+### Update the mirror with crontab
+
+For daily auto-updates, consider using a `crontab` task with the `git pull` command running from the cloned book project:
+
+``` bash
+@daily cd /var/www/book && /usr/bin/git pull
+```
+* if the repository is located at `/var/www/book` and its HTML version is located in the original `book` directory
+* for more `crontab` examples, visit this beautiful [guide](https://crontab.guru/)
+
+### Announce new mirror
+
+If you're the public mirror maintainer, feel free to share your link with others on the **Releases** page in the **Mirrors** section!

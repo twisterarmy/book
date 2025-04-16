@@ -8,9 +8,9 @@ Original version by [@miguelfreitas](https://github.com/miguelfreitas).
 
 ## @twisterarmy branch
 
-Contains additional [seeds](https://twisterarmy.github.io/network) to improve initial crawl connectivity.
+* contains additional [seeds](https://twisterarmy.github.io/network) to improve initial crawl connectivity;
+* starting from stable version `0.1.0` provides new options:
+    * `--stats-renew <seconds>` - `ThreadStats` loop delay in seconds (default 1)
+    * `--no-stats` - disable the `ThreadStats` feature
 
-> [!TIP]
-> Some pre-compiled binaries available at the [Releases page](https://github.com/twisterarmy/twister-seeder/releases)!
-
-[Source code](https://github.com/twisterarmy/twister-seeder)
+[Source code](https://github.com/twisterarmy/twister-seeder) | [Stable releases](https://github.com/twisterarmy/twister-seeder/releases)

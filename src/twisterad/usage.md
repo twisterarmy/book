@@ -30,6 +30,9 @@ Options:
 
 ## systemd
 
+> [!IMPORTANT]
+> Current (`0.3.1`) `twisterad` implementation borrows the `twisterd` connection through the RPC API. If you are running `twisterd` as another `systemd` service and want to stop it (either by using `systemctl` command or by `Exit` button on the [Network page](http://127.0.0.1:28332/network.html)), it is important to stop the `twisterad` service first!
+
 To run `twisterad` as the `systemd` unit (background process):
 
 * `cd twisterad` - navigate sources directory

@@ -232,14 +232,21 @@
 <p>By default, <code>twisterd</code> will create a profile directory on the same drive where it is launched.</p>
 <p>If you are using a single-board device to run <code>twisterd</code> with default startup options, this could lead to many overwrite operations on the built-in SSD storage and reduce its lifespan. To resolve this, launch <code>./twisterd</code> with the <code>-datadir=DATA</code> <a href="Usage#cli-arguments">argument</a>, where <code>DATA</code> is an absolute path to your custom <a href="#profile-data">profile data location</a>. For example, you can specify a location on an external drive (like a USB flash drive) mounted that is easy to replace or extend in size.</p>
 <h4 id="external-drive"><a class="header" href="#external-drive">External drive</a></h4>
+<div class="mdbook-alerts mdbook-alerts-caution">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  caution
+</p>
+<p>Following example requires partial root access; an incorrect drive path identification may cause partition damage, data loss, and make your system unbootable!</p>
+</div>
 <ol>
-<li>connect your drive then run <code>parted -l</code> to check the location, the output should be like <code>/dev/sda</code></li>
+<li>connect your drive then run <code>parted -l</code> or <code>fdisk -l</code> to find its location (e.g. <code>/dev/sda</code> or <code>/dev/mmcblk0</code>)</li>
 <li>navigate to the partition manager for this device using the command <code>parted /dev/sda</code></li>
 <li><code>mklabel gpt</code> - set partition format</li>
 <li><code>mkpart logical ext4 0% 100%</code> - to use all available space</li>
 <li><code>print free</code> check if everything fine here</li>
 <li><code>quit</code> - save and exit</li>
-<li><code>mkfs -t ext4 /dev/sda1</code> - format partition created</li>
+<li><code>mkfs -t ext4 /dev/sda1</code> - format partition created (replace <code>/dev/sda1</code> with your value)</li>
 <li><code>lsblk -o PATH,SIZE,RO,TYPE,MOUNTPOINT,UUID,MODEL</code> - get partition <code>UUID</code></li>
 <li><code>nano /etc/fstab</code> - persist on startup</li>
 </ol>
@@ -248,7 +255,7 @@
   <span class="mdbook-alerts-icon"></span>
   warning
 </p>
-<p>Before making the following changes, keep in mind that modifying <code>/etc/fstab</code> may cause the system to not boot properly if the external drive is detached!</p>
+<p>Before making the following changes, keep in mind that modifying <code>/etc/fstab</code> may cause the system to not boot properly if some related external drive is detached!</p>
 </div>
 <pre><code># &lt;file system&gt;                      &lt;mount point&gt; &lt;type&gt; &lt;options&gt;                    &lt;dump&gt; &lt;pass&gt;
 ...
@@ -258,8 +265,9 @@ UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx /mnt/sda1     ext4  defaults,noatime,rw,use
 <li>save and exit</li>
 </ul>
 <ol start="10">
-<li><code>mv ~/.twister /mnt/sda1/.twister</code></li>
-<li><code>./twisterd -datadir=/mnt/sda1/.twister</code></li>
+<li><code>mv /home/twister/.twister /mnt/sda1/.twister</code> - move profile data from the <code>root</code> as mounded by this user</li>
+<li><code>chown -R twister:twister /mnt/sda1/.twister</code> - since you have copied files as the <code>root</code>, make sure the <code>twister</code> user has permission to access this directory when launching <code>twisterd</code></li>
+<li><code>./twisterd -datadir=/mnt/sda1/.twister</code> - now run <code>twisterd</code> as its regular user</li>
 </ol>
 <h3 id="free-additional-space"><a class="header" href="#free-additional-space">Free additional space</a></h3>
 <p>Before continuing with the options below, try to search for large files inside the user profile under which you are running the <code>twister-core</code> service:</p>

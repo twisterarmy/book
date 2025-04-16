@@ -257,6 +257,13 @@ Options:
   -V, --version                Print version
 </code></pre>
 <h2 id="systemd"><a class="header" href="#systemd">systemd</a></h2>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Current (<code>0.3.1</code>) <code>twisterad</code> implementation borrows the <code>twisterd</code> connection through the RPC API. If you are running <code>twisterd</code> as another <code>systemd</code> service and want to stop it (either by using <code>systemctl</code> command or by <code>Exit</code> button on the <a href="http://127.0.0.1:28332/network.html">Network page</a>), it is important to stop the <code>twisterad</code> service first!</p>
+</div>
 <p>To run <code>twisterad</code> as the <code>systemd</code> unit (background process):</p>
 <ul>
 <li><code>cd twisterad</code> - navigate sources directory</li>

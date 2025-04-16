@@ -8,18 +8,21 @@ If you are using a single-board device to run `twisterd` with default startup op
 
 #### External drive
 
-1. connect your drive then run `parted -l` to check the location, the output should be like `/dev/sda`
+> [!CAUTION]
+> Following example requires partial root access; an incorrect drive path identification may cause partition damage, data loss, and make your system unbootable!
+
+1. connect your drive then run `parted -l` or `fdisk -l` to find its location (e.g. `/dev/sda` or `/dev/mmcblk0`)
 2. navigate to the partition manager for this device using the command `parted /dev/sda`
 3. `mklabel gpt` - set partition format
 4. `mkpart logical ext4 0% 100%` - to use all available space
 5. `print free` check if everything fine here
 6. `quit` - save and exit 
-7. `mkfs -t ext4 /dev/sda1` - format partition created
+7. `mkfs -t ext4 /dev/sda1` - format partition created (replace `/dev/sda1` with your value)
 8. `lsblk -o PATH,SIZE,RO,TYPE,MOUNTPOINT,UUID,MODEL` - get partition `UUID`
 9. `nano /etc/fstab` - persist on startup
 
 > [!WARNING]
-> Before making the following changes, keep in mind that modifying `/etc/fstab` may cause the system to not boot properly if the external drive is detached!
+> Before making the following changes, keep in mind that modifying `/etc/fstab` may cause the system to not boot properly if some related external drive is detached!
 
 ```
 # <file system>                      <mount point> <type> <options>                    <dump> <pass>
@@ -28,8 +31,9 @@ UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx /mnt/sda1     ext4  defaults,noatime,rw,use
 ```
 * save and exit
 
-10. `mv ~/.twister /mnt/sda1/.twister`
-11. `./twisterd -datadir=/mnt/sda1/.twister`
+10. `mv /home/twister/.twister /mnt/sda1/.twister` - move profile data from the `root` as mounded by this user
+11. `chown -R twister:twister /mnt/sda1/.twister` - since you have copied files as the `root`, make sure the `twister` user has permission to access this directory when launching `twisterd`
+12. `./twisterd -datadir=/mnt/sda1/.twister` - now run `twisterd` as its regular user
 
 ### Free additional space
 

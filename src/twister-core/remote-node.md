@@ -175,6 +175,15 @@ For the RPC API, use the same `RPC_USER_NAME` and `RPC_PASSWORD` for `SERVER_IP:
 
 ## Final tips
 
+### Setup host alias
+
+You can access the remote node using hostname alias instead of the IP address by appending the following line to `/etc/hosts`:
+
+``` bash
+REMOTE_HOST_IP twister
+```
+* replace `REMOTE_HOST_IP` with actual IP, then open web UI with [http://twister:28332](http://twister:28332)
+
 ### SSH login without password
 
 You can simply log in to the remote host account using your SSH key instead of the system user password.
@@ -211,4 +220,4 @@ Configure firewall/iptables rules to restrict access by using only whitelisted v
 
 ### Remote host administration
 
-Refer to the Administration page for a useful collection of CLI recipes!
+Refer to the **Administration** page for a useful collection of CLI recipes!

@@ -268,6 +268,33 @@ If you want to make any changes, please submit your edits to the relevant Wiki p
 </li>
 </ul>
 <p>Feel free to open an <a href="https://github.com/twisterarmy/book/issues">Issue</a> if you have any questions!</p>
+<h2 id="run-the-mirror"><a class="header" href="#run-the-mirror">Run the mirror</a></h2>
+<p>Make the book accessible to others by setting up an additional repository or web mirror for online reading!</p>
+<h3 id="repository-mirror"><a class="header" href="#repository-mirror">Repository mirror</a></h3>
+<p>Some self-hosted repository providers, such as <a href="https://about.gitea.com/">Gitea</a>, allow you to easily clone the <a href="https://github.com/twisterarmy/book">upstream repository</a> using web UI and create a mirror out of the box. Follow the software <a href="https://docs.gitea.com/usage/repo-mirror">documentation</a> for details!</p>
+<p>Alternatively, you can set up your own public (or private) repository by running:</p>
+<pre><code class="language-bash">git clone https://github.com/twisterarmy/book.git
+</code></pre>
+<p>and then set up the auto-updates using <code>crontab</code> and <code>git pull</code> command (<a href="#update-the-mirror-with-crontab">example</a>).</p>
+<h3 id="web-mirror-for-online-reading"><a class="header" href="#web-mirror-for-online-reading">Web mirror for online reading</a></h3>
+<p>The <a href="https://github.com/twisterarmy/book">upstream repository</a> contains a precompiled HTML version in the <a href="https://github.com/twisterarmy/book/tree/main/book">/book</a> directory, which you can set up as the web root in your <a href="https://nginx.org/">nginx</a> or <a href="https://httpd.apache.org/">Apache</a> web server.</p>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>When running the web mirror, make sure the repository root (which contains the <code>.git</code> directory) is located above the web root directory!</p>
+</div>
+<h3 id="update-the-mirror-with-crontab"><a class="header" href="#update-the-mirror-with-crontab">Update the mirror with crontab</a></h3>
+<p>For daily auto-updates, consider using a <code>crontab</code> task with the <code>git pull</code> command running from the cloned book project:</p>
+<pre><code class="language-bash">@daily cd /var/www/book &amp;&amp; /usr/bin/git pull
+</code></pre>
+<ul>
+<li>if the repository is located at <code>/var/www/book</code> and its HTML version is located in the original <code>book</code> directory</li>
+<li>for more <code>crontab</code> examples, visit this beautiful <a href="https://crontab.guru/">guide</a></li>
+</ul>
+<h3 id="announce-new-mirror"><a class="header" href="#announce-new-mirror">Announce new mirror</a></h3>
+<p>If you're the public mirror maintainer, feel free to share your link with others on the <strong>Releases</strong> page in the <strong>Mirrors</strong> section!</p>
 
                     </main>
 
