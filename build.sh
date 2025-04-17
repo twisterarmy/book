@@ -110,6 +110,21 @@ cp $T/Home.md $D/index.md
 cp $T/Install.md $D/install.md
 cp $T/Usage.md $D/usage.md
 
+# twister-rss-bot
+
+S=https://github.com/twisterarmy/twister-rss-bot.wiki.git
+T=git/twister-rss-bot
+if [ -d "$T" ]; then
+    git -C $T pull
+else
+    git clone $S $T
+fi
+
+D=src/twister-rss-bot
+mkdir -p $D
+rm -rf $D/*
+cp $T/Home.md $D/index.md
+
 # compile
 
 mdbook build

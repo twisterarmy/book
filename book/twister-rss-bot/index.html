@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Troubleshooting - The twister P2P Book</title>
+        <title>twister-rss-bot - The twister P2P Book</title>
 
 
         <!-- Custom HTML head -->
@@ -159,7 +159,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <div class="breadcrumbs">twister-seeder &raquo; Troubleshooting</div>
+                        <div class="breadcrumbs">twister-rss-bot</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -227,73 +227,61 @@
 }
 
 </style>
-<h2 id="dns-cant-discover-new-peers"><a class="header" href="#dns-cant-discover-new-peers">DNS can't discover new peers</a></h2>
-<h3 id="dns-cache"><a class="header" href="#dns-cache">DNS cache</a></h3>
-<p>First of all, check that the DNS cache has really been updated; it may take some time for the domain settings to change.</p>
-<h3 id="satisfy-public-peer-requirements"><a class="header" href="#satisfy-public-peer-requirements">Satisfy public peer requirements</a></h3>
-<p>Make sure that at least one expected <code>twister-core</code> instance (with <a href="https://www.yougetsignal.com/tools/open-ports/?port=28333">open port</a> <code>28333</code>) has been online for about one hour or more. This peer should also be synchronized with the network, meaning it should contain the actual blockchain version and have established DHT connection.</p>
+<p>The <a href="https://github.com/twisterarmy/twister-rss-bot">twister-rss-bot</a> is RSS bot for twister P2P written in PHP 8.</p>
+<p>It uses the <a href="https://github.com/twisterarmy/twister-php">twister-php</a> library to interact with <a href="https://github.com/twisterarmy/twister-core">twisterd</a> node through the JSON-RPC API and supports following features:</p>
+<ul>
+<li>multiple feed providers</li>
+<li>custom tags configuration</li>
+<li>can send messages to different twister accounts (that you own)</li>
+</ul>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
+<pre><code class="language-bash">apt install composer git
+</code></pre>
+<h3 id="runtime"><a class="header" href="#runtime">Runtime</a></h3>
+<pre><code class="language-bash">apt install php-curl php-fpm php-mbstring php-pdo php-sqlite3 php-xml
+</code></pre>
+<h2 id="install"><a class="header" href="#install">Install</a></h2>
 <div class="mdbook-alerts mdbook-alerts-tip">
 <p class="mdbook-alerts-title">
   <span class="mdbook-alerts-icon"></span>
   tip
 </p>
-<p>If you're running <code>twister-core</code> with recently changed random port to <code>28333</code>, follow the <a href="#clear-the-crawl-cache">Clear the crawl cache</a> instructions.</p>
-</div>
-<h3 id="emit-a-signal-from-new-peer"><a class="header" href="#emit-a-signal-from-new-peer">Emit a signal from new peer</a></h3>
-<p>Try sending a new request to your new <code>twister-seeder</code> from the peering <code>twister-core</code>, as your <code>twister-core</code> probably doesn't know about the new <code>twister-seeder</code> since it's not <a href="https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/chainparams.cpp#L218">listed</a> and can't obtain its address from other peers: open the <a href="http://127.0.0.1:28332">web UI</a> and add your <code>seed.domain.org</code> to the <code>DNS to obtain list of peers</code> entry.</p>
-<h3 id="clear-the-crawl-cache"><a class="header" href="#clear-the-crawl-cache">Clear the crawl cache</a></h3>
-<p>Current <code>twister-seeder</code> implementation may temporarily ban unstable public peers. This behavior is inherited from the legacy <a href="https://github.com/sipa/bitcoin-seeder">bitcoin-seeder</a>, which filters out public peers that are not running on port <code>28333</code> or those with low connectivity.</p>
-<p>To reset <code>twister-seeder</code> crawl cache, run <code>./dnsseed</code> with following options:</p>
+<p>As this software was initially created to be used with <code>crontab</code>, it is recommended to create a new system user with a home directory and continue installation from there. Use following steps to create new system user:</p>
 <ul>
-<li><code>--wipeban</code> - wipe list of banned nodes</li>
-<li><code>--wipeignore</code> - wipe list of ignored nodes</li>
+<li><code>useradd -m twister-rss-bot</code></li>
+<li><code>su twister-rss-bot</code></li>
+<li><code>cd ~</code></li>
 </ul>
-<div class="mdbook-alerts mdbook-alerts-tip">
-<p class="mdbook-alerts-title">
-  <span class="mdbook-alerts-icon"></span>
-  tip
-</p>
-<p>To remove all crawler data collected, stop the <code>dnsseed</code> process and remove <code>dnsseed.dat</code> file (see <strong>Storage location</strong> for details) then restart <code>dnsseed</code> in the initial state.</p>
 </div>
-<h3 id="manually-define-a-new-peer"><a class="header" href="#manually-define-a-new-peer">Manually define a new peer</a></h3>
-<p>Finally, if the <code>twister-seeder</code> outputs <code>0/2 available</code> for a while, and you already running or know an existing <code>twister-core</code> IP with active connections (on port <code>28333</code>), try defining it as the initial peer by temporarily hardcoding the following <a href="https://github.com/twisterarmy/twister-seeder/blob/twisterarmy/main.cpp#L431">line</a> in <code>main.cpp</code>, then recompile and restart <code>dnsseed</code>:</p>
-<pre><code class="language-cpp">CDnsSeedOpts *opts = (CDnsSeedOpts *)arg;
-</code></pre>
-<p>add after:</p>
-<pre><code class="language-cpp">db.Add(CService("NODE_IP", 28333, true), true);
-</code></pre>
 <ul>
-<li>where <code>NODE_IP</code> is public <code>twister-core</code> that running on port <code>28333</code></li>
+<li><code>git clone https://github.com/twisterarmy/twister-rss-bot-php.git</code></li>
+<li><code>cd twister-rss-bot-php</code></li>
+<li><code>composer update</code></li>
 </ul>
-<h2 id="domain-provider-disallowed-changes-to-ns-record"><a class="header" href="#domain-provider-disallowed-changes-to-ns-record">Domain provider disallowed changes to NS record</a></h2>
-<p>Free domain providers (like <a href="https://desec.io/">DeSEC</a>) may drop <code>NS</code> as the abusive feature.</p>
-<p>That is the reason why free domain providers are not recommended for <code>twister-seeder</code>, as old <code>twister-core</code> peers are already using this address for connectivity checks. As a solution, if you run a public <code>twister-core</code> with a static IP (or know stable peers with static IPs), try adding their IPs manually as <code>A</code> records for the nameserver:</p>
+<h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
 <ul>
-<li><code>ns.domain.org</code>
+<li><code>cp config.example.json config.json</code></li>
+<li><code>nano config.json</code> - setup your twister connection, tags and RSS feeds!</li>
+</ul>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
 <ul>
-<li><code>A</code>:<code>TWISTER_CORE_IP_1</code></li>
-<li><code>A</code>:<code>TWISTER_CORE_IP_2</code></li>
-<li>...</li>
+<li><code>crontab -e</code> - open crontab configuration from system user
+<ul>
+<li><code>@hourly php src/cli/bot.php</code> - update feeds every hour (see <a href="https://crontab.guru/">more examples</a>)</li>
 </ul>
 </li>
 </ul>
-<div class="mdbook-alerts mdbook-alerts-important">
-<p class="mdbook-alerts-title">
-  <span class="mdbook-alerts-icon"></span>
-  important
-</p>
-<p>This solution is not recommended, but it will work and could be useful in certain situations (e.g., when all other seeds are offline but you are using an existing hostname from <a href="https://twisterarmy.github.io/network">this list</a> and running the public peer with a static IP)</p>
-</div>
 <div class="version">Generated at: <strong>2025.04</strong></div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../twister-seeder/announce-new-seed.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../twister-seeder/troubleshooting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../twister-rss-bot/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../popular-accounts-to-follow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -303,11 +291,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../twister-seeder/announce-new-seed.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../twister-seeder/troubleshooting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../twister-rss-bot/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../popular-accounts-to-follow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

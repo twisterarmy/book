@@ -49,6 +49,10 @@
     - [Announce new seed](./twister-seeder/announce-new-seed.md)
     - [Troubleshooting](./twister-seeder/troubleshooting.md)
 
+# Bridge tools
+
+- [twister-rss-bot](./twister-rss-bot/index.md)
+
 # Other
 
 - [Popular accounts to follow](./popular-accounts-to-follow.md)
