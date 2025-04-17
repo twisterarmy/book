@@ -26,7 +26,7 @@
     - [Remote node](./twister-core/remote-node.md)
     - [Administration](./twister-core/administration.md)
     - [Performance](./twister-core/performance.md)
-    - [Yggdrasil / IPv6](./twister-core/yggdrasil-ipv6.md)
+    - [Yggdrasil / IPv6](./twister-core/yggdrasil.md)
 - [Support the network](./twister-core/support-the-network.md)
 
 # Mining tools
