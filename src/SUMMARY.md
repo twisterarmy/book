@@ -19,7 +19,7 @@
             - [Windows](./twister-core/miguelfreitas/compiling-for-windows.md)
             - [Client using Gitian](./twister-core/miguelfreitas/build-native-windows-client-using-gitian.md)
             - [Visual Studio 2010](./twister-core/miguelfreitas/building-twister-with-visual-studio-2010.md)
-        - [Dependencies]()
+        - [Custom dependencies]()
             - [libtorrent on Ubuntu](./twister-core/libtorrent-build-on-ubuntu.md)
 - [Usage](./twister-core/usage.md)
     - [Profile](./twister-core/profile.md)
