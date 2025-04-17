@@ -1030,6 +1030,13 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 </ul>
 </div>
 <p><strong>System dependencies</strong></p>
+<div class="mdbook-alerts mdbook-alerts-tip">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tip
+</p>
+<p>Refer to the <strong>Custom dependencies</strong> page if you encounter any issues with the system repository versions or if you want to build a specific library from source!</p>
+</div>
 <p>Debian / Ubuntu</p>
 <pre><code class="language-bash">sudo apt install git autoconf automake build-essential libtool\
                  libboost-all-dev libssl-dev libdb++-dev libminiupnpc-dev
@@ -1899,7 +1906,156 @@ bjam toolset=msvc-10.0 --build-type=complete stage</p>
 <h2 id="building-berkeley-db-4830nc"><a class="header" href="#building-berkeley-db-4830nc">Building Berkeley DB 4.8.30.NC</a></h2>
 <p>Coming soon...</p>
 <p>(Patches also coming soon.)</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; Dependencies &raquo; libtorrent on Ubuntu</div>
+<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; Custom dependencies &raquo; libboost / libdb</div>
+<style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.25em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(154, 103, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+</style>
+<h2 id="boost-c"><a class="header" href="#boost-c">Boost C++</a></h2>
+<p>If the <code>twisterd</code> build fails because your system repository has a newer version of <a href="https://www.boost.org/">libboost</a> that is incompatible with the current <code>twister-core</code> API, follow these steps to build a custom (legacy) version from source:</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<ul>
+<li>latest tested <code>boost</code> version is <code>1.83.0</code></li>
+<li>the version <code>1.88.0</code> requires <code>twister-core</code> API update!</li>
+</ul>
+</div>
+<ol>
+<li><code>wget https://archives.boost.io/release/1.83.0/source/boost_1_83_0.tar.gz</code> - get specified version (replace <code>1_83_0</code> with your value)
+<ul>
+<li>compare the output of <code>sha256sum boost_1_83_0.tar.gz</code> which should be <code>c0685b68dd44cc46574cce86c4e17c0f611b15e195be9848dfd0769a0a207628</code></li>
+</ul>
+</li>
+<li><code>tar -xzf boost_1_83_0.tar.gz</code> - unarchive the sources</li>
+<li><code>cd boost_1_83_0</code> - navigate the sources directory</li>
+<li><code>./bootstrap.sh --prefix=/path/to/boost-build</code> - replace <code>/path/to/boost-build</code> with your value
+<ul>
+<li>optionally, you may skip the <code>--prefix=</code> argument, when installing the boost into default location, but it is not recommended as may overwrite your existing system version installed by package manager!</li>
+</ul>
+</li>
+<li><code>./b2 install</code> - build and install to the <code>--prefix=</code> destination (optionally provide <code>-j</code> argument if you want to specify the number of CPU threads)</li>
+</ol>
+<p>When the <code>boost</code> build is complete, configure the <code>twister-core</code> using <code>--with-boost=/path/to/boost-build</code> argument, for example:</p>
+<pre><code class="language-bash">cd twister-core
+./configure --with-boost=/path/to/boost-build
+</code></pre>
+<ul>
+<li>then build <code>twisterd</code> with <code>make</code></li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Make sure that the <code>/path/to/boost-build</code> directory exists when launching your <code>twisterd</code>!</p>
+</div>
+<h2 id="berkeley-db"><a class="header" href="#berkeley-db">Berkeley DB</a></h2>
+<p>The current version of <code>twister-core</code> should be compatible with recent system versions of <a href="https://www.oracle.com/database/technologies/related/berkeleydb.html">Berkeley DB</a> (also known as <code>bdb</code>, <code>libdb</code>), at least on Fedora 41, which provides version <code>5.3.28</code> from its repository.</p>
+<p>If you want to build a specific version of <code>libdb</code> from source, use the following steps:</p>
+<ol>
+<li><code>wget https://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz</code> - get legacy version (or replace <code>4.8.30.NC</code> with your value)
+<ul>
+<li>compare the output of <code>sha256sum db-4.8.30.NC.tar.gz</code> which should be <code>12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef</code></li>
+</ul>
+</li>
+<li><code>tar -xzf db-4.8.30.NC.tar.gz</code> - unarchive the sources</li>
+<li><code>cd db-4.8.30.NC</code> - navigate the sources directory
+<ul>
+<li><code>wget https://gist.githubusercontent.com/LnL7/5153b251fd525fe15de69b67e63a6075/raw/7778e9364679093a32dec2908656738e16b6bdcb/clang.patch</code> - download this patch when building with <code>clang</code> and <code>C++11</code> (<a href="https://community.oracle.com/thread/3952592">details</a>)</li>
+<li><code>patch -p2 &lt; clang.patch</code> - apply a patch</li>
+</ul>
+</li>
+<li><code>cd build_unix</code> - navigate to this directory if you are building on Linux</li>
+<li><code>../dist/configure --prefix=/path/to/libdb-build --enable-cxx</code> - replace <code>/path/to/libdb-build</code> with your value
+<ul>
+<li>optionally, you may skip the <code>--prefix=</code> argument, when installing the <code>libdb</code> into default location, but it is not recommended as may overwrite your existing system version installed by package manager!</li>
+<li>if you see <code>WARNING: NO SHARED LATCH IMPLEMENTATION FOUND FOR THIS PLATFORM</code> - as a temporary solution, append <code>CFLAGS=-Wno-error=implicit-function-declaration</code> to the <code>configure</code> command above</li>
+</ul>
+</li>
+<li><code>make</code> - build (optionally provide <code>-j</code> argument if you want to specify the number of CPU threads)</li>
+<li><code>make install</code> - install the build to the <code>--prefix=</code> destination (<code>/path/to/libdb-build</code>)</li>
+</ol>
+<p>When our <code>libdb</code> version is ready to use, configure the <code>twister-core</code> using <code>--with-libdb=/path/to/libdb-build</code> argument, for example:</p>
+<pre><code class="language-bash">cd twister-core
+./configure --with-libdb=/path/to/libdb-build
+</code></pre>
+<ul>
+<li>then build <code>twisterd</code> with <code>make</code></li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Make sure that the <code>/path/to/libdb-build</code> directory exists when launching your <code>twisterd</code>!</p>
+</div>
+<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; Custom dependencies &raquo; libtorrent on Ubuntu</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -2931,7 +3087,7 @@ MemorySwapMax=512M
 <p>This option disables finding peers using DNS lookup (<code>-dnsseed</code> argument will be ignored)</p>
 </div>
 <h3 id="connect-some-network-only"><a class="header" href="#connect-some-network-only">Connect some network only</a></h3>
-<p>By default, <code>twisterd</code> accepts connections from all available network interfaces. This option can be helpful in situations where you are using some <a href="twister-core/yggdrasil-ipv6.html#connect-with-proxy">proxy</a> that does not support certain address families, such as how <a href="twister-core/yggdrasil-ipv6.html#yggstack">yggstack</a> does not support IPv4.</p>
+<p>By default, <code>twisterd</code> accepts connections from all available network interfaces. This option can be helpful in situations where you are using some <a href="twister-core/yggdrasil.html#connect-with-proxy">proxy</a> that does not support certain address families, such as how <a href="twister-core/yggdrasil.html#yggstack">yggstack</a> does not support IPv4.</p>
 <p>To use only the IPv6 network family, launch <code>twisterd</code> with the <code>-onlynet=IPv6</code> flag:</p>
 <pre><code class="language-bash">./twisterd -onlynet=IPv6
 </code></pre>
@@ -2954,7 +3110,7 @@ MemorySwapMax=512M
 </code></pre>
 <ul>
 <li>the <code>-socks=5</code> argument is not necessary, as version <code>5</code> should be the default (just make sure it is)</li>
-<li>it is important to run connection with <code>-onlynet=IPv6</code> because <code>yggstack</code> operates with Yggdrasil's IPv6 addresses, while <code>twisterd</code> expects all networks by default (see <a href="https://github.com/twisterarmy/twister-core/issues/16">#16</a> and <a href="twister-core/yggdrasil-ipv6.html#connect-some-network-only">onlynet</a> argument usage for details)</li>
+<li>it is important to run connection with <code>-onlynet=IPv6</code> because <code>yggstack</code> operates with Yggdrasil's IPv6 addresses, while <code>twisterd</code> expects all networks by default (see <a href="https://github.com/twisterarmy/twister-core/issues/16">#16</a> and <a href="twister-core/yggdrasil.html#connect-some-network-only">onlynet</a> argument usage for details)</li>
 </ul>
 <h3 id="bind-on-given-address"><a class="header" href="#bind-on-given-address">Bind on given address</a></h3>
 <p>The <code>bind</code> argument may be useful in cases where you have more than one IPv4 or IPv6 interface, such as when using Yggdrasil alongside an Internet IPv6 connection, or when Yggdrasil is configured with a subnet mask (e.g., <code>[300:17a8:aabf:108f::33]</code>), and you want to use only that specific interface to launch <code>twisterd</code> and listen connections on it.</p>
@@ -2969,7 +3125,7 @@ MemorySwapMax=512M
   <span class="mdbook-alerts-icon"></span>
   note
 </p>
-<p>The <code>bind</code> option does not decrease your connectivity level; see <a href="twister-core/yggdrasil-ipv6.html#connect-some-network-only">onlynet</a> option for that purpose!</p>
+<p>The <code>bind</code> option does not decrease your connectivity level; see <a href="twister-core/yggdrasil.html#connect-some-network-only">onlynet</a> option for that purpose!</p>
 </div>
 <h2 id="firewall-examples"><a class="header" href="#firewall-examples">Firewall examples</a></h2>
 <p>Some tips for tuning your iptables</p>
@@ -2982,10 +3138,10 @@ MemorySwapMax=512M
 <h2 id="public-peers"><a class="header" href="#public-peers">Public peers</a></h2>
 <p>The twister public peers displayed on the <a href="https://twisterarmy.github.io/network#public-peers">Network page</a> are manually managed to show only those that are actually online.</p>
 <p>The following list includes all known peers from that source. Since the Yggdrasil IP address is generated by its owner's private key, it will never expire, and these addresses may come online again at any time. This could be useful when all Internet peers are offline for some reason.</p>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Host</th><th style="text-align: left">Port, TCP</th><th style="text-align: left">Port, UDP+TCP</th><th style="text-align: left">Online</th></tr></thead><tbody>
-<tr><td style="text-align: left">[300:17a8:aabf:108f::33]</td><td style="text-align: left">28333</td><td style="text-align: left">29333</td><td style="text-align: left">2025</td></tr>
-<tr><td style="text-align: left">[301:23b4:991a:634d::33]</td><td style="text-align: left">28333</td><td style="text-align: left">29333</td><td style="text-align: left">2023</td></tr>
-<tr><td style="text-align: left">[301:5eb5:f061:678e::33]</td><td style="text-align: left">28333</td><td style="text-align: left">29333</td><td style="text-align: left">2023</td></tr>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Host</th><th style="text-align: center">Port, TCP</th><th style="text-align: center">Port, UDP+TCP</th><th style="text-align: center">Online</th></tr></thead><tbody>
+<tr><td style="text-align: left">[300:17a8:aabf:108f::33]</td><td style="text-align: center">28333</td><td style="text-align: center">29333</td><td style="text-align: center">2025</td></tr>
+<tr><td style="text-align: left">[301:23b4:991a:634d::33]</td><td style="text-align: center">28333</td><td style="text-align: center">29333</td><td style="text-align: center">2023</td></tr>
+<tr><td style="text-align: left">[301:5eb5:f061:678e::33]</td><td style="text-align: center">28333</td><td style="text-align: center">29333</td><td style="text-align: center">2023</td></tr>
 </tbody></table>
 </div>
 <h2 id="related-software"><a class="header" href="#related-software">Related software</a></h2>

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Visual Studio 2010 - The twister P2P Book</title>
+        <title>libboost / libdb - The twister P2P Book</title>
 
 
         <!-- Custom HTML head -->
@@ -12,34 +12,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../../favicon.svg">
-        <link rel="shortcut icon" href="../../favicon.png">
-        <link rel="stylesheet" href="../../css/variables.css">
-        <link rel="stylesheet" href="../../css/general.css">
-        <link rel="stylesheet" href="../../css/chrome.css">
-        <link rel="stylesheet" href="../../css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../../fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="highlight-css" href="../../highlight.css">
-        <link rel="stylesheet" id="tomorrow-night-css" href="../../tomorrow-night.css">
-        <link rel="stylesheet" id="ayu-highlight-css" href="../../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../../custom.css">
+        <link rel="stylesheet" href="../custom.css">
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../../";
+            const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc.js"></script>
+        <script src="../toc.js"></script>
     </head>
     <body>
     <div id="body-container">
@@ -92,7 +92,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -127,7 +127,7 @@
                     <h1 class="menu-title">The twister P2P Book</h1>
 
                     <div class="right-buttons">
-                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/twisterarmy/book" title="Git repository" aria-label="Git repository">
@@ -159,7 +159,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; Visual Studio 2010</div>
+                        <div class="breadcrumbs">Install &raquo; Build from source &raquo; Custom dependencies &raquo; libboost / libdb</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -227,304 +227,97 @@
 }
 
 </style>
-<h2 id="qa"><a class="header" href="#qa">Q/A</a></h2>
-<p><em>What is this?</em><br />
-This page contains instructions on how to build twister with Visual Studio 2010.</p>
-<p><em>Is this relevant for me if I want to run twister on Windows?</em><br />
-No. If you just need to run twister, please get the twister build based on Cygwin as it is more stable at this time. This is for people who are familiar with Visual Studio and want to develop/debug twister there.</p>
-<p><em>Does it really work?</em><br />
-Not exactly. It builds and runs. You can open the GUI and start using it. It crashes after a while though. But this is just a matter of debugging it. From what I see, most of the problems are related to STL usage and MS specifics in this area.</p>
-<p><em>Why don't you make it work?</em><br />
-I don't have as much time to work on this as I would like. I would greatly appreciate if a younger C++ padawan would take a look at it and fix it. If not, I will probably fix it myself eventually.</p>
-<h2 id="how-to-build-twister-with-vs-2010-vc-10"><a class="header" href="#how-to-build-twister-with-vs-2010-vc-10">How to build twister with VS 2010 (VC 10)</a></h2>
-<p>1.) Download twister-core, put it into c:\twister\twister-core</p>
-<p>2.) Download OpenSSL 1.0.1c, put it into c:\twister\twister-core\openssl-1.0.1c (see below on how to build it)</p>
-<p>3.) Download Boost 1.43.0, put it into c:\twister\twister-core\boost_1_43_0 (see below on how to build it)</p>
-<p>4.) Download Berkeley DB 4.8.30.NC, put it into c:\twister\twister-core\db-4.8.30.NC (see below on how to build it)</p>
-<p>5.) Download ittypes.h (from https://code.google.com/p/msinttypes) and put it into c:\twister\vcbuild\include</p>
-<p>6.) Create the environmental variable TWISTER_CORE and set it to c:\twister\twister-core</p>
-<p>7.) Create the environmental variable LIBTORRENT and set it to c:\twister\twister-core\libtorrent</p>
-<p>8.) Create the environmental variable OPENSSL and set it to c:\twister\twister-core\openssl-1.0.1c</p>
-<p>9.) Create the environmental variable BOOST_ROOT and set it to c:\twister\twister-core\boost_1_43_0</p>
-<p>10.) Create the environmental variable BERKELEY_DB and set it to c:\twister\twister-core\db-4.8.30.NC</p>
-<p>11.) Create a Win32 Console Application project named "twisterd" in c:\twister\twister-core\vcbuild. Under Additional options, select Empty project.</p>
-<p>12.) Add source files to the project in the following way:</p>
-<pre><code>[Source Files]
-  (stuff from c:\twister\twister-core\src)
-  addrman.cpp
-  alert.cpp
-  bitcoind.cpp
-  bitcoinrpc.cpp
-  bloom.cpp
-  chainparams.cpp
-  checkpoints.cpp
-  core.cpp
-  crypter.cpp
-  db.cpp
-  hash.cpp
-  init.cpp
-  key.cpp
-  keystore.cpp
-  leveldb.cpp
-  main.cpp
-  net.cpp
-  netbase.cpp
-  noui.cpp
-  protocol.cpp
-  rpcblockchain.cpp
-  rpcdump.cpp
-  rpcmining.cpp
-  rpcnet.cpp
-  rpcrawtransaction.cpp
-  rpcwallet.cpp
-  script.cpp
-  scrypt-sse2.cpp
-  scrypt.cpp
-  sync.cpp
-  twister.cpp
-  twister_utils.cpp
-  txdb.cpp
-  util.cpp
-  version.cpp
-  wallet.cpp
-  walletdb.cpp
-  [leveldb] (stuff from c:\twister\twister-core\src\leveldb)
-    [db]
-      builder.cc
-      c.cc
-      dbformat.cc
-      db_impl.cc
-      db_iter.cc
-      filename.cc
-      log_reader.cc
-      log_writer.cc
-      memtable.cc
-      repair.cc
-      table_cache.cc
-      version_edit.cc
-      version_set.cc
-      write_batch.cc
-    [helpers]
-      [memenv]
-        memenv.cc
-    [port]
-      port_win.cc
-    [table]
-      block.cc
-      block_builder.cc
-      filter_block.cc
-      format.cc
-      iterator.cc
-      merger.cc
-      table.cc
-      table_builder.cc
-      two_level_iterator.cc
-    [util]
-      arena.cc
-      bloom.cc
-      cache.cc
-      coding.cc
-      comparator.cc
-      crc32c.cc
-      env.cc
-      env_win.cc
-      filter_policy.cc
-      hash.cc
-      histogram.cc
-      logging.cc
-      options.cc
-      status.cc
-      testharness.cc
-      testutil.cc
-  [libtorrent] (stuff from c:\twister\twister-core\libtorrent\src)
-    alert.cpp
-    alert_manager.cpp
-    allocator.cpp
-    asio.cpp
-    asio_ssl.cpp
-    assert.cpp
-    bandwidth_limit.cpp
-    bandwidth_manager.cpp
-    bandwidth_queue_entry.cpp
-    bloom_filter.cpp
-    broadcast_socket.cpp
-    bt_peer_connection.cpp
-    chained_buffer.cpp
-    connection_queue.cpp
-    ConvertUTF.cpp
-    create_torrent.cpp
-    disk_buffer_holder.cpp
-    disk_buffer_pool.cpp
-    disk_io_thread.cpp
-    entry.cpp
-    enum_net.cpp
-    error_code.cpp
-    escape_string.cpp
-    file.cpp
-    file_pool.cpp
-    file_storage.cpp
-    gzip.cpp
-    hasher.cpp
-    http_connection.cpp
-    http_parser.cpp
-    http_seed_connection.cpp
-    http_stream.cpp
-    http_tracker_connection.cpp
-    i2p_stream.cpp
-    identify_client.cpp
-    instantiate_connection.cpp
-    ip_filter.cpp
-    ip_voter.cpp
-    lazy_bdecode.cpp
-    logger.cpp
-    lsd.cpp
-    lt_trackers.cpp
-    magnet_uri.cpp
-    metadata_transfer.cpp
-    natpmp.cpp
-    packet_buffer.cpp
-    parse_url.cpp
-    peer_connection.cpp
-    pe_crypto.cpp
-    piece_picker.cpp
-    policy.cpp
-    puff.cpp
-    random.cpp
-    rsa.cpp
-    rss.cpp
-    session.cpp
-    session_impl.cpp
-    settings.cpp
-    sha1.cpp
-    smart_ban.cpp
-    socket_io.cpp
-    socket_type.cpp
-    socks5_stream.cpp
-    stat.cpp
-    storage.cpp
-    string_util.cpp
-    thread.cpp
-    time.cpp
-    timestamp_history.cpp
-    torrent.cpp
-    torrent_handle.cpp
-    torrent_info.cpp
-    tracker_manager.cpp
-    udp_socket.cpp
-    udp_tracker_connection.cpp
-    upnp.cpp
-    utf8.cpp
-    utp_socket_manager.cpp
-    utp_stream.cpp
-    ut_metadata.cpp
-    ut_pex.cpp
-    web_connection_base.cpp
-    web_peer_connection.cpp
-    GeoIP.c
-    mpi.c
-    [kademlia]
-      dht_get.cpp
-      dht_tracker.cpp
-      find_data.cpp
-      logging.cpp
-      node.cpp
-      node_id.cpp
-      refresh.cpp
-      routing_table.cpp
-      rpc_manager.cpp
-      traversal_algorithm.cpp
+<h2 id="boost-c"><a class="header" href="#boost-c">Boost C++</a></h2>
+<p>If the <code>twisterd</code> build fails because your system repository has a newer version of <a href="https://www.boost.org/">libboost</a> that is incompatible with the current <code>twister-core</code> API, follow these steps to build a custom (legacy) version from source:</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<ul>
+<li>latest tested <code>boost</code> version is <code>1.83.0</code></li>
+<li>the version <code>1.88.0</code> requires <code>twister-core</code> API update!</li>
+</ul>
+</div>
+<ol>
+<li><code>wget https://archives.boost.io/release/1.83.0/source/boost_1_83_0.tar.gz</code> - get specified version (replace <code>1_83_0</code> with your value)
+<ul>
+<li>compare the output of <code>sha256sum boost_1_83_0.tar.gz</code> which should be <code>c0685b68dd44cc46574cce86c4e17c0f611b15e195be9848dfd0769a0a207628</code></li>
+</ul>
+</li>
+<li><code>tar -xzf boost_1_83_0.tar.gz</code> - unarchive the sources</li>
+<li><code>cd boost_1_83_0</code> - navigate the sources directory</li>
+<li><code>./bootstrap.sh --prefix=/path/to/boost-build</code> - replace <code>/path/to/boost-build</code> with your value
+<ul>
+<li>optionally, you may skip the <code>--prefix=</code> argument, when installing the boost into default location, but it is not recommended as may overwrite your existing system version installed by package manager!</li>
+</ul>
+</li>
+<li><code>./b2 install</code> - build and install to the <code>--prefix=</code> destination (optionally provide <code>-j</code> argument if you want to specify the number of CPU threads)</li>
+</ol>
+<p>When the <code>boost</code> build is complete, configure the <code>twister-core</code> using <code>--with-boost=/path/to/boost-build</code> argument, for example:</p>
+<pre><code class="language-bash">cd twister-core
+./configure --with-boost=/path/to/boost-build
 </code></pre>
-<p>13.) Open properties for libtorrent\alert.cpp, go to C/C++ / Output Files, set Object File Name to $(IntDir)libtorrent_alert.obj</p>
-<p>14.) Open properties for leveldb\util\bloom.cc, go to C/C++ / Output Files, set Object File Name to $(IntDir)leveldb_util_bloom.obj</p>
-<p>15.) Open properties for leveldb\util\hash.cc, go to C/C++ / Output Files, set Object File Name to $(IntDir)leveldb_util_hash.obj</p>
-<p>16.) Apply patches to source files (see below)</p>
-<p>17.) Open the project Property Pages. (The instructions that follow are for the Win32 platform and debug configuration.)</p>
-<p>18.) Add the following folders to Additional Include Directories under C/C++ / General:</p>
-<pre><code>$(LIBTORRENT)\include
-$(BOOST_ROOT)
-$(OPENSSL)\inc32
-$(TWISTER_CORE)\vcbuild\include
-$(TWISTER_CORE)\src
-$(TWISTER_CORE)\src\leveldb
-$(TWISTER_CORE)\src\leveldb\include
-$(TWISTER_CORE)\src\leveldb\helpers
-$(BERKELEY_DB)\build_windows
+<ul>
+<li>then build <code>twisterd</code> with <code>make</code></li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Make sure that the <code>/path/to/boost-build</code> directory exists when launching your <code>twisterd</code>!</p>
+</div>
+<h2 id="berkeley-db"><a class="header" href="#berkeley-db">Berkeley DB</a></h2>
+<p>The current version of <code>twister-core</code> should be compatible with recent system versions of <a href="https://www.oracle.com/database/technologies/related/berkeleydb.html">Berkeley DB</a> (also known as <code>bdb</code>, <code>libdb</code>), at least on Fedora 41, which provides version <code>5.3.28</code> from its repository.</p>
+<p>If you want to build a specific version of <code>libdb</code> from source, use the following steps:</p>
+<ol>
+<li><code>wget https://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz</code> - get legacy version (or replace <code>4.8.30.NC</code> with your value)
+<ul>
+<li>compare the output of <code>sha256sum db-4.8.30.NC.tar.gz</code> which should be <code>12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef</code></li>
+</ul>
+</li>
+<li><code>tar -xzf db-4.8.30.NC.tar.gz</code> - unarchive the sources</li>
+<li><code>cd db-4.8.30.NC</code> - navigate the sources directory
+<ul>
+<li><code>wget https://gist.githubusercontent.com/LnL7/5153b251fd525fe15de69b67e63a6075/raw/7778e9364679093a32dec2908656738e16b6bdcb/clang.patch</code> - download this patch when building with <code>clang</code> and <code>C++11</code> (<a href="https://community.oracle.com/thread/3952592">details</a>)</li>
+<li><code>patch -p2 &lt; clang.patch</code> - apply a patch</li>
+</ul>
+</li>
+<li><code>cd build_unix</code> - navigate to this directory if you are building on Linux</li>
+<li><code>../dist/configure --prefix=/path/to/libdb-build --enable-cxx</code> - replace <code>/path/to/libdb-build</code> with your value
+<ul>
+<li>optionally, you may skip the <code>--prefix=</code> argument, when installing the <code>libdb</code> into default location, but it is not recommended as may overwrite your existing system version installed by package manager!</li>
+<li>if you see <code>WARNING: NO SHARED LATCH IMPLEMENTATION FOUND FOR THIS PLATFORM</code> - as a temporary solution, append <code>CFLAGS=-Wno-error=implicit-function-declaration</code> to the <code>configure</code> command above</li>
+</ul>
+</li>
+<li><code>make</code> - build (optionally provide <code>-j</code> argument if you want to specify the number of CPU threads)</li>
+<li><code>make install</code> - install the build to the <code>--prefix=</code> destination (<code>/path/to/libdb-build</code>)</li>
+</ol>
+<p>When our <code>libdb</code> version is ready to use, configure the <code>twister-core</code> using <code>--with-libdb=/path/to/libdb-build</code> argument, for example:</p>
+<pre><code class="language-bash">cd twister-core
+./configure --with-libdb=/path/to/libdb-build
 </code></pre>
-<p>19.) Add the following definitions to Preprocessor Definitions under C/C++ / Preprocessor:</p>
-<pre><code>WIN32
-_DEBUG
-_CONSOLE
-WIN32_LEAN_AND_MEAN
-_WIN32_WINNT=0x0501
-_MSC_VER=1600
-_CRT_SECURE_NO_DEPRECATE
-BOOST_ASIO_HASH_MAP_BUCKETS=1021
-BOOST_FILESYSTEM_VERSION=2
-WITH_SHIPPED_GEOIP_H
-BOOST_ASIO_SEPARATE_COMPILATION
-BOOST_ASIO_ENABLE_CANCELIO
-TORRENT_USE_OPENSSL
-NOMINMAX
-__PRETTY_FUNCTION__=__FUNCTION__
-BOOST_HAS_STDINT_H
-LEVELDB_PLATFORM_WINDOWS
-OS_WIN
-</code></pre>
-<p>20.) Add the following folders to Additional Library Directories under Linker / General:</p>
-<pre><code>$(BOOST_ROOT)\stage\lib
-$(OPENSSL)\out32
-$(BERKELEY_DB)\build_windows\Win32\Debug
-</code></pre>
-<p>21.) Add the following libs to Additional Dependencies under Linker / Input:</p>
-<pre><code>libeay32.lib
-ssleay32.lib
-shlwapi.lib
-libdb48d.lib
-</code></pre>
-<p>22.) Copy libdb48d.dll from c:\twister\twister-core\db-4.8.30.NC\build_windows\Win32\Debug to c:\twister\twister-core\vcbuild\Debug</p>
-<p>23.) Hit F5 and keep your fingers crossed (this will take some time)</p>
-<h2 id="building-openssl-101c"><a class="header" href="#building-openssl-101c">Building OpenSSL 1.0.1c</a></h2>
-<p>1.) Download and install ActivePerl (http://www.activestate.com/activeperl/downloads)</p>
-<p>2.) Download and install NASM (http://www.nasm.us)</p>
-<p>3.) Create the environmental variable NASM and set it to the NASM folder, e.g. C:\Program Files (x86)\NASM</p>
-<p>4.) Start Visual Studio Command Prompt</p>
-<p>5.) Run the following commands:</p>
-<blockquote>
-<p>cd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin
-vcvars32.bat
-cd c:\twister\twister-core\openssl-1.0.1c
-perl Configure VC-WIN32 --prefix="%OPENSSL%"
-"%NASM%"\nasmpath.bat
-call ms\do_nasm
-nmake -f ms\nt.makdir</p>
-</blockquote>
-<p>This produces exe and lib files in c:\twister\twister-core\openssl-1.0.1c\out32, and header files in c:\twister\twister-core\openssl-1.0.1c\inc32.</p>
-<p>Note: Making vcvars32.bat work is a real pain in the a**. It contains a lot of statements containing environmental variables surrounded by quotes such as <tt>set "PATH=%WindowsSdkDir%bin\NETFX 4.0 Tools;%WindowsSdkDir%bin;%PATH%"</tt> and <tt>if exist "%VSINSTALLDIR%Team Tools\Performance Tools" set ...</tt>. The problem occurs when the value of one of these variables also contains quotes. If you get an error saying something like "\Microsoft\Microsoft was unexpected at this time", your best bet is to make sure that the value of the environmental var PATH does not contain any quotes.</p>
-<h2 id="building-boost-1430"><a class="header" href="#building-boost-1430">Building Boost 1.43.0</a></h2>
-<p>1.) Start Visual Studio Command Prompt</p>
-<p>2.) Run the following commands:</p>
-<blockquote>
-<p>cd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin
-vcvars32.bat
-cd c:\twister\twister-core\boost_1_43_0
-bootstrap.bat
-bjam toolset=msvc-10.0 --build-type=complete stage</p>
-</blockquote>
-<p>This process takes some time. It produces lib files in c:\twister\twister-core\boost_1_43_0\stage\libs.</p>
-<p>Note: If vcvars32.bat and/or bootstrap.bat fails, see the comment above on why this happens and how to fix it.</p>
-<h2 id="building-berkeley-db-4830nc"><a class="header" href="#building-berkeley-db-4830nc">Building Berkeley DB 4.8.30.NC</a></h2>
-<p>Coming soon...</p>
-<p>(Patches also coming soon.)</p>
+<ul>
+<li>then build <code>twisterd</code> with <code>make</code></li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Make sure that the <code>/path/to/libdb-build</code> directory exists when launching your <code>twisterd</code>!</p>
+</div>
 <div class="version">Generated at: <strong>2025.04</strong></div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../twister-core/miguelfreitas/build-native-windows-client-using-gitian.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../twister-core/miguelfreitas/building-twister-with-visual-studio-2010.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../twister-core/custom-dependencies.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../twister-core/libtorrent-build-on-ubuntu.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -534,11 +327,11 @@ bjam toolset=msvc-10.0 --build-type=complete stage</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../twister-core/miguelfreitas/build-native-windows-client-using-gitian.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../twister-core/miguelfreitas/building-twister-with-visual-studio-2010.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../twister-core/custom-dependencies.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../twister-core/libtorrent-build-on-ubuntu.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -553,13 +346,13 @@ bjam toolset=msvc-10.0 --build-type=complete stage</p>
         </script>
 
 
-        <script src="../../elasticlunr.min.js"></script>
-        <script src="../../mark.min.js"></script>
-        <script src="../../searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="../../clipboard.min.js"></script>
-        <script src="../../highlight.js"></script>
-        <script src="../../book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 

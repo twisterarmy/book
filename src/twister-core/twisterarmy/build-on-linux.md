@@ -11,6 +11,9 @@
 
 **System dependencies**
 
+> [!TIP]
+> Refer to the **Custom dependencies** page if you encounter any issues with the system repository versions or if you want to build a specific library from source!
+
 Debian / Ubuntu
 ``` bash
 sudo apt install git autoconf automake build-essential libtool\
