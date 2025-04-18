@@ -7,11 +7,10 @@ If you want to run it from a separate user, just create the user with `useradd -
 To launch, run following command:
 
 ``` bash
-./twister
+./twisterd
 ```
-* see [CLI arguments](#cli-arguments) for available startup options
 
-## CLI arguments
+### Startup options
 
 If you want to run `twisterd` using a proxy or bind the connection to a specified network interface, consider using the following options:
 
@@ -84,3 +83,156 @@ If you want to run `twisterd` using a proxy or bind the connection to a specifie
 -rpcsslprivatekeyfile=file.pem         Server private key (default: server.pem)
 -rpcsslciphers=ciphers                 Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)
 ```
+
+## Web UI
+
+Web user interface is the original way to interact with the twister P2P network.
+
+If you have installed [twister-core](https://github.com/twisterarmy/twister-core) using the instructions from this book, you already have [twister-html](https://github.com/twisterarmy/twister-html) client included in your installation. Simply open [http://127.0.0.1:28332](http://127.0.0.1:28332) in your browser after [launching twisterd](#launch)!
+
+After the first launch, take a look at following pages:
+
+* [Network](http://127.0.0.1:28332/network.html) - where you can check your connection details, setup the miner with a promotional message, etc.
+* [Options](http://127.0.0.1:28332/options.html) - customize the appearance: theme, information blocks, translation API, feed updates, notification alerts and sounds, massages size limit, WebTorrent feature (for attachments and link shortening) and more;
+* Also, refer to the main menu (located in the top right corner, depending on the theme) to further customize your account description, links, avatar and find links to the community resources.
+
+> [!TIP]
+> Before you start using the Web UI, please keep the following in mind:
+> * The local cache is stored in the browser's local storage;
+> * Public data is distributed with other peers through the BitTorrent/DHT swarm, so new publications, profile changes, or direct messaging may take some time, and depend on the current [network status](https://twisterarmy.github.io/network);
+> * Permanent data storage (such as user accounts) requires a new block to be mined by other peers or by you;
+> * If you have joined the twister network for the first time and encounter any [connection issues](https://github.com/twisterarmy/twister-html/issues/44) while publishing your initial message, please stay online and try to send your message again later!
+
+> [!IMPORTANT]
+> Pay attention to what you are publishing!\
+> You cannot delete or change your published data later, as it is **permanently** stored on different P2P nodes!
+
+## GUI
+
+At this moment, there is no known graphical interface available yet, but there is some work in progress, and you can join the development:
+
+* [twister-control-center](https://github.com/twisterarmy/twister-control-center) - GTK4 client written in Rust to operate a local or remote `twisterd`
+
+## JSON-RPC API
+
+### CLI
+
+Unlike other Bitcoin-based wallets, which usually come with a separate `bitcoin-cli` tool, `twisterd` offers command line interaction through its built-in interface:
+
+first, run the `twisterd` daemon:
+
+``` bash
+./twisterd
+```
+
+then, from another thread, request any command from the JSON-RPC API list to print the output:
+
+``` bash
+./twisterd getbestblockhash
+```
+
+### Commands
+
+> [!CAUTION]
+> Some commands below may output sensitive personal data, such as the private key for your account. Please exercise caution when creating an issue report that includes any debug information or when someone requests any data from this asset!
+
+To get a list of all supported commands, run `twisterd` with the `help` argument:
+
+``` bash
+./twisterd help
+```
+
+``` bash
+adddnsseed <seeder>
+addnode <node> <add|remove|onetry>
+backupwallet <destination>
+creategroup <description> [<groupprivkey>]
+createrawtransaction <username> <pubKey> [signedByOldKey]
+createwalletuser <username> [replacekey]
+decoderawtransaction <hex string>
+decodeshorturl <twist:xxx> [timeout_sec=90]
+dhtget <username> <resource> <s(ingle)/m(ulti)> [timeout_ms] [timeout_multi_ms] [min_multi]
+dhtput <username> <resource> <s(ingle)/m(ulti)> <value> <sig_user> <seq>
+dhtputraw <hexdata>
+dumpprivkey <username>
+dumppubkey <username>
+dumpwallet <filename>
+encryptwallet <passphrase>
+follow <username> [follow_username1,follow_username2,...]
+getaddednodeinfo <dns> [node]
+getbestblockhash
+getblock <hash> [verbose=true]
+getblockcount
+getblockhash <index>
+getblocktemplate [params]
+getconnectioncount
+getdifficulty
+getdirectmsgs <localuser> <count_per_user> '[{"username":username,"max_id":max_id,"since_id":since_id},...]'
+getfavs <localuser> <count> '{"max_id":max_id,"since_id":since_id}'
+getfollowing <username>
+getgenerate
+getgroupinfo <groupalias>
+gethashespersec
+getinfo
+getlasthave <username> | <groupname> [user1,user2...]
+getlastsoftcheckpoint
+getmentions <localuser> <count> '{"max_id":max_id,"since_id":since_id}'
+getmininginfo
+getnumpieces <username>
+getpeerinfo
+getpieceavailability <username> <k>
+getpiecemaxseen <username> <k>
+getposts <count> '[{"username":username,"max_id":max_id,"since_id":since_id},...]' [allowed_flags=~2] [required_flags=0]
+getpreferredspamlang
+getrawmempool
+getrawtransaction <username> [verbose=0]
+getspammsg
+getspamposts <count> [max_id] [since_id]
+gettransaction <txid>
+gettrendinghashtags <count>
+getwork [data]
+help [command]
+importprivkey <bitcoinprivkey> <username> [rescan=true] [allow_new_user=false]
+importwallet <filename>
+leavegroup <username> <groupalias>
+listgroups [username] [list_only_ignored=false]
+listsinceblock [blockhash] [target-confirmations]
+listtransactions [account] [count=10] [from=0]
+listusernamespartial <username_starts_with> <count> [exact_match=false]
+listwalletusers
+newdirectmsg <from> <k> <to> <msg> [copy_self=false]
+newfavmsg <username> <k> <fav_v_object> [private=false] [comment=''] 
+newgroupdescription <username> <k> <groupalias> <description>
+newgroupinvite <username> <k> <groupalias> '[<newmember>,...]'
+newpostcustom <username> <k> '{"field1":value,"field2":value,...}'
+newpostmsg <username> <k> <msg> [reply_n] [reply_k]
+newpostraw <username> <k> <hexdata>
+newrtmsg <username> <k> <rt_v_object> [comment]
+newshorturl <username> <k> <url> [mimetype]
+peekpost <username> <k> [field='*'] [timeout_sec=90]
+recheckusertorrent <username>
+rescandirectmsgs <username>
+search <scope> <text> <count> ['{"username":username,"mode":"exact"|"all"|"any","case":"sensitive"|"insensitive","agemin":agemin,"agemax":agemax}']
+sendnewusertransaction <username>
+sendrawtransaction <hex string>
+setgenerate <generate> [genproclimit]
+setpreferredspamlang <langcode>
+setspammsg <username> <msg> [add|remove|replace]
+signmessage <username> <message>
+stop
+submitblock <hex data> [optional-params-obj]
+testvector <username>
+torrentstatus <username>
+uidtousername <uid>
+unfollow <username> [unfollow_username1,unfollow_username2,...]
+usernametouid <username> [last=true]
+verifychain [check level] [num blocks]
+verifymessage <username> <signature> <message>
+```
+
+### Libraries
+
+Use following list of the known JSON-RPC API libraries for twister P2P to create your own application or to obtain implementation examples in different programming languages:
+
+* [twister-php](https://github.com/twisterarmy/twister-php) (PHP 8) - [Composer](https://packagist.org/packages/twisterarmy/twister) library for `twister-core` RPC-JSON API to build interactive web-applications like [twister-rss-bot](https://github.com/twisterarmy/twister-rss-bot/)
+* [twistercore-rpc](https://github.com/twisterarmy/rust-twistercore-rpc) (Rust) - Client library / [crate](https://crates.io/crates/twistercore-rpc) with partially covered methods that used in the [twisterad](https://github.com/twisterarmy/twisterad) and [twister-control-center](https://github.com/twisterarmy/twister-control-center) applications, based on the original [Bitcoin Core JSON-RPC API](https://github.com/rust-bitcoin/rust-bitcoincore-rpc)

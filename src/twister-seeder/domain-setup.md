@@ -29,3 +29,9 @@ requires renewal once per year by the PoW (Proof-of-Work).
 
 This solution is not compatible with Clearnet domain zones but supports Clearnet IPs.\
 It also supports [Yggdrasil](https://yggdrasil-network.github.io/) out of the box.
+
+## Use an expired domain
+
+Feel free to use any expired domain from [this list](https://twisterarmy.github.io/network), as defined in [chainparams.cpp](https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/chainparams.cpp#L217)
+
+This could be beneficial for older nodes based on existing `twister-core` builds from the [twisterarmy](https://github.com/twisterarmy/twister-core/tree/twisterarmy) or [miguelfreitas](https://github.com/miguelfreitas/twister-core) branch!

@@ -231,12 +231,9 @@
 <p>The twister node is usually launched from the same or a separate system user, and never from root.</p>
 <p>If you want to run it from a separate user, just create the user with <code>useradd -m twister</code>, then log in and build the <code>twister-core</code> inside this directory to have valid permissions out of the box.</p>
 <p>To launch, run following command:</p>
-<pre><code class="language-bash">./twister
+<pre><code class="language-bash">./twisterd
 </code></pre>
-<ul>
-<li>see <a href="#cli-arguments">CLI arguments</a> for available startup options</li>
-</ul>
-<h2 id="cli-arguments"><a class="header" href="#cli-arguments">CLI arguments</a></h2>
+<h3 id="startup-options"><a class="header" href="#startup-options">Startup options</a></h3>
 <p>If you want to run <code>twisterd</code> using a proxy or bind the connection to a specified network interface, consider using the following options:</p>
 <pre><code class="language-bash">-?                                     This help message
 -conf=file                             Specify configuration file (default: ~/.twister/twister.conf)
@@ -306,6 +303,153 @@
 -rpcsslprivatekeyfile=file.pem         Server private key (default: server.pem)
 -rpcsslciphers=ciphers                 Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)
 </code></pre>
+<h2 id="web-ui"><a class="header" href="#web-ui">Web UI</a></h2>
+<p>Web user interface is the original way to interact with the twister P2P network.</p>
+<p>If you have installed <a href="https://github.com/twisterarmy/twister-core">twister-core</a> using the instructions from this book, you already have <a href="https://github.com/twisterarmy/twister-html">twister-html</a> client included in your installation. Simply open <a href="http://127.0.0.1:28332">http://127.0.0.1:28332</a> in your browser after <a href="#launch">launching twisterd</a>!</p>
+<p>After the first launch, take a look at following pages:</p>
+<ul>
+<li><a href="http://127.0.0.1:28332/network.html">Network</a> - where you can check your connection details, setup the miner with a promotional message, etc.</li>
+<li><a href="http://127.0.0.1:28332/options.html">Options</a> - customize the appearance: theme, information blocks, translation API, feed updates, notification alerts and sounds, massages size limit, WebTorrent feature (for attachments and link shortening) and more;</li>
+<li>Also, refer to the main menu (located in the top right corner, depending on the theme) to further customize your account description, links, avatar and find links to the community resources.</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-tip">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tip
+</p>
+<p>Before you start using the Web UI, please keep the following in mind:</p>
+<ul>
+<li>The local cache is stored in the browser's local storage;</li>
+<li>Public data is distributed with other peers through the BitTorrent/DHT swarm, so new publications, profile changes, or direct messaging may take some time, and depend on the current <a href="https://twisterarmy.github.io/network">network status</a>;</li>
+<li>Permanent data storage (such as user accounts) requires a new block to be mined by other peers or by you;</li>
+<li>If you have joined the twister network for the first time and encounter any <a href="https://github.com/twisterarmy/twister-html/issues/44">connection issues</a> while publishing your initial message, please stay online and try to send your message again later!</li>
+</ul>
+</div>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Pay attention to what you are publishing!<br />
+You cannot delete or change your published data later, as it is <strong>permanently</strong> stored on different P2P nodes!</p>
+</div>
+<h2 id="gui"><a class="header" href="#gui">GUI</a></h2>
+<p>At this moment, there is no known graphical interface available yet, but there is some work in progress, and you can join the development:</p>
+<ul>
+<li><a href="https://github.com/twisterarmy/twister-control-center">twister-control-center</a> - GTK4 client written in Rust to operate a local or remote <code>twisterd</code></li>
+</ul>
+<h2 id="json-rpc-api"><a class="header" href="#json-rpc-api">JSON-RPC API</a></h2>
+<h3 id="cli"><a class="header" href="#cli">CLI</a></h3>
+<p>Unlike other Bitcoin-based wallets, which usually come with a separate <code>bitcoin-cli</code> tool, <code>twisterd</code> offers command line interaction through its built-in interface:</p>
+<p>first, run the <code>twisterd</code> daemon:</p>
+<pre><code class="language-bash">./twisterd
+</code></pre>
+<p>then, from another thread, request any command from the JSON-RPC API list to print the output:</p>
+<pre><code class="language-bash">./twisterd getbestblockhash
+</code></pre>
+<h3 id="commands"><a class="header" href="#commands">Commands</a></h3>
+<div class="mdbook-alerts mdbook-alerts-caution">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  caution
+</p>
+<p>Some commands below may output sensitive personal data, such as the private key for your account. Please exercise caution when creating an issue report that includes any debug information or when someone requests any data from this asset!</p>
+</div>
+<p>To get a list of all supported commands, run <code>twisterd</code> with the <code>help</code> argument:</p>
+<pre><code class="language-bash">./twisterd help
+</code></pre>
+<pre><code class="language-bash">adddnsseed &lt;seeder&gt;
+addnode &lt;node&gt; &lt;add|remove|onetry&gt;
+backupwallet &lt;destination&gt;
+creategroup &lt;description&gt; [&lt;groupprivkey&gt;]
+createrawtransaction &lt;username&gt; &lt;pubKey&gt; [signedByOldKey]
+createwalletuser &lt;username&gt; [replacekey]
+decoderawtransaction &lt;hex string&gt;
+decodeshorturl &lt;twist:xxx&gt; [timeout_sec=90]
+dhtget &lt;username&gt; &lt;resource&gt; &lt;s(ingle)/m(ulti)&gt; [timeout_ms] [timeout_multi_ms] [min_multi]
+dhtput &lt;username&gt; &lt;resource&gt; &lt;s(ingle)/m(ulti)&gt; &lt;value&gt; &lt;sig_user&gt; &lt;seq&gt;
+dhtputraw &lt;hexdata&gt;
+dumpprivkey &lt;username&gt;
+dumppubkey &lt;username&gt;
+dumpwallet &lt;filename&gt;
+encryptwallet &lt;passphrase&gt;
+follow &lt;username&gt; [follow_username1,follow_username2,...]
+getaddednodeinfo &lt;dns&gt; [node]
+getbestblockhash
+getblock &lt;hash&gt; [verbose=true]
+getblockcount
+getblockhash &lt;index&gt;
+getblocktemplate [params]
+getconnectioncount
+getdifficulty
+getdirectmsgs &lt;localuser&gt; &lt;count_per_user&gt; '[{"username":username,"max_id":max_id,"since_id":since_id},...]'
+getfavs &lt;localuser&gt; &lt;count&gt; '{"max_id":max_id,"since_id":since_id}'
+getfollowing &lt;username&gt;
+getgenerate
+getgroupinfo &lt;groupalias&gt;
+gethashespersec
+getinfo
+getlasthave &lt;username&gt; | &lt;groupname&gt; [user1,user2...]
+getlastsoftcheckpoint
+getmentions &lt;localuser&gt; &lt;count&gt; '{"max_id":max_id,"since_id":since_id}'
+getmininginfo
+getnumpieces &lt;username&gt;
+getpeerinfo
+getpieceavailability &lt;username&gt; &lt;k&gt;
+getpiecemaxseen &lt;username&gt; &lt;k&gt;
+getposts &lt;count&gt; '[{"username":username,"max_id":max_id,"since_id":since_id},...]' [allowed_flags=~2] [required_flags=0]
+getpreferredspamlang
+getrawmempool
+getrawtransaction &lt;username&gt; [verbose=0]
+getspammsg
+getspamposts &lt;count&gt; [max_id] [since_id]
+gettransaction &lt;txid&gt;
+gettrendinghashtags &lt;count&gt;
+getwork [data]
+help [command]
+importprivkey &lt;bitcoinprivkey&gt; &lt;username&gt; [rescan=true] [allow_new_user=false]
+importwallet &lt;filename&gt;
+leavegroup &lt;username&gt; &lt;groupalias&gt;
+listgroups [username] [list_only_ignored=false]
+listsinceblock [blockhash] [target-confirmations]
+listtransactions [account] [count=10] [from=0]
+listusernamespartial &lt;username_starts_with&gt; &lt;count&gt; [exact_match=false]
+listwalletusers
+newdirectmsg &lt;from&gt; &lt;k&gt; &lt;to&gt; &lt;msg&gt; [copy_self=false]
+newfavmsg &lt;username&gt; &lt;k&gt; &lt;fav_v_object&gt; [private=false] [comment=''] 
+newgroupdescription &lt;username&gt; &lt;k&gt; &lt;groupalias&gt; &lt;description&gt;
+newgroupinvite &lt;username&gt; &lt;k&gt; &lt;groupalias&gt; '[&lt;newmember&gt;,...]'
+newpostcustom &lt;username&gt; &lt;k&gt; '{"field1":value,"field2":value,...}'
+newpostmsg &lt;username&gt; &lt;k&gt; &lt;msg&gt; [reply_n] [reply_k]
+newpostraw &lt;username&gt; &lt;k&gt; &lt;hexdata&gt;
+newrtmsg &lt;username&gt; &lt;k&gt; &lt;rt_v_object&gt; [comment]
+newshorturl &lt;username&gt; &lt;k&gt; &lt;url&gt; [mimetype]
+peekpost &lt;username&gt; &lt;k&gt; [field='*'] [timeout_sec=90]
+recheckusertorrent &lt;username&gt;
+rescandirectmsgs &lt;username&gt;
+search &lt;scope&gt; &lt;text&gt; &lt;count&gt; ['{"username":username,"mode":"exact"|"all"|"any","case":"sensitive"|"insensitive","agemin":agemin,"agemax":agemax}']
+sendnewusertransaction &lt;username&gt;
+sendrawtransaction &lt;hex string&gt;
+setgenerate &lt;generate&gt; [genproclimit]
+setpreferredspamlang &lt;langcode&gt;
+setspammsg &lt;username&gt; &lt;msg&gt; [add|remove|replace]
+signmessage &lt;username&gt; &lt;message&gt;
+stop
+submitblock &lt;hex data&gt; [optional-params-obj]
+testvector &lt;username&gt;
+torrentstatus &lt;username&gt;
+uidtousername &lt;uid&gt;
+unfollow &lt;username&gt; [unfollow_username1,unfollow_username2,...]
+usernametouid &lt;username&gt; [last=true]
+verifychain [check level] [num blocks]
+verifymessage &lt;username&gt; &lt;signature&gt; &lt;message&gt;
+</code></pre>
+<h3 id="libraries"><a class="header" href="#libraries">Libraries</a></h3>
+<p>Use following list of the known JSON-RPC API libraries for twister P2P to create your own application or to obtain implementation examples in different programming languages:</p>
+<ul>
+<li><a href="https://github.com/twisterarmy/twister-php">twister-php</a> (PHP 8) - <a href="https://packagist.org/packages/twisterarmy/twister">Composer</a> library for <code>twister-core</code> RPC-JSON API to build interactive web-applications like <a href="https://github.com/twisterarmy/twister-rss-bot/">twister-rss-bot</a></li>
+<li><a href="https://github.com/twisterarmy/rust-twistercore-rpc">twistercore-rpc</a> (Rust) - Client library / <a href="https://crates.io/crates/twistercore-rpc">crate</a> with partially covered methods that used in the <a href="https://github.com/twisterarmy/twisterad">twisterad</a> and <a href="https://github.com/twisterarmy/twister-control-center">twister-control-center</a> applications, based on the original <a href="https://github.com/rust-bitcoin/rust-bitcoincore-rpc">Bitcoin Core JSON-RPC API</a></li>
+</ul>
 <div class="version">Generated at: <strong>2025.04</strong></div>
                     </main>
 

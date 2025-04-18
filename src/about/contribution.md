@@ -1,9 +1,12 @@
 ## Connect new project
 
-If you have a new Wiki (or documentation) repository for your project to connect, please define it in the Book's `webroot` location, e.g:
-* `/twister-core`
-* `/twister-html`
-* `/your-app`
+If you have a new Wiki (or documentation) repository for your project to connect, please follow these steps:
+
+1. Define a new `git` source in the [build](https://github.com/twisterarmy/book/blob/main/build.sh) script:
+    * setup wiki page aliases **in lowercase** using the valid URI [STD66](https://www.rfc-editor.org/info/std66) format (e.g. `cp Contribution.md contribution.md`)
+    * prefer the webroot location if your project has no alternative branches (e.g. `/twister-seeder`, `/twisterad`)
+2. Create a new menu item in the book [summary](https://github.com/twisterarmy/book/blob/main/src/SUMMARY.md) that will be used in the navigation menu
+3. Send a [pull request](https://github.com/twisterarmy/book/pulls) with your connection!
 
 ## Formatting
 

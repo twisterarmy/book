@@ -227,12 +227,17 @@
 
 </style>
 <h2 id="connect-new-project"><a class="header" href="#connect-new-project">Connect new project</a></h2>
-<p>If you have a new Wiki (or documentation) repository for your project to connect, please define it in the Book's <code>webroot</code> location, e.g:</p>
+<p>If you have a new Wiki (or documentation) repository for your project to connect, please follow these steps:</p>
+<ol>
+<li>Define a new <code>git</code> source in the <a href="https://github.com/twisterarmy/book/blob/main/build.sh">build</a> script:
 <ul>
-<li><code>/twister-core</code></li>
-<li><code>/twister-html</code></li>
-<li><code>/your-app</code></li>
+<li>setup wiki page aliases <strong>in lowercase</strong> using the valid URI <a href="https://www.rfc-editor.org/info/std66">STD66</a> format (e.g. <code>cp Contribution.md contribution.md</code>)</li>
+<li>prefer the webroot location if your project has no alternative branches (e.g. <code>/twister-seeder</code>, <code>/twisterad</code>)</li>
 </ul>
+</li>
+<li>Create a new menu item in the book <a href="https://github.com/twisterarmy/book/blob/main/src/SUMMARY.md">summary</a> that will be used in the navigation menu</li>
+<li>Send a <a href="https://github.com/twisterarmy/book/pulls">pull request</a> with your connection!</li>
+</ol>
 <h2 id="formatting"><a class="header" href="#formatting">Formatting</a></h2>
 <p>Please follow these recommendations when creating or editing content:</p>
 <ul>
