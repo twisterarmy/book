@@ -12,7 +12,7 @@ sudo ufw allow PORT_NUMBER
 ```
 
 > [!IMPORTANT]
-> * use `-public_server_mode` argument on `twisterd` startup to limit JSON-RPC execution to public/safe commands only ([note](https://github.com/twisterarmy/twister-html/issues/43))
+> * use `-public_server_mode` argument on `twisterd` startup to limit JSON-RPC execution to public/safe commands only ([implementation](https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/bitcoinrpc.cpp#L227), [note](https://github.com/twisterarmy/twister-html/issues/43))
 > * `TCP` / `UDP` ports are random by default; use also `-port=PORT_NUMBER` on `twisterd` startup to make it static
 
 ## Mine blocks

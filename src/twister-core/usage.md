@@ -113,9 +113,7 @@ At this moment, there is no known graphical interface available yet, but there i
 
 * [twister-control-center](https://github.com/twisterarmy/twister-control-center) - GTK4 client written in Rust to operate a local or remote `twisterd`
 
-## JSON-RPC API
-
-### CLI
+## CLI
 
 Unlike other Bitcoin-based wallets, which usually come with a separate `bitcoin-cli` tool, `twisterd` offers command line interaction through its built-in interface:
 
@@ -125,13 +123,17 @@ first, run the `twisterd` daemon:
 ./twisterd
 ```
 
-then, from another thread, request any command from the JSON-RPC API list to print the output:
+then, from another thread, request any command from the [JSON-RPC API list](#json-rpc) to print the output, for example:
 
 ``` bash
 ./twisterd getbestblockhash
 ```
 
-### Commands
+## API
+
+### JSON-RPC
+
+#### Commands
 
 > [!CAUTION]
 > Some commands below may output sensitive personal data, such as the private key for your account. Please exercise caution when creating an issue report that includes any debug information or when someone requests any data from this asset!
@@ -230,9 +232,13 @@ verifychain [check level] [num blocks]
 verifymessage <username> <signature> <message>
 ```
 
-### Libraries
+#### Libraries
 
 Use following list of the known JSON-RPC API libraries for twister P2P to create your own application or to obtain implementation examples in different programming languages:
 
 * [twister-php](https://github.com/twisterarmy/twister-php) (PHP 8) - [Composer](https://packagist.org/packages/twisterarmy/twister) library for `twister-core` RPC-JSON API to build interactive web-applications like [twister-rss-bot](https://github.com/twisterarmy/twister-rss-bot/)
 * [twistercore-rpc](https://github.com/twisterarmy/rust-twistercore-rpc) (Rust) - Client library / [crate](https://crates.io/crates/twistercore-rpc) with partially covered methods that used in the [twisterad](https://github.com/twisterarmy/twisterad) and [twister-control-center](https://github.com/twisterarmy/twister-control-center) applications, based on the original [Bitcoin Core JSON-RPC API](https://github.com/rust-bitcoin/rust-bitcoincore-rpc)
+
+### RSS
+
+If your `twister-core` is configured with the `--enable-rss` option enabled (which is `yes` by default), you can connect an external RSS application to read the recent feed updates using [http://127.0.0.1:28332/rss](http://127.0.0.1:28332/rss) URL!

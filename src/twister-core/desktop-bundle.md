@@ -4,9 +4,9 @@ However, some experimental _all-in-one_ builds, which include [twister-core](htt
 
 ## Flatpak
 
-The best option if you want to try twister p2p from the sandbox, without compilling `twister-core`
+The best option if you want to try twister p2p from the sandbox, without compiling the build.
 
-* [Flatpak](https://github.com/twisterarmy/twister), [RC](https://github.com/twisterarmy/flathub/tree/twister-bundle) - in development: some features, such as mining and DHT, are not yet working properly
+* [Flatpak](https://github.com/twisterarmy/twister), [RC](https://github.com/twisterarmy/flathub/tree/twister-bundle) - in development: some features, such as mining, are not yet working. Visit the [Releases](https://github.com/twisterarmy/twister/releases) page to get the latest stable version!
 
 ## Debian / Ubuntu
 

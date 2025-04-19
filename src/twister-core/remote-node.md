@@ -204,7 +204,7 @@ Do not use the default `user:pwd` for the remote twister node. Consider using ra
 
 #### Run public peer with secure options
 
-If you do not plan to use a remote node with an account, run `twisterd` with the `-public_server_mode` argument to restrict unsafe commands (e.g., wallet operations).
+If you do not plan to use a remote node with an account, run `twisterd` with the `-public_server_mode` argument to restrict unsafe commands (e.g., wallet operations). For more details about this option, see [bitcoinrpc.cpp](https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/bitcoinrpc.cpp#L227), ~227 line.
 
 #### Install fail2ban
 

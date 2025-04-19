@@ -338,16 +338,17 @@ You cannot delete or change your published data later, as it is <strong>permanen
 <ul>
 <li><a href="https://github.com/twisterarmy/twister-control-center">twister-control-center</a> - GTK4 client written in Rust to operate a local or remote <code>twisterd</code></li>
 </ul>
-<h2 id="json-rpc-api"><a class="header" href="#json-rpc-api">JSON-RPC API</a></h2>
-<h3 id="cli"><a class="header" href="#cli">CLI</a></h3>
+<h2 id="cli"><a class="header" href="#cli">CLI</a></h2>
 <p>Unlike other Bitcoin-based wallets, which usually come with a separate <code>bitcoin-cli</code> tool, <code>twisterd</code> offers command line interaction through its built-in interface:</p>
 <p>first, run the <code>twisterd</code> daemon:</p>
 <pre><code class="language-bash">./twisterd
 </code></pre>
-<p>then, from another thread, request any command from the JSON-RPC API list to print the output:</p>
+<p>then, from another thread, request any command from the <a href="#json-rpc">JSON-RPC API list</a> to print the output, for example:</p>
 <pre><code class="language-bash">./twisterd getbestblockhash
 </code></pre>
-<h3 id="commands"><a class="header" href="#commands">Commands</a></h3>
+<h2 id="api"><a class="header" href="#api">API</a></h2>
+<h3 id="json-rpc"><a class="header" href="#json-rpc">JSON-RPC</a></h3>
+<h4 id="commands"><a class="header" href="#commands">Commands</a></h4>
 <div class="mdbook-alerts mdbook-alerts-caution">
 <p class="mdbook-alerts-title">
   <span class="mdbook-alerts-icon"></span>
@@ -444,12 +445,14 @@ usernametouid &lt;username&gt; [last=true]
 verifychain [check level] [num blocks]
 verifymessage &lt;username&gt; &lt;signature&gt; &lt;message&gt;
 </code></pre>
-<h3 id="libraries"><a class="header" href="#libraries">Libraries</a></h3>
+<h4 id="libraries"><a class="header" href="#libraries">Libraries</a></h4>
 <p>Use following list of the known JSON-RPC API libraries for twister P2P to create your own application or to obtain implementation examples in different programming languages:</p>
 <ul>
 <li><a href="https://github.com/twisterarmy/twister-php">twister-php</a> (PHP 8) - <a href="https://packagist.org/packages/twisterarmy/twister">Composer</a> library for <code>twister-core</code> RPC-JSON API to build interactive web-applications like <a href="https://github.com/twisterarmy/twister-rss-bot/">twister-rss-bot</a></li>
 <li><a href="https://github.com/twisterarmy/rust-twistercore-rpc">twistercore-rpc</a> (Rust) - Client library / <a href="https://crates.io/crates/twistercore-rpc">crate</a> with partially covered methods that used in the <a href="https://github.com/twisterarmy/twisterad">twisterad</a> and <a href="https://github.com/twisterarmy/twister-control-center">twister-control-center</a> applications, based on the original <a href="https://github.com/rust-bitcoin/rust-bitcoincore-rpc">Bitcoin Core JSON-RPC API</a></li>
 </ul>
+<h3 id="rss"><a class="header" href="#rss">RSS</a></h3>
+<p>If your <code>twister-core</code> is configured with the <code>--enable-rss</code> option enabled (which is <code>yes</code> by default), you can connect an external RSS application to read the recent feed updates using <a href="http://127.0.0.1:28332/rss">http://127.0.0.1:28332/rss</a> URL!</p>
 <div class="version">Generated at: <strong>2025.04</strong></div>
                     </main>
 

@@ -428,7 +428,7 @@ rpcssl=1
 <h4 id="use-strong-rpc-credentials"><a class="header" href="#use-strong-rpc-credentials">Use strong RPC credentials</a></h4>
 <p>Do not use the default <code>user:pwd</code> for the remote twister node. Consider using random, strong RPC login credentials when any of your ports are open to external connections.</p>
 <h4 id="run-public-peer-with-secure-options"><a class="header" href="#run-public-peer-with-secure-options">Run public peer with secure options</a></h4>
-<p>If you do not plan to use a remote node with an account, run <code>twisterd</code> with the <code>-public_server_mode</code> argument to restrict unsafe commands (e.g., wallet operations).</p>
+<p>If you do not plan to use a remote node with an account, run <code>twisterd</code> with the <code>-public_server_mode</code> argument to restrict unsafe commands (e.g., wallet operations). For more details about this option, see <a href="https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/bitcoinrpc.cpp#L227">bitcoinrpc.cpp</a>, ~227 line.</p>
 <h4 id="install-fail2ban"><a class="header" href="#install-fail2ban">Install fail2ban</a></h4>
 <p>If you are running a public peer server with remote control through SSH, consider installing the <a href="http://www.fail2ban.org/">fail2ban</a> daemon, which will block connections to port <code>22</code> (or another port) after an invalid login attempt (for <code>15</code> minutes by default).</p>
 <h4 id="randomize-ports"><a class="header" href="#randomize-ports">Randomize ports</a></h4>
