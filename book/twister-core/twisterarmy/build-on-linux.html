@@ -289,41 +289,43 @@
 </li>
 <li>Launch twister
 <ul>
-<li>
-<p><code>./twisterd</code></p>
-</li>
-<li>
-<p>open <a href="http://127.0.0.1:28332">http://127.0.0.1:28332</a></p>
+<li><code>./twisterd</code></li>
+<li>open <a href="http://127.0.0.1:28332">http://127.0.0.1:28332</a>
 <ul>
 <li>enter <code>user</code> and <code>pwd</code> in the authorization dialog</li>
 </ul>
 </li>
-<li>
-<p>create your account!</p>
-</li>
-<li>
-<p>Setup systemd service by pasting following text into the file <code>/etc/systemd/system/twister-core.service</code></p>
-</li>
+<li>create your account!</li>
 </ul>
 </li>
 </ol>
-<pre><code>[Unit]
+<h3 id="systemd-example"><a class="header" href="#systemd-example">Systemd example</a></h3>
+<p>Optionally, setup <code>systemd</code> service by pasting following text into the file <code>/etc/systemd/system/twister-core.service</code></p>
+<pre><code class="language-/etc/systemd/system/twister-core.service">[Unit]
 After=network.target
 
 [Service]
 Type=simple
 User=twister
 Group=twister
-ExecStart=/home/twister/twister-core/twisterd -port=28333 -rpcuser=user -rpcpassword=pwd -rpcallowip=127.0.0.1
+ExecStart=/home/twister/twister-core/twisterd
 StandardOutput=null
-StandardError=file:/home/twister/twister-core/twister-core-errors.log
+StandardError=file:/home/twister/twister-core-errors.log
 Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
 </code></pre>
-<p>Inside that file, check/replace usernames, paths and <code>pwd</code>. Then enable and start the service:</p>
-<p><code>systemctl daemon-reload; systemctl enable twister-core; systemctl start twister-core; systemctl status twister-core</code></p>
+<ul>
+<li>append <code>-port=28333</code> to <code>ExecStart</code> if you're running the node as a public peer</li>
+</ul>
+<p>Then enable and start the service:</p>
+<ul>
+<li><code>systemctl daemon-reload</code></li>
+<li><code>systemctl enable twister-core</code></li>
+<li><code>systemctl start twister-core</code></li>
+<li><code>systemctl status twister-core</code></li>
+</ul>
 <h3 id="upgrade-from-repository"><a class="header" href="#upgrade-from-repository">Upgrade from repository</a></h3>
 <p>Steps to upgrade your existing <code>twister-core</code> and <code>twister-html</code> from the repository sources:</p>
 <ol>

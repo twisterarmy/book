@@ -48,8 +48,11 @@ sudo dnf install git autoconf automake libtool make\
         - enter `user` and `pwd` in the authorization dialog
     - create your account!
 
-    - Setup systemd service by pasting following text into the file `/etc/systemd/system/twister-core.service`
-```
+### Systemd example
+
+Optionally, setup `systemd` service by pasting following text into the file `/etc/systemd/system/twister-core.service`
+
+``` /etc/systemd/system/twister-core.service
 [Unit]
 After=network.target
 
@@ -57,17 +60,22 @@ After=network.target
 Type=simple
 User=twister
 Group=twister
-ExecStart=/home/twister/twister-core/twisterd -port=28333 -rpcuser=user -rpcpassword=pwd -rpcallowip=127.0.0.1
+ExecStart=/home/twister/twister-core/twisterd
 StandardOutput=null
-StandardError=file:/home/twister/twister-core/twister-core-errors.log
+StandardError=file:/home/twister/twister-core-errors.log
 Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
 ```
-Inside that file, check/replace usernames, paths and `pwd`. Then enable and start the service:
+* append `-port=28333` to `ExecStart` if you're running the node as a public peer
 
-`systemctl daemon-reload; systemctl enable twister-core; systemctl start twister-core; systemctl status twister-core`
+Then enable and start the service:
+
+* `systemctl daemon-reload`
+* `systemctl enable twister-core`
+* `systemctl start twister-core`
+* `systemctl status twister-core`
 
 ### Upgrade from repository
 
