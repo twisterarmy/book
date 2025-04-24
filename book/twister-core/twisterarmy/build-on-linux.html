@@ -298,7 +298,26 @@
 <li>create your account!</li>
 </ul>
 </li>
+    <p>Setup as a systemd service by pasting following text into the file <code>/etc/systemd/system/twister-seeder.service</code></p>
+<pre><code class="language-/etc/systemd/system/twister-seeder.service">
+[Unit]
+After=network.target
+
+[Service]
+Type=simple
+User=twister
+Group=twister
+ExecStart=/home/twister/twister-core/twisterd -port=28333 -rpcuser=user -rpcpassword=password -rpcallowip=127.0.0.1
+StandardOutput=null
+StandardError=file:/home/twister/twister-core/twister-core-errors.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>Check/replace usernames, paths and <code>password</code> inside the file and enable + start the service: <code>systemctl daemon-reload; systemctl enable twister-seeder; systemctl start twister-seeder; systemctl status twister-seeder</code></p>     
 </ol>
+                        
 <h3 id="upgrade-from-repository"><a class="header" href="#upgrade-from-repository">Upgrade from repository</a></h3>
 <p>Steps to upgrade your existing <code>twister-core</code> and <code>twister-html</code> from the repository sources:</p>
 <ol>
