@@ -48,6 +48,7 @@
     - [Storage location](./twister-seeder/storage-location.md)
     - [Announce new seed](./twister-seeder/announce-new-seed.md)
     - [Troubleshooting](./twister-seeder/troubleshooting.md)
+- [twister-seedrs](./twister-seedrs/index.md)
 
 # Bridge tools
 

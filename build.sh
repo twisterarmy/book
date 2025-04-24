@@ -93,6 +93,22 @@ cp $T/Storage-location.md $D/storage-location.md
 cp $T/Troubleshooting.md $D/troubleshooting.md
 cp $T/Usage-examples.md $D/usage-examples.md
 
+# twister-seedrs
+
+S=https://github.com/twisterarmy/twister-seedrs.wiki.git
+T=git/twisterarmy-twister-seedrs
+if [ -d "$T" ]; then
+    git -C $T pull
+else
+    git clone $S $T
+fi
+
+D=src/twister-seedrs
+mkdir -p $D
+rm -rf $D/*
+mkdir -p $D/twisterarmy
+cp $T/Home.md $D/index.md
+
 # twisterad
 
 S=https://github.com/twisterarmy/twisterad.wiki.git
