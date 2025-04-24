@@ -31,6 +31,7 @@ If you want to make any changes, please submit your edits to the relevant Wiki p
   * [CudaMiner-twister](https://github.com/miguelfreitas/twister-core/wiki/mining)
 * Network tools
   * [twister-seeder](https://github.com/twisterarmy/twister-seeder/wiki)
+  * [twister-seedrs](https://github.com/twisterarmy/twister-seedrs/wiki)
 * Bridge tools
   * [twister-rss-bot](https://github.com/twisterarmy/twister-rss-bot/wiki)
 

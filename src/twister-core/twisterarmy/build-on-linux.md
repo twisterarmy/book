@@ -48,16 +48,37 @@ sudo dnf install git autoconf automake libtool make\
         - enter `user` and `pwd` in the authorization dialog
     - create your account!
 
+    - Setup systemd service by pasting following text into the file `/etc/systemd/system/twister-core.service`
+```
+[Unit]
+After=network.target
+
+[Service]
+Type=simple
+User=twister
+Group=twister
+ExecStart=/home/twister/twister-core/twisterd -port=28333 -rpcuser=user -rpcpassword=pwd -rpcallowip=127.0.0.1
+StandardOutput=null
+StandardError=file:/home/twister/twister-core/twister-core-errors.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+Inside that file, check/replace usernames, paths and `pwd`. Then enable and start the service:
+
+`systemctl daemon-reload; systemctl enable twister-core; systemctl start twister-core; systemctl status twister-core`
+
 ### Upgrade from repository
 
 Steps to upgrade your existing `twister-core` and `twister-html` from the repository sources:
 
 1. stop running `twisterd` process to continue (if active, run `pgrep twisterd` to find)
-    - `sudo systemctl stop twister-service-name` - if you're using `systemd` service
+    - `sudo systemctl stop twister-core` - if you're using `systemd` service
 2. `cd twister-core` - navigate `twister-core` sources directory (which contains old `twisterd` binary)
 3. `git pull` - grab latest updates
 4. `make` - build new version
 5. `cd ~/.twister/html` - navigate `twister-html` installation directory
 6. `git pull` - grab latest `twister-html` changes
 8. start `twister-core` process
-    - `sudo systemctl start twister-service-name` - if you're using `systemd` service
+    - `sudo systemctl start twister-core` - if you're using `systemd` service

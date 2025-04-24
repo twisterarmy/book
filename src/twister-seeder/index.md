@@ -4,7 +4,7 @@ The twister peer-to-peer network requires a couple of special [DNS seeders](http
 
 ### Requirements
 
-The `twister-seeder` is based on the [bitcoin-seeder](https://github.com/sipa/bitcoin-seeder) so it has similar build requirements
+The `twister-seeder` is [based](https://github.com/twisterarmy/twister-seeder/commit/ae6b9278ca51d0890ff9a17e0ea7d0b1e3fea2ec) on the [bitcoin-seeder](https://github.com/sipa/bitcoin-seeder) so it has similar build requirements
 
 #### Server
 

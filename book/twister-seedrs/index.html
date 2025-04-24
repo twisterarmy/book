@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Fedora / Debian / Ubuntu - The twister P2P Book</title>
+        <title>twister-seedrs - The twister P2P Book</title>
 
 
         <!-- Custom HTML head -->
@@ -12,34 +12,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../../favicon.svg">
-        <link rel="shortcut icon" href="../../favicon.png">
-        <link rel="stylesheet" href="../../css/variables.css">
-        <link rel="stylesheet" href="../../css/general.css">
-        <link rel="stylesheet" href="../../css/chrome.css">
-        <link rel="stylesheet" href="../../css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../../fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="highlight-css" href="../../highlight.css">
-        <link rel="stylesheet" id="tomorrow-night-css" href="../../tomorrow-night.css">
-        <link rel="stylesheet" id="ayu-highlight-css" href="../../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../../custom.css">
+        <link rel="stylesheet" href="../custom.css">
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../../";
+            const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc.js"></script>
+        <script src="../toc.js"></script>
     </head>
     <body>
     <div id="body-container">
@@ -92,7 +92,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -127,7 +127,7 @@
                     <h1 class="menu-title">The twister P2P Book</h1>
 
                     <div class="right-buttons">
-                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/twisterarmy/book" title="Git repository" aria-label="Git repository">
@@ -159,7 +159,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <div class="breadcrumbs">Install &raquo; Build from source &raquo; @twisterarmy branch &raquo; Fedora / Debian / Ubuntu</div>
+                        <div class="breadcrumbs">twister-seedrs</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -227,132 +227,50 @@
 }
 
 </style>
-<h2 id="fedora--debian--ubuntu"><a class="header" href="#fedora--debian--ubuntu">Fedora / Debian / Ubuntu</a></h2>
-<div class="mdbook-alerts mdbook-alerts-note">
-<p class="mdbook-alerts-title">
-  <span class="mdbook-alerts-icon"></span>
-  note
-</p>
-<p>Tested on a pristine <code>amd64</code>, <code>armhf</code>:</p>
+<p>The <a href="https://github.com/twisterarmy/twister-seedrs">twister-seedrs</a> is a DNS seeder for <a href="https://github.com/twisterarmy/twister-core">twister-core</a> written in Rust,
+based on the original Bitcoin <a href="https://github.com/achow101/dnsseedrs">DNSSeedrs</a> source.</p>
+<p>This project was created as an alternative to the legacy <a href="https://github.com/twisterarmy/twister-seeder">twister-seeder</a> written in C++.</p>
+<h2 id="install"><a class="header" href="#install">Install</a></h2>
+<h3 id="stable"><a class="header" href="#stable">Stable</a></h3>
+<pre><code class="language-bash">cargo install twister-seedrs
+</code></pre>
+<h3 id="repository"><a class="header" href="#repository">Repository</a></h3>
 <ul>
-<li>Debian 12</li>
-<li>Fedora 41</li>
-<li>Ubuntu
-<ul>
-<li><code>20.04</code></li>
-<li><code>22.04</code></li>
-<li><code>24.04</code></li>
+<li><code>git clone https://github.com/twisterarmy/twister-seedrs.git</code></li>
+<li><code>git checkout twister</code> - make sure you are using the <code>twister</code> network implementation (default branch)</li>
+<li><code>cargo build --release</code> - see <code>target/*</code> directory to get the compiled binary!</li>
 </ul>
-</li>
-</ul>
-</div>
-<p><strong>System dependencies</strong></p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<pre><code class="language-bash">sudo twister-seedrs -s 94.140.114.251:28333 -s 209.209.8.80:28333\
+                    seed.example.com ns.example.com john.doe.example.com
+</code></pre>
 <div class="mdbook-alerts mdbook-alerts-tip">
 <p class="mdbook-alerts-title">
   <span class="mdbook-alerts-icon"></span>
   tip
 </p>
-<p>Refer to the <strong>Custom dependencies</strong> page if you encounter any issues with the system repository versions or if you want to build a specific library from source!</p>
+<p>Run <code>twister-seedrs --help</code> to get all available options!</p>
 </div>
-<p>Debian / Ubuntu</p>
-<pre><code class="language-bash">sudo apt install git autoconf automake build-essential libtool\
-                 libboost-all-dev libssl-dev libdb++-dev libminiupnpc-dev
-</code></pre>
-<p>Fedora</p>
-<pre><code class="language-bash">sudo dnf install git autoconf automake libtool make\
-                 boost-devel openssl-devel libdb-cxx-devel miniupnpc-devel
-</code></pre>
-<p><strong>Build steps</strong></p>
-<ol>
-<li>Build <a href="https://github.com/twisterarmy/twister-core">twister-core</a>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
 <ul>
-<li><code>sudo useradd -m twister</code> - create new user with home directory (set password with <code>sudo passwd twister</code>)</li>
-<li><code>su twister</code> - login and navigate (with <code>cd</code>) into the home dir <code>/home/twister</code> to continue</li>
-<li><code>git clone https://github.com/twisterarmy/twister-core.git</code></li>
-<li><code>cd twister-core</code></li>
-<li><code>./autotool.sh</code></li>
-<li><code>./configure</code>
-<ul>
-<li>ARM only: <code>./configure --with-boost-libdir=/usr/lib/arm-linux-gnueabihf --disable-sse2</code></li>
+<li>current implementation (by <code>dnsseedrs</code>) requires at least few initial peers (<code>--seednode</code> values) during the first launch!</li>
+<li>the original <a href="https://crates.io/crates/bitcoin/">bitcoin crate</a> is still in use and requires a separate fork for the twister network, at least to redefine the hardcoded network magic bytes (which is temporarily hardcoded in <code>crawl.rs</code>, line <code>112</code>)</li>
 </ul>
-</li>
-<li><code>make</code></li>
-</ul>
-</li>
-<li>Setup <a href="https://github.com/twisterarmy/twister-html">twister-html</a> (web UI)
-<ul>
-<li><code>mkdir ~/.twister</code></li>
-<li><code>echo -e "rpcuser=user\nrpcpassword=pwd\nrpcallowip=127.0.0.1" &gt; ~/.twister/twister.conf</code></li>
-<li><code>chmod 600 ~/.twister/twister.conf</code></li>
-<li><code>git clone https://github.com/twisterarmy/twister-html.git ~/.twister/html</code></li>
-</ul>
-</li>
-<li>Launch twister
-<ul>
-<li>
-<p><code>./twisterd</code></p>
-</li>
-<li>
-<p>open <a href="http://127.0.0.1:28332">http://127.0.0.1:28332</a></p>
-<ul>
-<li>enter <code>user</code> and <code>pwd</code> in the authorization dialog</li>
-</ul>
-</li>
-<li>
-<p>create your account!</p>
-</li>
-<li>
-<p>Setup systemd service by pasting following text into the file <code>/etc/systemd/system/twister-core.service</code></p>
-</li>
-</ul>
-</li>
-</ol>
-<pre><code>[Unit]
-After=network.target
-
-[Service]
-Type=simple
-User=twister
-Group=twister
-ExecStart=/home/twister/twister-core/twisterd -port=28333 -rpcuser=user -rpcpassword=pwd -rpcallowip=127.0.0.1
-StandardOutput=null
-StandardError=file:/home/twister/twister-core/twister-core-errors.log
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<p>Inside that file, check/replace usernames, paths and <code>pwd</code>. Then enable and start the service:</p>
-<p><code>systemctl daemon-reload; systemctl enable twister-core; systemctl start twister-core; systemctl status twister-core</code></p>
-<h3 id="upgrade-from-repository"><a class="header" href="#upgrade-from-repository">Upgrade from repository</a></h3>
-<p>Steps to upgrade your existing <code>twister-core</code> and <code>twister-html</code> from the repository sources:</p>
-<ol>
-<li>stop running <code>twisterd</code> process to continue (if active, run <code>pgrep twisterd</code> to find)
-<ul>
-<li><code>sudo systemctl stop twister-core</code> - if you're using <code>systemd</code> service</li>
-</ul>
-</li>
-<li><code>cd twister-core</code> - navigate <code>twister-core</code> sources directory (which contains old <code>twisterd</code> binary)</li>
-<li><code>git pull</code> - grab latest updates</li>
-<li><code>make</code> - build new version</li>
-<li><code>cd ~/.twister/html</code> - navigate <code>twister-html</code> installation directory</li>
-<li><code>git pull</code> - grab latest <code>twister-html</code> changes</li>
-<li>start <code>twister-core</code> process
-<ul>
-<li><code>sudo systemctl start twister-core</code> - if you're using <code>systemd</code> service</li>
-</ul>
-</li>
-</ol>
+</div>
 <div class="version">Generated at: <strong>2025.04</strong></div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../twister-core/build-from-source.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../twister-seeder/troubleshooting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../twister-core/miguelfreitas/compiling-twister-on-centos-6.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../twister-rss-bot/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -362,11 +280,11 @@ WantedBy=multi-user.target
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../twister-core/build-from-source.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../twister-seeder/troubleshooting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../twister-core/miguelfreitas/compiling-twister-on-centos-6.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../twister-rss-bot/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -381,13 +299,13 @@ WantedBy=multi-user.target
         </script>
 
 
-        <script src="../../elasticlunr.min.js"></script>
-        <script src="../../mark.min.js"></script>
-        <script src="../../searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="../../clipboard.min.js"></script>
-        <script src="../../highlight.js"></script>
-        <script src="../../book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 
