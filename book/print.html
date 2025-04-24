@@ -535,8 +535,14 @@ ensure you are still in this project directory to continue!</p>
 <li>this book supports <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts">GitHub Flavored Markdown's Alerts</a> - feel free to decorate the content semantically!</li>
 </ul>
 <h2 id="edit-existing-sources"><a class="header" href="#edit-existing-sources">Edit existing sources</a></h2>
-<p>This project uses <code>build.sh</code> to aggregate the book data from different sources.<br />
-If you want to make any changes, please submit your edits to the relevant Wiki providers:</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>This project uses <code>build.sh</code> script to aggregate the book data from different sources; please do not edit the precompiled <code>HTML</code> or <code>Markdown</code> files directly!</p>
+</div>
+<p>If you want to make any changes, please submit your edits to the relevant Wiki providers:</p>
 <ul>
 <li>Summary
 <ul>
@@ -4328,7 +4334,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/path-to/twister-seeder/dnsseed -h seed.domain.org -n ns1.domain.org
+ExecStart=/path-to/twister-seeder/dnsseed -h seed.domain.org -n ns.domain.org
 # please note:
 # twister-seeder may generate massive output if the StandardOutput is set to a log file!
 StandardOutput=null
@@ -4339,6 +4345,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 </code></pre>
 <ul>
+<li>replace <code>domain.org</code> and <code>/path-to/</code> by your domain name and path</li>
 <li><code>systemctl daemon-reload</code> - apply systemd update</li>
 <li><code>systemctl enable twister-seeder</code> - launch <code>twister-seeder</code> on system startup</li>
 <li><code>systemctl start twister-seeder</code> - start DNS</li>

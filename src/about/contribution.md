@@ -18,7 +18,9 @@ Please follow these recommendations when creating or editing content:
 
 ## Edit existing sources
 
-This project uses `build.sh` to aggregate the book data from different sources.\
+> [!NOTE]
+> This project uses `build.sh` script to aggregate the book data from different sources; please do not edit the precompiled `HTML` or `Markdown` files directly!
+
 If you want to make any changes, please submit your edits to the relevant Wiki providers:
 
 * Summary

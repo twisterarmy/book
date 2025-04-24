@@ -71,7 +71,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/path-to/twister-seeder/dnsseed -h seed.domain.org -n ns1.domain.org
+ExecStart=/path-to/twister-seeder/dnsseed -h seed.domain.org -n ns.domain.org
 # please note:
 # twister-seeder may generate massive output if the StandardOutput is set to a log file!
 StandardOutput=null
@@ -81,7 +81,7 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
- 
+* replace `domain.org` and `/path-to/` by your domain name and path
 * `systemctl daemon-reload` - apply systemd update
 * `systemctl enable twister-seeder` - launch `twister-seeder` on system startup
 * `systemctl start twister-seeder` - start DNS
