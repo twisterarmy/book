@@ -601,6 +601,22 @@ ensure you are still in this project directory to continue!</p>
 </ul>
 <h3 id="announce-new-mirror"><a class="header" href="#announce-new-mirror">Announce new mirror</a></h3>
 <p>If you're the public mirror maintainer, feel free to share your link with others on the <strong>Releases</strong> page in the <strong>Mirrors</strong> section!</p>
+<h2 id="maintenance"><a class="header" href="#maintenance">Maintenance</a></h2>
+<p>If you're this book maintainer, follow these steps to update the <a href="https://github.com/twisterarmy/book">upstream repository</a>:</p>
+<ol>
+<li><code>git clone https://github.com/twisterarmy/book.git</code>;</li>
+<li><code>./build.sh</code> - generate recent book version;</li>
+<li><code>git commit -m source-update</code> - save your changes;</li>
+<li><code>git push</code> - send updates to the upstream;</li>
+<li>optionally, create a new stable <a href="https://github.com/twisterarmy/book/releases">Release</a> in accordance with the versioning policy!</li>
+</ol>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>If you're the <a href="https://twisterarmy.github.io/">website</a> maintainer, please also update the <a href="https://github.com/twisterarmy/twisterarmy.github.io#maintenance">online version</a> using <code>./book.sh</code> script.</p>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -762,14 +778,14 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 <h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
 <ul>
 <li>CPU architectures: amd64, armhf</li>
-<li>RAM: 512 Mb</li>
-<li>Disk: ~1Gb
+<li>RAM: 512 MB (~100 MB for the daemon and an additional 100 MB for each new connection)</li>
+<li>Disk: ~1 GB
 <ul>
-<li>build with dependencies: <a href="https://github.com/twisterarmy/twister-core/issues/15#issuecomment-2781573423">529 Mb</a></li>
-<li>profile data: ~512 Mb in 2025 (including blockchain)</li>
+<li>build with dependencies: <a href="https://github.com/twisterarmy/twister-core/issues/15#issuecomment-2781573423">529 MB</a></li>
+<li>profile data: ~512 MB in 2025 (including blockchain)</li>
 </ul>
 </li>
-<li>Bandwidth: depends on the network activity, at this moment - about 2-10 Gb per month</li>
+<li>Bandwidth: depends on the network activity, at this moment - about 2-10 GB per month</li>
 </ul>
 <h2 id="user-interface"><a class="header" href="#user-interface">User interface</a></h2>
 <p>Since <code>twister-core</code> has no GUI out of the box, it requires a web UI application called <a href="https://github.com/twisterarmy/twister-html">twister-html</a> to interact using a web browser.</p>
@@ -1105,7 +1121,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 </code></pre>
 <ul>
-<li>append <code>-port=28333</code> to <code>ExecStart</code> if you're running the node as a public peer</li>
+<li>append <code>-port=28333</code> to <code>ExecStart</code> if you're running the node as a public peer and <code>-rpcallowip=*</code> if you need to access node WebUI (:28332) from a remote computer. Note that the previously created <code>/home/twister/.twister/twister.conf</code> file should contain unique and safe password.</li>
 </ul>
 <p>Then enable and start the service:</p>
 <ul>
@@ -3238,6 +3254,94 @@ MemorySwapMax=512M
 <h2 id="ipv6-support"><a class="header" href="#ipv6-support">IPv6 support</a></h2>
 <p>If you are using <code>twister-core</code> from the <a href="https://github.com/twisterarmy/twister-core">twisterarmy branch</a>, no additional steps are needed, as it already has the IPv6 enabled out of the box.</p>
 <p>However, if you are using the <code>twister-core</code> from the <a href="https://github.com/miguelfreitas/twister-core">miguelfreitas branch</a>, you must configure it with the option <code>--enable-ipv6</code> (see <code>./configure --help</code> for details), then rebuild <code>twisterd</code>.</p>
+<h2 id="install"><a class="header" href="#install">Install</a></h2>
+<p>A pre-compiled Yggdrasil bundle (including the <code>systemd</code> asset) should be available from the system repositories. Follow the <a href="https://yggdrasil-network.github.io/installation.html">official guide</a> to install Yggdrasil on your system. If you want to build it from source, consider using the steps below.</p>
+<h3 id="build-from-source"><a class="header" href="#build-from-source">Build from source</a></h3>
+<p>The following example explains the build process for Debian, but it should be compatible with any other Linux distribution.</p>
+<h4 id="install-go"><a class="header" href="#install-go">Install Go</a></h4>
+<p>Check your current <a href="https://go.dev/">golang</a> version:</p>
+<pre><code class="language-bash">go version
+</code></pre>
+<p>if it exists, make sure that no other apps are using it, and then remove it:</p>
+<pre><code class="language-bash">apt remove golang
+</code></pre>
+<ul>
+<li>additionally, cleanup existing binaries with <code>rm -rf /usr/lib/go-VERSION</code></li>
+</ul>
+<p>navigate to the current user's home directory (usually it's the root user) with <code>cd ~</code>, and then download the latest version for your architecture:</p>
+<pre><code class="language-bash">wget https://go.dev/dl/go1.24.2.linux-amd64.tar.gz
+</code></pre>
+<ul>
+<li>the latest version is available on the <a href="https://go.dev/dl/">official website</a> - just replace the value</li>
+</ul>
+<p>unarchive then remove <code>tar.gz</code> file:</p>
+<pre><code class="language-bash">tar -xzf go1.24.2.linux-amd64.tar.gz
+rm go1.24.2.linux-amd64.tar.gz
+</code></pre>
+<p>now, install it in the native system destination:</p>
+<pre><code class="language-bash">sudo mv go /usr/local/
+</code></pre>
+<p>finally, setup the environment:</p>
+<pre><code class="language-bash">export PATH=$PATH:/usr/local/go/bin
+export GOPATH=~/go
+source .bashrc
+</code></pre>
+<p>check the installation with:</p>
+<pre><code class="language-bash">go version
+</code></pre>
+<ul>
+<li>as shown in the examples above, it should be <code>1.24.2</code></li>
+</ul>
+<h4 id="install-yggdrasil"><a class="header" href="#install-yggdrasil">Install Yggdrasil</a></h4>
+<p>Yggdrasil usually requires launching from the root user (to init the network interface), so let's continue with the following steps from the root user in its home directory:</p>
+<ol>
+<li><code>git clone https://github.com/yggdrasil-network/yggdrasil-go.git</code></li>
+<li><code>cd yggdrasil-go</code></li>
+<li><code>./build</code></li>
+</ol>
+<h4 id="setup-connection"><a class="header" href="#setup-connection">Setup connection</a></h4>
+<p>First, generate the initial configuration file, which will include a randomly generated private key. This private key will be used as the Yggdrasil network identifier, and used to sign your permanent IPv6 address in the <code>0200::/7</code> range.</p>
+<pre><code class="language-bash">./yggdrasil -genconf &gt; /path/to/yggdrasil.conf
+</code></pre>
+<ul>
+<li>the <code>/path/to</code> value is likely your <code>/root</code> directory</li>
+</ul>
+<p>To connect to the Yggdrasil network with the Internet (overlay mode), refer to the current <a href="https://publicpeers.neilalexander.dev/">public peers</a> and select the closest one(s), for example <code>tls://london.sabretruth.org:18472</code></p>
+<p>Now open your <code>/path/to/yggdrasil.conf</code> and add this address into <code>Peers</code> array, for example:</p>
+<pre><code>Peers: [
+    tls://london.sabretruth.org:18472
+]
+</code></pre>
+<ul>
+<li>you may add as many peers as you want</li>
+</ul>
+<p>The basic configuration is now set up, and Yggdrasil node is ready to launch!</p>
+<h4 id="systemd-example-1"><a class="header" href="#systemd-example-1">Systemd example</a></h4>
+<p>The following example assumes you are running Yggdrasil as the root user:</p>
+<pre><code class="language-/etc/systemd/system/yggdrasil.service">#/etc/systemd/system/yggdrasil.service
+[Unit]
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/path/to/yggdrasil -useconffile /path/to/yggdrasil.conf
+StandardOutput=file:/path/to/yggdrasil-debug.log
+StandardError=file:/path/to/yggdrasil-error.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<ul>
+<li>replace <code>/path/to</code> with your value (e.g. <code>/root/yggdrasil-go</code>)</li>
+</ul>
+<p>To apply <code>systemd</code> configuration:</p>
+<ul>
+<li><code>systemctl daemon-reload</code> - reload unit configuration</li>
+<li><code>systemctl enable yggdrasil</code> - start on system boot</li>
+<li><code>systemctl start yggdrasil</code> - launch <code>yggstack</code> service</li>
+<li><code>systemctl status yggdrasil</code> - check service status</li>
+</ul>
 <h2 id="usage-examples"><a class="header" href="#usage-examples">Usage examples</a></h2>
 <h3 id="connect-all-peers"><a class="header" href="#connect-all-peers">Connect all peers</a></h3>
 <p>By launching <code>twisterd</code> without additional arguments, you will be able to connect to all network interfaces, including the Yggdrasil one.</p>
@@ -3266,7 +3370,7 @@ MemorySwapMax=512M
 <p>This option disables finding peers using DNS lookup (<code>-dnsseed</code> argument will be ignored)</p>
 </div>
 <h3 id="connect-some-network-only"><a class="header" href="#connect-some-network-only">Connect some network only</a></h3>
-<p>By default, <code>twisterd</code> accepts connections from all available network interfaces. This option can be helpful in situations where you are using some <a href="twister-core/yggdrasil.html#connect-with-proxy">proxy</a> that does not support certain address families, such as how <a href="twister-core/yggdrasil.html#yggstack">yggstack</a> does not support IPv4.</p>
+<p>By default, <code>twisterd</code> accepts connections from all available network interfaces. This option can be helpful in situations where you are using some <a href="twister-core/yggdrasil.html#connect-with-proxy">proxy</a> that does not support certain address families, such as how <a href="twister-core/yggdrasil.html#yggstack">Yggstack</a> does not support IPv4.</p>
 <p>To use only the IPv6 network family, launch <code>twisterd</code> with the <code>-onlynet=IPv6</code> flag:</p>
 <pre><code class="language-bash">./twisterd -onlynet=IPv6
 </code></pre>
@@ -3274,8 +3378,15 @@ MemorySwapMax=512M
 <li><code>IPv4</code>|<code>IPv6</code>|<code>Tor</code> - see also <code>./twisterd --help</code></li>
 </ul>
 <h3 id="connect-with-proxy"><a class="header" href="#connect-with-proxy">Connect with proxy</a></h3>
-<h4 id="yggstack"><a class="header" href="#yggstack">yggstack</a></h4>
-<p><a href="https://github.com/yggdrasil-network/yggstack">yggstack</a> is a proxy server for Yggdrasil that allows you to use this network without installing the full node. It is especially useful in cases where you don't want to grant root access to the Yggdrasil service, as such access is required to operate the network configuration during the startup of a new interface.</p>
+<h4 id="yggstack"><a class="header" href="#yggstack">Yggstack</a></h4>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>Keep in mind that the current version of Yggstack has an unresolved connectivity <a href="https://github.com/yggdrasil-network/yggstack/issues/8">Issue #8</a> that causes disconnections after some time of use. If possible, please prefer the full Yggdrasil node installation instead!</p>
+</div>
+<p><a href="https://github.com/yggdrasil-network/yggstack">Yggstack</a> is a proxy server for Yggdrasil that allows you to use this network without installing the full node. It is especially useful in cases where you don't want to grant root access to the Yggdrasil service, as such access is required to operate the network configuration during the startup of a new interface.</p>
 <p>According to the <a href="https://github.com/yggdrasil-network/yggstack#introduction">README</a>:</p>
 <blockquote>
 <p>Yggstack fills the gap by providing SOCKS5 proxy server and TCP port forwarder functionality similar to TOR router. It also can serve as a standalone network node to connect network segments.</p>
@@ -3290,6 +3401,34 @@ MemorySwapMax=512M
 <ul>
 <li>the <code>-socks=5</code> argument is not necessary, as version <code>5</code> should be the default (just make sure it is)</li>
 <li>it is important to run connection with <code>-onlynet=IPv6</code> because <code>yggstack</code> operates with Yggdrasil's IPv6 addresses, while <code>twisterd</code> expects all networks by default (see <a href="https://github.com/twisterarmy/twister-core/issues/16">#16</a> and <a href="twister-core/yggdrasil.html#connect-some-network-only">onlynet</a> argument usage for details)</li>
+</ul>
+<p><strong>Systemd example</strong></p>
+<p>The following example assumes you are running Yggstack from a separate system user with a home directory (created with <code>useradd -m yggstack</code>)</p>
+<pre><code class="language-/etc/systemd/system/yggstack.service">#/etc/systemd/system/yggstack.service
+[Unit]
+After=network.target
+
+[Service]
+Type=simple
+User=yggstack
+Group=yggstack
+ExecStart=/path/to/yggstack -useconffile /path/to/yggdrasil.conf -socks 127.0.0.1:1080
+StandardOutput=file:/path/to/debug.log
+StandardError=file:/path/to/error.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<ul>
+<li>replace <code>/path/to</code> with your value</li>
+</ul>
+<p>To apply <code>systemd</code> configuration:</p>
+<ul>
+<li><code>systemctl daemon-reload</code> - reload unit configuration</li>
+<li><code>systemctl enable yggstack</code> - start on system boot</li>
+<li><code>systemctl start yggstack</code> - launch <code>yggstack</code> service</li>
+<li><code>systemctl status yggstack</code> - check service status</li>
 </ul>
 <h3 id="bind-on-given-address"><a class="header" href="#bind-on-given-address">Bind on given address</a></h3>
 <p>The <code>bind</code> argument may be useful in cases where you have more than one IPv4 or IPv6 interface, such as when using Yggdrasil alongside an Internet IPv6 connection, or when Yggdrasil is configured with a subnet mask (e.g., <code>[300:17a8:aabf:108f::33]</code>), and you want to use only that specific interface to launch <code>twisterd</code> and listen connections on it.</p>
@@ -4064,7 +4203,7 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 </style>
 <h2 id="binaries"><a class="header" href="#binaries">Binaries</a></h2>
 <p>Some pre-compiled binaries available at the <a href="https://github.com/twisterarmy/twister-seeder/releases">Releases page</a></p>
-<h2 id="build-from-source"><a class="header" href="#build-from-source">Build from source</a></h2>
+<h2 id="build-from-source-1"><a class="header" href="#build-from-source-1">Build from source</a></h2>
 <h3 id="debian--ubuntu"><a class="header" href="#debian--ubuntu">Debian / Ubuntu</a></h3>
 <p>Install required dependencies:</p>
 <pre><code class="language-bash">sudo apt install build-essential libboost-all-dev libssl-dev
@@ -4704,7 +4843,7 @@ WantedBy=multi-user.target
 <p>The <a href="https://github.com/twisterarmy/twister-seedrs">twister-seedrs</a> is a DNS seeder for <a href="https://github.com/twisterarmy/twister-core">twister-core</a> written in Rust,
 based on the original Bitcoin <a href="https://github.com/achow101/dnsseedrs">DNSSeedrs</a> source.</p>
 <p>This project was created as an alternative to the legacy <a href="https://github.com/twisterarmy/twister-seeder">twister-seeder</a> written in C++.</p>
-<h2 id="install"><a class="header" href="#install">Install</a></h2>
+<h2 id="install-1"><a class="header" href="#install-1">Install</a></h2>
 <h3 id="stable-1"><a class="header" href="#stable-1">Stable</a></h3>
 <pre><code class="language-bash">cargo install twister-seedrs
 </code></pre>
@@ -4817,7 +4956,7 @@ based on the original Bitcoin <a href="https://github.com/achow101/dnsseedrs">DN
 <h3 id="runtime"><a class="header" href="#runtime">Runtime</a></h3>
 <pre><code class="language-bash">apt install php-curl php-fpm php-mbstring php-pdo php-sqlite3 php-xml
 </code></pre>
-<h2 id="install-1"><a class="header" href="#install-1">Install</a></h2>
+<h2 id="install-2"><a class="header" href="#install-2">Install</a></h2>
 <div class="mdbook-alerts mdbook-alerts-tip">
 <p class="mdbook-alerts-title">
   <span class="mdbook-alerts-icon"></span>

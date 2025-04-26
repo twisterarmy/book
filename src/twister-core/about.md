@@ -23,11 +23,11 @@ According to the [announcement](http://twister.net.co/archives/617), on June 25,
 ## Requirements
 
 * CPU architectures: amd64, armhf
-* RAM: 512 Mb
-* Disk: ~1Gb
-  * build with dependencies: [529 Mb](https://github.com/twisterarmy/twister-core/issues/15#issuecomment-2781573423)
-  * profile data: ~512 Mb in 2025 (including blockchain)
-* Bandwidth: depends on the network activity, at this moment - about 2-10 Gb per month
+* RAM: 512 MB (~100 MB for the daemon and an additional 100 MB for each new connection)
+* Disk: ~1 GB
+  * build with dependencies: [529 MB](https://github.com/twisterarmy/twister-core/issues/15#issuecomment-2781573423)
+  * profile data: ~512 MB in 2025 (including blockchain)
+* Bandwidth: depends on the network activity, at this moment - about 2-10 GB per month
 
 ## User interface
 

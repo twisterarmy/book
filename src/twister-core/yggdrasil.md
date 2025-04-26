@@ -25,6 +25,122 @@ If you are using `twister-core` from the [twisterarmy branch](https://github.com
 
 However, if you are using the `twister-core` from the [miguelfreitas branch](https://github.com/miguelfreitas/twister-core), you must configure it with the option `--enable-ipv6` (see `./configure --help` for details), then rebuild `twisterd`.
 
+## Install
+
+A pre-compiled Yggdrasil bundle (including the `systemd` asset) should be available from the system repositories. Follow the [official guide](https://yggdrasil-network.github.io/installation.html) to install Yggdrasil on your system. If you want to build it from source, consider using the steps below.
+
+### Build from source
+
+The following example explains the build process for Debian, but it should be compatible with any other Linux distribution.
+
+#### Install Go
+
+Check your current [golang](https://go.dev/) version:
+
+``` bash
+go version
+```
+
+if it exists, make sure that no other apps are using it, and then remove it:
+
+``` bash
+apt remove golang
+```
+* additionally, cleanup existing binaries with `rm -rf /usr/lib/go-VERSION`
+
+navigate to the current user's home directory (usually it's the root user) with `cd ~`, and then download the latest version for your architecture:
+
+``` bash
+wget https://go.dev/dl/go1.24.2.linux-amd64.tar.gz
+```
+* the latest version is available on the [official website](https://go.dev/dl/) - just replace the value
+
+unarchive then remove `tar.gz` file:
+
+``` bash
+tar -xzf go1.24.2.linux-amd64.tar.gz
+rm go1.24.2.linux-amd64.tar.gz
+```
+
+now, install it in the native system destination:
+
+``` bash
+sudo mv go /usr/local/
+```
+
+finally, setup the environment:
+
+``` bash
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=~/go
+source .bashrc
+```
+
+check the installation with:
+
+``` bash
+go version
+```
+* as shown in the examples above, it should be `1.24.2`
+
+#### Install Yggdrasil
+
+Yggdrasil usually requires launching from the root user (to init the network interface), so let's continue with the following steps from the root user in its home directory:
+
+1. `git clone https://github.com/yggdrasil-network/yggdrasil-go.git`
+2. `cd yggdrasil-go`
+3. `./build`
+
+#### Setup connection
+
+First, generate the initial configuration file, which will include a randomly generated private key. This private key will be used as the Yggdrasil network identifier, and used to sign your permanent IPv6 address in the `0200::/7` range.
+
+``` bash
+./yggdrasil -genconf > /path/to/yggdrasil.conf
+```
+* the `/path/to` value is likely your `/root` directory
+
+To connect to the Yggdrasil network with the Internet (overlay mode), refer to the current [public peers](https://publicpeers.neilalexander.dev/) and select the closest one(s), for example `tls://london.sabretruth.org:18472`
+
+Now open your `/path/to/yggdrasil.conf` and add this address into `Peers` array, for example:
+
+``` 
+Peers: [
+    tls://london.sabretruth.org:18472
+]
+```
+* you may add as many peers as you want
+
+The basic configuration is now set up, and Yggdrasil node is ready to launch!
+
+#### Systemd example
+
+The following example assumes you are running Yggdrasil as the root user:
+
+``` /etc/systemd/system/yggdrasil.service
+#/etc/systemd/system/yggdrasil.service
+[Unit]
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/path/to/yggdrasil -useconffile /path/to/yggdrasil.conf
+StandardOutput=file:/path/to/yggdrasil-debug.log
+StandardError=file:/path/to/yggdrasil-error.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+* replace `/path/to` with your value (e.g. `/root/yggdrasil-go`)
+
+To apply `systemd` configuration:
+
+* `systemctl daemon-reload` - reload unit configuration
+* `systemctl enable yggdrasil` - start on system boot
+* `systemctl start yggdrasil` - launch `yggstack` service
+* `systemctl status yggdrasil` - check service status
+
 ## Usage examples
 
 ### Connect all peers
@@ -54,7 +170,7 @@ Run `twisterd` with `-connect=[HOST]:PORT` argument, where the `HOST:PORT` is th
 
 ### Connect some network only
 
-By default, `twisterd` accepts connections from all available network interfaces. This option can be helpful in situations where you are using some [proxy](#connect-with-proxy) that does not support certain address families, such as how [yggstack](#yggstack) does not support IPv4.
+By default, `twisterd` accepts connections from all available network interfaces. This option can be helpful in situations where you are using some [proxy](#connect-with-proxy) that does not support certain address families, such as how [Yggstack](#yggstack) does not support IPv4.
 
 To use only the IPv6 network family, launch `twisterd` with the `-onlynet=IPv6` flag:
 
@@ -65,9 +181,12 @@ To use only the IPv6 network family, launch `twisterd` with the `-onlynet=IPv6` 
 
 ### Connect with proxy
 
-#### yggstack
+#### Yggstack
 
-[yggstack](https://github.com/yggdrasil-network/yggstack) is a proxy server for Yggdrasil that allows you to use this network without installing the full node. It is especially useful in cases where you don't want to grant root access to the Yggdrasil service, as such access is required to operate the network configuration during the startup of a new interface.
+> [!NOTE]
+> Keep in mind that the current version of Yggstack has an unresolved connectivity [Issue #8](https://github.com/yggdrasil-network/yggstack/issues/8) that causes disconnections after some time of use. If possible, please prefer the full Yggdrasil node installation instead!
+
+[Yggstack](https://github.com/yggdrasil-network/yggstack) is a proxy server for Yggdrasil that allows you to use this network without installing the full node. It is especially useful in cases where you don't want to grant root access to the Yggdrasil service, as such access is required to operate the network configuration during the startup of a new interface.
 
 According to the [README](https://github.com/yggdrasil-network/yggstack#introduction):
 > Yggstack fills the gap by providing SOCKS5 proxy server and TCP port forwarder functionality similar to TOR router. It also can serve as a standalone network node to connect network segments.
@@ -86,6 +205,36 @@ Now start `twisterd` with at least the following setup:
 ```
 * the `-socks=5` argument is not necessary, as version `5` should be the default (just make sure it is)
 * it is important to run connection with `-onlynet=IPv6` because `yggstack` operates with Yggdrasil's IPv6 addresses, while `twisterd` expects all networks by default (see [#16](https://github.com/twisterarmy/twister-core/issues/16) and [onlynet](#connect-some-network-only) argument usage for details)
+
+**Systemd example**
+
+The following example assumes you are running Yggstack from a separate system user with a home directory (created with `useradd -m yggstack`)
+
+``` /etc/systemd/system/yggstack.service
+#/etc/systemd/system/yggstack.service
+[Unit]
+After=network.target
+
+[Service]
+Type=simple
+User=yggstack
+Group=yggstack
+ExecStart=/path/to/yggstack -useconffile /path/to/yggdrasil.conf -socks 127.0.0.1:1080
+StandardOutput=file:/path/to/debug.log
+StandardError=file:/path/to/error.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+* replace `/path/to` with your value
+
+To apply `systemd` configuration:
+
+* `systemctl daemon-reload` - reload unit configuration
+* `systemctl enable yggstack` - start on system boot
+* `systemctl start yggstack` - launch `yggstack` service
+* `systemctl status yggstack` - check service status
 
 ### Bind on given address
 

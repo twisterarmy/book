@@ -75,3 +75,16 @@ For daily auto-updates, consider using a `crontab` task with the `git pull` comm
 ### Announce new mirror
 
 If you're the public mirror maintainer, feel free to share your link with others on the **Releases** page in the **Mirrors** section!
+
+## Maintenance
+
+If you're this book maintainer, follow these steps to update the [upstream repository](https://github.com/twisterarmy/book):
+
+1. `git clone https://github.com/twisterarmy/book.git`;
+2. `./build.sh` - generate recent book version;
+3. `git commit -m source-update` - save your changes;
+4. `git push` - send updates to the upstream;
+5. optionally, create a new stable [Release](https://github.com/twisterarmy/book/releases) in accordance with the versioning policy!
+
+> [!NOTE]
+> If you're the [website](https://twisterarmy.github.io/) maintainer, please also update the [online version](https://github.com/twisterarmy/twisterarmy.github.io#maintenance) using `./book.sh` script.

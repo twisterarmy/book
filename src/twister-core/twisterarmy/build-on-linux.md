@@ -68,7 +68,7 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
-* append `-port=28333` to `ExecStart` if you're running the node as a public peer
+* append `-port=28333` to `ExecStart` if you're running the node as a public peer and `-rpcallowip=*` if you need to access node WebUI (:28332) from a remote computer. Note that the previously created `/home/twister/.twister/twister.conf` file should contain unique and safe password.
 
 Then enable and start the service:
 

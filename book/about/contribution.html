@@ -312,6 +312,22 @@
 </ul>
 <h3 id="announce-new-mirror"><a class="header" href="#announce-new-mirror">Announce new mirror</a></h3>
 <p>If you're the public mirror maintainer, feel free to share your link with others on the <strong>Releases</strong> page in the <strong>Mirrors</strong> section!</p>
+<h2 id="maintenance"><a class="header" href="#maintenance">Maintenance</a></h2>
+<p>If you're this book maintainer, follow these steps to update the <a href="https://github.com/twisterarmy/book">upstream repository</a>:</p>
+<ol>
+<li><code>git clone https://github.com/twisterarmy/book.git</code>;</li>
+<li><code>./build.sh</code> - generate recent book version;</li>
+<li><code>git commit -m source-update</code> - save your changes;</li>
+<li><code>git push</code> - send updates to the upstream;</li>
+<li>optionally, create a new stable <a href="https://github.com/twisterarmy/book/releases">Release</a> in accordance with the versioning policy!</li>
+</ol>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>If you're the <a href="https://twisterarmy.github.io/">website</a> maintainer, please also update the <a href="https://github.com/twisterarmy/twisterarmy.github.io#maintenance">online version</a> using <code>./book.sh</code> script.</p>
+</div>
 
                     </main>
 

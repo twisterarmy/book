@@ -317,7 +317,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 </code></pre>
 <ul>
-<li>append <code>-port=28333</code> to <code>ExecStart</code> if you're running the node as a public peer</li>
+<li>append <code>-port=28333</code> to <code>ExecStart</code> if you're running the node as a public peer and <code>-rpcallowip=*</code> if you need to access node WebUI (:28332) from a remote computer. Note that the previously created <code>/home/twister/.twister/twister.conf</code> file should contain unique and safe password.</li>
 </ul>
 <p>Then enable and start the service:</p>
 <ul>
