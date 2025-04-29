@@ -69,6 +69,7 @@ cp $S/Support-the-network.md $T/support-the-network.md
 cp $S/Usage.md $T/usage.md
 cp $S/Source-options.md $T/build-from-source.md
 cp $S/Custom-dependencies.md $T/custom-dependencies.md
+cp $S/Contribute.md $T/contribute.md
 
 # twister-seeder
 
