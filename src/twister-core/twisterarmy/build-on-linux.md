@@ -40,6 +40,7 @@ sudo dnf install git autoconf automake libtool make\
 2. Setup [twister-html](https://github.com/twisterarmy/twister-html) (web UI)
     - `mkdir ~/.twister`
     - `echo -e "rpcuser=user\nrpcpassword=pwd\nrpcallowip=127.0.0.1" > ~/.twister/twister.conf`
+        - use `-rpcallowip=*` mask if you want to connect remotely with a dynamic IP address, but make sure you have provided strong credentials along with an SSL certificate (see the **Remote Node** page for more details)
     - `chmod 600 ~/.twister/twister.conf`
     - `git clone https://github.com/twisterarmy/twister-html.git ~/.twister/html`
 3. Launch twister
@@ -60,7 +61,7 @@ After=network.target
 Type=simple
 User=twister
 Group=twister
-ExecStart=/home/twister/twister-core/twisterd
+ExecStart=/home/twister/twister-core/twisterd -printtoconsole
 StandardOutput=null
 StandardError=file:/home/twister/twister-core-errors.log
 Restart=on-failure
@@ -68,14 +69,17 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
-* append `-port=28333` to `ExecStart` if you're running the node as a public peer and `-rpcallowip=*` if you need to access node WebUI (:28332) from a remote computer. Note that the previously created `/home/twister/.twister/twister.conf` file should contain unique and safe password.
+> [!NOTE]
+> * The `ExecStart` command contains the `-printtoconsole` option, which routes the debug output to `StandardOutput` instead of the `debug.log` file, then disables it by setting to the `null` value
+> * The example above requires a previously created `twister.conf` file that contains RPC credentials defined in the previous steps. Alternatively, you may forcefully overwrite them by using the custom `-rpcuser`, `-rpcpassword`, and `-rpcallowip` arguments (see `./twisterd --help` for more details)
+> * Support the network by open port `28333` and append `-port=28333` to `ExecStart` if you're running the node as a public peer
 
 Then enable and start the service:
 
-* `systemctl daemon-reload`
-* `systemctl enable twister-core`
-* `systemctl start twister-core`
-* `systemctl status twister-core`
+1. `systemctl daemon-reload`
+2. `systemctl enable twister-core`
+3. `systemctl start twister-core`
+4. `systemctl status twister-core`
 
 ### Upgrade from repository
 

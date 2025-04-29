@@ -31,4 +31,4 @@ mdbook serve --open
 ```
 
 > [!NOTE]
-> The `serve` option generates additional content for local reading; do not use its output for `/book` contributions!
+> The `serve` option generates an additional WebSocket API for local reading; do not use its code for `/book` contributions!

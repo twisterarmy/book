@@ -280,7 +280,10 @@ Group=twister
 # this option is not necessary
 WorkingDirectory=/home/twister
 # provide real path or additional arguments here if wanted
-ExecStart=/home/twister/twister-core/twisterd
+# * please note that `ExecStart` contains the `-printtoconsole` option, 
+#   which directs the debug output to `StandardOutput` instead of the `debug.log` file, 
+#   then disables it by setting to the `null` value
+ExecStart=/home/twister/twister-core/twisterd -printtoconsole
 # where to save the logs
 StandardOutput=file:/home/twister/twisterd-debug.log
 StandardError=file:/home/twister/twisterd-error.log
