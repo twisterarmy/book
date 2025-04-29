@@ -29,7 +29,7 @@
     - [Performance](./twister-core/performance.md)
     - [Yggdrasil / IPv6](./twister-core/yggdrasil.md)
 - [Support the network](./twister-core/support-the-network.md)
-- [Contribution](./twister-core/contribution.md)
+- [Contribute](./twister-core/contribute.md)
 
 # Mining tools
 
