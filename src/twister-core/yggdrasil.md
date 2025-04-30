@@ -238,14 +238,14 @@ To apply `systemd` configuration:
 
 ### Bind on given address
 
-The `bind` argument may be useful in cases where you have more than one IPv4 or IPv6 interface, such as when using Yggdrasil alongside an Internet IPv6 connection, or when Yggdrasil is configured with a subnet mask (e.g., `[300:17a8:aabf:108f::33]`), and you want to use only that specific interface to launch `twisterd` and listen connections on it.
+The `bind` argument may be useful in cases where you have more than one IPv4 or IPv6 interface, such as when using Yggdrasil alongside an Internet IPv6 connection, or when Yggdrasil is configured with a subnet mask (e.g., `300:17a8:aabf:108f::33`), and you want to use only that specific interface to launch `twisterd` and listen connections on it.
 
 This is also relevant if you are running multiple `twisterd` nodes on the same host and want to bind a static address for a specific RPC API configuration.
 
 ``` bash
-./twisterd -bind=[HOST]:PORT
+./twisterd -bind=HOST
 ```
-* to get your current Yggdrasil `[HOST]`, run: `sudo yggdrasilctl getself`
+* to get your current Yggdrasil `HOST`, run: `sudo yggdrasilctl getself`
 
 > [!NOTE]
 > The `bind` option does not decrease your connectivity level; see [onlynet](#connect-some-network-only) option for that purpose!

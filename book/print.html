@@ -940,7 +940,7 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 <p>According to the <a href="http://twister.net.co/archives/617">announcement</a>, on June 25, 2020, official project maintenance was discontinued.</p>
 <p><a href="http://twister.net.co/">Website</a> | <a href="https://github.com/miguelfreitas/twister-core">Source code</a></p>
 <h2 id="twisterarmy-branch"><a class="header" href="#twisterarmy-branch">@twisterarmy branch</a></h2>
-<p>Maintained by the community, it includes additional seeds and minor updates to make the codebase buildable on modern distributions.</p>
+<p>Maintained by the community, it includes additional seeds, enhanced support for modern network protocols and important core updates to ensure that the codebase is buildable on the latest Linux distributions.</p>
 <p>It is 100% compatible with the main twister network (which was created by <a href="https://github.com/miguelfreitas">@miguelfreitas</a>), and must remain compatible in the future.</p>
 <div class="mdbook-alerts mdbook-alerts-tip">
 <p class="mdbook-alerts-title">
@@ -952,6 +952,7 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 <li>you are using modern distributions with latest <code>-dev</code> libraries in the repository</li>
 <li>you want to improve the network connectivity, as this branch includes actual <a href="https://twisterarmy.github.io/network">seeds</a></li>
 <li>you are using IPv4+IPv6 or want to connect with <a href="https://yggdrasil-network.github.io/">Yggdrasil</a> (the legacy branch requires additional arguments in the build configuration to enable IPv6 features)</li>
+<li>you are looking for enhanced privacy features, as the twisterarmy branch provides additional options for launching <code>twisterd</code></li>
 <li>you are interested in the latest <a href="https://github.com/twisterarmy/twister-html">twister-html</a> client updates, which also include additional features such as more themes, a configurable translation API, and more</li>
 </ul>
 </div>
@@ -1067,6 +1068,13 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
                  boost-devel openssl-devel libdb-cxx-devel miniupnpc-devel
 </code></pre>
 <p><strong>Build steps</strong></p>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Make sure you have at least 1 GB of memory to compile twister or connect a temporary swap file before continue!</p>
+</div>
 <ol>
 <li>Build <a href="https://github.com/twisterarmy/twister-core">twister-core</a>
 <ul>
@@ -2270,74 +2278,74 @@ cd libtorrent
 <pre><code class="language-bash">./twisterd
 </code></pre>
 <h3 id="startup-options"><a class="header" href="#startup-options">Startup options</a></h3>
-<p>If you want to run <code>twisterd</code> using a proxy or bind the connection to a specified network interface, consider using the following options:</p>
-<pre><code class="language-bash">-?                                     This help message
--conf=file                             Specify configuration file (default: ~/.twister/twister.conf)
--pid=file                              Specify pid file (default: twisterd.pid)
--gen                                   Generate coins (default: 0)
--datadir=dir                           Specify data directory
--htmldir=dir                           Specify HTML directory to serve (default: data/html)
--dbcache=n                             Set database cache size in megabytes (default: 25)
--timeout=n                             Specify connection timeout in milliseconds (default: 5000)
--proxy=ip:port                         Connect through socks proxy
--socks=n                               Select the version of socks proxy to use (4-5, default: 5)
--tor=ip:port                           Use proxy to reach tor hidden services (default: same as -proxy)
--dns                                   Allow DNS lookups for -addnode, -seednode and -connect
--port=port                             Listen for connections on port (default: 28333 or testnet: 18333)
--maxconnections=n                      Maintain at most n connections to peers (default: 125)
--addnode=ip                            Add a node to connect to and attempt to keep the connection open
--connect=ip                            Connect only to the specified node(s)
--seednode=ip                           Connect to a node to retrieve peer addresses, and disconnect
--externalip=ip                         Specify your own public address
--onlynet=net                           Only connect to nodes in network net (IPv4, IPv6 or Tor)
--multiconnperip                        Enable libtorrent multiple connections per ip (default: 0)
--discover                              Discover own IP address (default: 1 when listening and no -externalip)
--checkpoints                           Only accept block chain matching built-in checkpoints (default: 1)
--listen                                Accept connections from outside (default: 1 if no -proxy or -connect)
--bind=addr                             Bind to given address and always listen on it. Use [host]:port notation for IPv6
--dnsseed                               Find peers using DNS lookup (default: 1 unless -connect)
--banscore=n                            Threshold for disconnecting misbehaving peers (default: 100)
--bantime=n                             Number of seconds to keep misbehaving peers from reconnecting (default: 86400)
--maxreceivebuffer=n                    Maximum per-connection receive buffer, n*1000 bytes (default: 5000)
--maxsendbuffer=n                       Maximum per-connection send buffer, n*1000 bytes (default: 1000)
--upnp                                  Use UPnP to map the listening port (default: 1 when listening)
--paytxfee=amt                          Fee per KB to add to transactions you send
--testnet                               Use the test network
--debug                                 Output extra debugging information. Implies all other -debug* options
--debugnet                              Output extra network debugging information
--logtimestamps                         Prepend debug output with timestamp
--shrinkdebugfile                       Shrink debug.log file on client startup (default: 1 when no -debug)
--printtoconsole                        Send trace/debug info to console instead of debug.log file
--regtest                               Enter regression test mode, which uses a special chain in which blocks can be solved instantly. This is intended for regression testing tools and app development.
--rpcuser=user                          Username for JSON-RPC connections
--rpcpassword=pw                        Password for JSON-RPC connections
--rpcport=port                          Listen for JSON-RPC connections on port (default: 28332 or testnet: 18332)
--rpcallowip=ip                         Allow JSON-RPC connections from specified IP address
--rpcconnect=ip                         Send commands to node running on ip (default: 127.0.0.1)
--rpcthreads=n                          Set the number of threads to service RPC calls (default: 10)
--public_server_mode                    Limit JSON-RPC execution to public/safe commands only.
--blocknotify=cmd                       Execute command when the best block changes (%s in cmd is replaced by block hash)
--walletnotify=cmd                      Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)
--alertnotify=cmd                       Execute command when a relevant alert is received (%s in cmd is replaced by message)
--upgradewallet                         Upgrade wallet to latest format
--keypool=n                             Set key pool size to n (default: 100)
--rescan                                Rescan the block chain for missing wallet transactions
--salvagewallet                         Attempt to recover private keys from a corrupt twisterwallet.dat
--checkblocks=n                         How many blocks to check at startup (default: 500, 0 = all)
--checklevel=n                          How thorough the block verification is (0-4, default: 3)
--txindex                               Maintain a full transaction index (default: 0)
--loadblock=file                        Imports blocks from external blk000??.dat file
--reindex                               Rebuild block chain index from current blk000??.dat files
--par=n                                 Set the number of script verification threads (up to 16, 0 = auto, 0 = leave that many cores free, default: 0)
+<p>If you want to run <code>twisterd</code> using a proxy, bind the connection to a specified network interface, or configure other settings, consider using the following options:</p>
+<pre><code class="language-bash">-?                     This help message
+-conf=&lt;file&gt;           Specify configuration file (default: ~/.twister/twister.conf)
+-pid=&lt;file&gt;            Specify pid file (default: twisterd.pid)
+-gen                   Generate coins (default: 0)
+-datadir=&lt;dir&gt;         Specify data directory
+-htmldir=&lt;dir&gt;         Specify HTML directory to serve (default: &lt;data&gt;/html)
+-dbcache=&lt;n&gt;           Set database cache size in megabytes (default: 25)
+-timeout=&lt;n&gt;           Specify connection timeout in milliseconds (default: 5000)
+-proxy=&lt;ip:port&gt;       Connect through socks proxy
+-socks=&lt;n&gt;             Select the version of socks proxy to use (4-5, default: 5)
+-tor=&lt;ip:port&gt;         Use proxy to reach tor hidden services (default: same as -proxy)
+-dns                   Allow DNS lookups for -addnode, -seednode and -connect
+-port=&lt;port&gt;           Listen for connections on &lt;port&gt; (default: 28333 or testnet: 18333)
+-maxconnections=&lt;n&gt;    Maintain at most &lt;n&gt; connections to peers (default: 125)
+-addnode=&lt;ip&gt;          Add a node to connect to and attempt to keep the connection open
+-connect=&lt;ip&gt;          Connect only to the specified node(s)
+-seednode=&lt;ip&gt;         Connect to a node to retrieve peer addresses, and disconnect
+-externalip=&lt;ip&gt;       Specify your own public address
+-onlynet=&lt;net&gt;         Only connect to nodes in network &lt;net&gt; (IPv4, IPv6, Tor, Ygg or Yggdrasil)
+-multiconnperip        Enable libtorrent multiple connections per ip (default: 0)
+-discover              Discover own IP address (default: 1 when listening and no -externalip)
+-checkpoints           Only accept block chain matching built-in checkpoints (default: 1)
+-listen                Accept connections from outside (default: 1 if no -proxy or -connect)
+-bind=&lt;addr&gt;           Bind to given interface address and always listen on it
+-dnsseed               Find peers using DNS lookup (default: 1 unless -connect)
+-banscore=&lt;n&gt;          Threshold for disconnecting misbehaving peers (default: 100)
+-bantime=&lt;n&gt;           Number of seconds to keep misbehaving peers from reconnecting (default: 86400)
+-maxreceivebuffer=&lt;n&gt;  Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 5000)
+-maxsendbuffer=&lt;n&gt;     Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 1000)
+-upnp                  Use UPnP to map the listening port (default: 1 when listening)
+-paytxfee=&lt;amt&gt;        Fee per KB to add to transactions you send
+-testnet               Use the test network
+-debug                 Output extra debugging information. Implies all other -debug* options
+-debugnet              Output extra network debugging information
+-logtimestamps         Prepend debug output with timestamp
+-shrinkdebugfile       Shrink debug.log file on client startup (default: 1 when no -debug)
+-printtoconsole        Send trace/debug info to console instead of debug.log file
+-regtest               Enter regression test mode, which uses a special chain in which blocks can be solved instantly. This is intended for regression testing tools and app development.
+-rpcuser=&lt;user&gt;        Username for JSON-RPC connections
+-rpcpassword=&lt;pw&gt;      Password for JSON-RPC connections
+-rpcport=&lt;port&gt;        Listen for JSON-RPC connections on &lt;port&gt; (default: 28332 or testnet: 18332)
+-rpcallowip=&lt;ip&gt;       Allow JSON-RPC connections from specified IP address
+-rpcconnect=&lt;ip&gt;       Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)
+-rpcthreads=&lt;n&gt;        Set the number of threads to service RPC calls (default: 10)
+-public_server_mode    Limit JSON-RPC execution to public/safe commands only.
+-blocknotify=&lt;cmd&gt;     Execute command when the best block changes (%s in cmd is replaced by block hash)
+-walletnotify=&lt;cmd&gt;    Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)
+-alertnotify=&lt;cmd&gt;     Execute command when a relevant alert is received (%s in cmd is replaced by message)
+-upgradewallet         Upgrade wallet to latest format
+-keypool=&lt;n&gt;           Set key pool size to &lt;n&gt; (default: 100)
+-rescan                Rescan the block chain for missing wallet transactions
+-salvagewallet         Attempt to recover private keys from a corrupt twisterwallet.dat
+-checkblocks=&lt;n&gt;       How many blocks to check at startup (default: 500, 0 = all)
+-checklevel=&lt;n&gt;        How thorough the block verification is (0-4, default: 3)
+-txindex               Maintain a full transaction index (default: 0)
+-loadblock=&lt;file&gt;      Imports blocks from external blk000??.dat file
+-reindex               Rebuild block chain index from current blk000??.dat files
+-par=&lt;n&gt;               Set the number of script verification threads (up to 16, 0 = auto, &lt;0 = leave that many cores free, default: 0)
 
--blockminsize=n                        Set minimum block size in bytes (default: 0)
--blockmaxsize=n                        Set maximum block size in bytes (default: 250000)
--blockprioritysize=n                   Set maximum size of high-priority/low-fee transactions in bytes (default: 27000)
+-blockminsize=&lt;n&gt;      Set minimum block size in bytes (default: 0)
+-blockmaxsize=&lt;n&gt;      Set maximum block size in bytes (default: 250000)
+-blockprioritysize=&lt;n&gt; Set maximum size of high-priority/low-fee transactions in bytes (default: 27000)
 
--rpcssl                                Use OpenSSL (https) for JSON-RPC connections
--rpcsslcertificatechainfile=file.cert  Server certificate file (default: server.cert)
--rpcsslprivatekeyfile=file.pem         Server private key (default: server.pem)
--rpcsslciphers=ciphers                 Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)
+-rpcssl                                  Use OpenSSL (https) for JSON-RPC connections
+-rpcsslcertificatechainfile=&lt;file.cert&gt;  Server certificate file (default: server.cert)
+-rpcsslprivatekeyfile=&lt;file.pem&gt;         Server private key (default: server.pem)
+-rpcsslciphers=&lt;ciphers&gt;                 Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)
 </code></pre>
 <h2 id="web-ui"><a class="header" href="#web-ui">Web UI</a></h2>
 <p>Web user interface is the original way to interact with the twister P2P network.</p>
@@ -3446,12 +3454,12 @@ WantedBy=multi-user.target
 <li><code>systemctl status yggstack</code> - check service status</li>
 </ul>
 <h3 id="bind-on-given-address"><a class="header" href="#bind-on-given-address">Bind on given address</a></h3>
-<p>The <code>bind</code> argument may be useful in cases where you have more than one IPv4 or IPv6 interface, such as when using Yggdrasil alongside an Internet IPv6 connection, or when Yggdrasil is configured with a subnet mask (e.g., <code>[300:17a8:aabf:108f::33]</code>), and you want to use only that specific interface to launch <code>twisterd</code> and listen connections on it.</p>
+<p>The <code>bind</code> argument may be useful in cases where you have more than one IPv4 or IPv6 interface, such as when using Yggdrasil alongside an Internet IPv6 connection, or when Yggdrasil is configured with a subnet mask (e.g., <code>300:17a8:aabf:108f::33</code>), and you want to use only that specific interface to launch <code>twisterd</code> and listen connections on it.</p>
 <p>This is also relevant if you are running multiple <code>twisterd</code> nodes on the same host and want to bind a static address for a specific RPC API configuration.</p>
-<pre><code class="language-bash">./twisterd -bind=[HOST]:PORT
+<pre><code class="language-bash">./twisterd -bind=HOST
 </code></pre>
 <ul>
-<li>to get your current Yggdrasil <code>[HOST]</code>, run: <code>sudo yggdrasilctl getself</code></li>
+<li>to get your current Yggdrasil <code>HOST</code>, run: <code>sudo yggdrasilctl getself</code></li>
 </ul>
 <div class="mdbook-alerts mdbook-alerts-note">
 <p class="mdbook-alerts-title">
@@ -3553,12 +3561,26 @@ WantedBy=multi-user.target
 
 </style>
 <h2 id="become-a-public-peer"><a class="header" href="#become-a-public-peer">Become a public peer</a></h2>
-<p>Assist newcomers in discovering other peers by open following ports:</p>
+<p>Assist newcomers in discovering other peers by open following ports (<a href="https://github.com/miguelfreitas/twister-core/issues/22#issuecomment-32464556">source</a>):</p>
+<h3 id="required-ports"><a class="header" href="#required-ports">Required ports</a></h3>
+<p>The following ports are required to be reachable for <a href="https://twisterarmy.github.io/network">twister seeders</a>:</p>
 <ul>
-<li><code>28333</code> - TCP</li>
-<li><code>29333</code> - TCP + UDP</li>
-<li><code>4433</code> - SSL (optional)</li>
-<li><code>4434</code> - SSL (optional)</li>
+<li><code>28333</code> - TCP, must be open for blockchain sync operations, supports UPnP
+<ul>
+<li>please note that this port is random by default, you should run <code>twisterd</code> with <code>-port=28333</code> to make it permanent!</li>
+</ul>
+</li>
+</ul>
+<h3 id="optional-ports"><a class="header" href="#optional-ports">Optional ports</a></h3>
+<ul>
+<li><code>29333</code> - TCP + UDP, must be open for DHT operations, supports UPnP
+<ul>
+<li>this port is related to the value of port <code>28333</code> and its final value is implemented as <code>28333</code> + <code>1000</code></li>
+</ul>
+</li>
+<li><code>4433</code> - DHT-over-SSL, likely unused at this point</li>
+<li><code>4434</code> - <em>wants specification</em></li>
+<li><code>20000+</code> outbound - <code>twisterd</code> will open outgoing connections on a number of ephemeral ports to manage both blockchain sync and DHT operations, supports UPnP</li>
 </ul>
 <pre><code class="language-bash">sudo ufw allow PORT_NUMBER
 </code></pre>

@@ -433,12 +433,12 @@ WantedBy=multi-user.target
 <li><code>systemctl status yggstack</code> - check service status</li>
 </ul>
 <h3 id="bind-on-given-address"><a class="header" href="#bind-on-given-address">Bind on given address</a></h3>
-<p>The <code>bind</code> argument may be useful in cases where you have more than one IPv4 or IPv6 interface, such as when using Yggdrasil alongside an Internet IPv6 connection, or when Yggdrasil is configured with a subnet mask (e.g., <code>[300:17a8:aabf:108f::33]</code>), and you want to use only that specific interface to launch <code>twisterd</code> and listen connections on it.</p>
+<p>The <code>bind</code> argument may be useful in cases where you have more than one IPv4 or IPv6 interface, such as when using Yggdrasil alongside an Internet IPv6 connection, or when Yggdrasil is configured with a subnet mask (e.g., <code>300:17a8:aabf:108f::33</code>), and you want to use only that specific interface to launch <code>twisterd</code> and listen connections on it.</p>
 <p>This is also relevant if you are running multiple <code>twisterd</code> nodes on the same host and want to bind a static address for a specific RPC API configuration.</p>
-<pre><code class="language-bash">./twisterd -bind=[HOST]:PORT
+<pre><code class="language-bash">./twisterd -bind=HOST
 </code></pre>
 <ul>
-<li>to get your current Yggdrasil <code>[HOST]</code>, run: <code>sudo yggdrasilctl getself</code></li>
+<li>to get your current Yggdrasil <code>HOST</code>, run: <code>sudo yggdrasilctl getself</code></li>
 </ul>
 <div class="mdbook-alerts mdbook-alerts-note">
 <p class="mdbook-alerts-title">

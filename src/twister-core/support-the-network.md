@@ -1,11 +1,21 @@
 ## Become a public peer
 
-Assist newcomers in discovering other peers by open following ports:
+Assist newcomers in discovering other peers by open following ports ([source](https://github.com/miguelfreitas/twister-core/issues/22#issuecomment-32464556)):
 
-* `28333` - TCP
-* `29333` - TCP + UDP
-* `4433` - SSL (optional)
-* `4434` - SSL (optional)
+### Required ports
+
+The following ports are required to be reachable for [twister seeders](https://twisterarmy.github.io/network):
+
+* `28333` - TCP, must be open for blockchain sync operations, supports UPnP
+    * please note that this port is random by default, you should run `twisterd` with `-port=28333` to make it permanent!
+
+### Optional ports
+
+* `29333` - TCP + UDP, must be open for DHT operations, supports UPnP
+    * this port is related to the value of port `28333` and its final value is implemented as `28333` + `1000`
+* `4433` - DHT-over-SSL, likely unused at this point
+* `4434` - _wants specification_
+* `20000+` outbound - `twisterd` will open outgoing connections on a number of ephemeral ports to manage both blockchain sync and DHT operations, supports UPnP
 
 ``` bash
 sudo ufw allow PORT_NUMBER
