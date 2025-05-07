@@ -240,13 +240,13 @@
 </ul>
 <h3 id="optional-ports"><a class="header" href="#optional-ports">Optional ports</a></h3>
 <ul>
-<li><code>29333</code> - TCP + UDP, must be open for DHT operations, supports UPnP
+<li><code>29333</code> - TCP + UDP, must be open for WS/DHT operations, supports UPnP
 <ul>
-<li>this port is related to the value of port <code>28333</code> and its final value is implemented as <code>28333</code> + <code>1000</code></li>
+<li>this port is related to the value of port <code>28333</code> and its final value is implemented as <code>28333</code> + <code>1000</code> (<code>LIBTORRENT_PORT_OFFSET</code>)</li>
 </ul>
 </li>
-<li><code>4433</code> - DHT-over-SSL, likely unused at this point</li>
-<li><code>4434</code> - <em>wants specification</em></li>
+<li><code>4433</code> - DHT-over-SSL, see <a href="https://github.com/twisterarmy/twister-core/blob/twisterarmy/libtorrent/docs/manual.html#L4100">ssl_listen</a> manual for <code>libtorrent</code></li>
+<li><code>4434</code> - same as port <code>4433</code>, but used to listen on the IPv6 interface when IPv4 one is not disabled (e.g. by the <code>-bind</code> option)</li>
 <li><code>20000+</code> outbound - <code>twisterd</code> will open outgoing connections on a number of ephemeral ports to manage both blockchain sync and DHT operations, supports UPnP</li>
 </ul>
 <pre><code class="language-bash">sudo ufw allow PORT_NUMBER
@@ -274,7 +274,7 @@
 <li>see also <a href="https://github.com/twisterarmy/twisterad">twisterad</a> - CLI tool to rotate multiple twister ads on a single worker</li>
 </ul>
 </div>
-<div class="version">Generated at: <strong>2025.04</strong></div>
+<div class="version">Generated at: <strong>2025.05</strong></div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

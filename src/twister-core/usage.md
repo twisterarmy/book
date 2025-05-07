@@ -12,6 +12,9 @@ To launch, run following command:
 
 ### Startup options
 
+> [!NOTE]
+> As `twisterd` uses patched [libtorrent/DHT](https://github.com/twisterarmy/twister-core/tree/twisterarmy/libtorrent) features (which run on ports `29333` and `4433`/`4434`), some original `bitcoind` options, such as `-bind`, `-externalip`, etc., are not fully integrated yet and may behave unexpectedly! See [#243](https://github.com/miguelfreitas/twister-core/issues/243#issuecomment-132237989), [#254](https://github.com/miguelfreitas/twister-core/issues/254) and PR [#20](https://github.com/twisterarmy/twister-core/pull/20), [#25](https://github.com/twisterarmy/twister-core/pull/25) for details.
+
 If you want to run `twisterd` using a proxy, bind the connection to a specified network interface, or configure other settings, consider using the following options:
 
 ``` bash

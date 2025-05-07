@@ -29,7 +29,7 @@ sudo dnf install git autoconf automake libtool make\
 **Build steps**
 
 > [!IMPORTANT]
-> Make sure you have at least 1 GB of memory to compile twister or connect a temporary swap file before continue!
+> Make sure you have at least 1 GB of memory to compile twister or connect a temporary swap file (see the **Administration** page) before continue!
 
 1. Build [twister-core](https://github.com/twisterarmy/twister-core)
     - `sudo useradd -m twister` - create new user with home directory (set password with `sudo passwd twister`)
@@ -48,7 +48,7 @@ sudo dnf install git autoconf automake libtool make\
     - `git clone https://github.com/twisterarmy/twister-html.git ~/.twister/html`
 3. Launch twister
     - `./twisterd`
-    - open [http://127.0.0.1:28332](http://127.0.0.1:28332)
+    - open [http://127.0.0.1:28332](http://127.0.0.1:28332) or [http://[::1]:28332](http://[::1]:28332)
         - enter `user` and `pwd` in the authorization dialog
     - create your account!
 

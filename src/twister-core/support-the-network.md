@@ -11,10 +11,10 @@ The following ports are required to be reachable for [twister seeders](https://t
 
 ### Optional ports
 
-* `29333` - TCP + UDP, must be open for DHT operations, supports UPnP
-    * this port is related to the value of port `28333` and its final value is implemented as `28333` + `1000`
-* `4433` - DHT-over-SSL, likely unused at this point
-* `4434` - _wants specification_
+* `29333` - TCP + UDP, must be open for WS/DHT operations, supports UPnP
+    * this port is related to the value of port `28333` and its final value is implemented as `28333` + `1000` (`LIBTORRENT_PORT_OFFSET`)
+* `4433` - DHT-over-SSL, see [ssl_listen](https://github.com/twisterarmy/twister-core/blob/twisterarmy/libtorrent/docs/manual.html#L4100) manual for `libtorrent`
+* `4434` - same as port `4433`, but used to listen on the IPv6 interface when IPv4 one is not disabled (e.g. by the `-bind` option)
 * `20000+` outbound - `twisterd` will open outgoing connections on a number of ephemeral ports to manage both blockchain sync and DHT operations, supports UPnP
 
 ``` bash

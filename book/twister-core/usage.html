@@ -234,6 +234,13 @@
 <pre><code class="language-bash">./twisterd
 </code></pre>
 <h3 id="startup-options"><a class="header" href="#startup-options">Startup options</a></h3>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>As <code>twisterd</code> uses patched <a href="https://github.com/twisterarmy/twister-core/tree/twisterarmy/libtorrent">libtorrent/DHT</a> features (which run on ports <code>29333</code> and <code>4433</code>/<code>4434</code>), some original <code>bitcoind</code> options, such as <code>-bind</code>, <code>-externalip</code>, etc., are not fully integrated yet and may behave unexpectedly! See <a href="https://github.com/miguelfreitas/twister-core/issues/243#issuecomment-132237989">#243</a>, <a href="https://github.com/miguelfreitas/twister-core/issues/254">#254</a> and PR <a href="https://github.com/twisterarmy/twister-core/pull/20">#20</a>, <a href="https://github.com/twisterarmy/twister-core/pull/25">#25</a> for details.</p>
+</div>
 <p>If you want to run <code>twisterd</code> using a proxy, bind the connection to a specified network interface, or configure other settings, consider using the following options:</p>
 <pre><code class="language-bash">-?                     This help message
 -conf=&lt;file&gt;           Specify configuration file (default: ~/.twister/twister.conf)
@@ -453,7 +460,7 @@ verifymessage &lt;username&gt; &lt;signature&gt; &lt;message&gt;
 </ul>
 <h3 id="rss"><a class="header" href="#rss">RSS</a></h3>
 <p>If your <code>twister-core</code> is configured with the <code>--enable-rss</code> option enabled (which is <code>yes</code> by default), you can connect an external RSS application to read the recent feed updates using <a href="http://127.0.0.1:28332/rss">http://127.0.0.1:28332/rss</a> URL!</p>
-<div class="version">Generated at: <strong>2025.04</strong></div>
+<div class="version">Generated at: <strong>2025.05</strong></div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

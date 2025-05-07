@@ -16,8 +16,9 @@ Yggdrasil can be useful in situations when you want to:
 
 > [!IMPORTANT] 
 > * Unlike Tor, Yggdrasil is not designed for anonymization; however, it can enhance your routing capabilities when combined with those technologies, but only when configured outside of the twister context!
-> * The `twister-core` software does not provide any Yggdrasil features by itself, only IPv6 support. This means that using the Yggdrasil network with twister does not ensure that you are connectable only from this network; the application's behavior in this case requires additional audit.
-> * When installing Yggdrasil, make sure your firewall is configured properly, as any service launched on `0.0.0.0` will be visible over NAT, similar to how it would be on the local network. To check which services are listening for external connections, run the command `netstat -tulpn | grep LISTEN`
+> * The `twister-core` software does not provide any Yggdrasil features by itself, only **partial** IPv6 support. This means that using the Yggdrasil network with twister does not ensure that you are connectable only from this network; the application's behavior in this case requires additional audit
+> * As `twisterd` uses patched [libtorrent/DHT](https://github.com/twisterarmy/twister-core/tree/twisterarmy/libtorrent) features (which run on ports `29333` and `4433`/`4434`), some original `bitcoind` options, such as `-bind`, `-externalip`, etc., are not fully integrated yet and may behave unexpectedly! See [#243](https://github.com/miguelfreitas/twister-core/issues/243#issuecomment-132237989), [#254](https://github.com/miguelfreitas/twister-core/issues/254) and PR [#20](https://github.com/twisterarmy/twister-core/pull/20), [#25](https://github.com/twisterarmy/twister-core/pull/25) for details
+> * When installing Yggdrasil, make sure your firewall is configured properly, as any service launched on `0.0.0.0` will be visible over NAT, similar to how it would be on the local network. To check which services are listening for external connections, run the command `netstat -tulpn | grep twisterd` or `netstat -tulpna | grep twisterd`
 
 ## IPv6 support
 
@@ -170,14 +171,17 @@ Run `twisterd` with `-connect=[HOST]:PORT` argument, where the `HOST:PORT` is th
 
 ### Connect some network only
 
-By default, `twisterd` accepts connections from all available network interfaces. This option can be helpful in situations where you are using some [proxy](#connect-with-proxy) that does not support certain address families, such as how [Yggstack](#yggstack) does not support IPv4.
+By default, `twisterd` operates with connections from all available network interfaces. The `onlynet` option can be helpful in situations where you are using some [proxy](#connect-with-proxy) that does not support certain address families, such as how [Yggstack](#yggstack) does not support IPv4, or if you want to limit connections to a specific (e.g. local) network only.
 
-To use only the IPv6 network family, launch `twisterd` with the `-onlynet=IPv6` flag:
+For example, to use only the Yggdrasil network family, launch `twisterd` with the `-onlynet=yggdrasil` (or `-onlynet=ygg`) flag:
 
 ``` bash
-./twisterd -onlynet=IPv6
+./twisterd -onlynet=ygg
 ```
-* `IPv4`|`IPv6`|`Tor` - see also `./twisterd --help`
+* `ipv4`|`ipv6`|`tor`|`ygg` or `yggdrasil` - see also `./twisterd --help`
+
+> [!IMPORTANT]
+> Please note that `onlynet` option only affects **outgoing** connections!
 
 ### Connect with proxy
 

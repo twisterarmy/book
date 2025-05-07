@@ -18,9 +18,9 @@ It is 100% compatible with the main twister network (which was created by [@migu
 > Prefer this version in the following cases:
 > * you are using modern distributions with latest `-dev` libraries in the repository
 > * you want to improve the network connectivity, as this branch includes actual [seeds](https://twisterarmy.github.io/network)
-> * you are using IPv4+IPv6 or want to connect with [Yggdrasil](https://yggdrasil-network.github.io/) (the legacy branch requires additional arguments in the build configuration to enable IPv6 features)
+> * you are using IPv4+IPv6 or want to connect with [Yggdrasil](https://yggdrasil-network.github.io/) (the original branch has deprecated libtorrent/kademlia implementation without IPv6 support and requires additional arguments in the build configuration to enable partial (only port `28333`) IPv6 features)
 > * you are looking for enhanced privacy features, as the twisterarmy branch provides additional options for launching `twisterd`
-> * you are interested in the latest [twister-html](https://github.com/twisterarmy/twister-html) client updates, which also include additional features such as more themes, a configurable translation API, and more
+> * you are interested in the latest [twister-html](https://github.com/twisterarmy/twister-html) client updates, which also include additional features such as more themes, a configurable translation API, extended network info and more
 
 > [!NOTE]
 > Repository contains different branches, some of which are used to make reverse PRs to @miguelfreitas. Make sure you switch to the `twisterarmy` branch by using `git checkout twisterarmy` to continue with the build from this source!

@@ -249,8 +249,9 @@
 </p>
 <ul>
 <li>Unlike Tor, Yggdrasil is not designed for anonymization; however, it can enhance your routing capabilities when combined with those technologies, but only when configured outside of the twister context!</li>
-<li>The <code>twister-core</code> software does not provide any Yggdrasil features by itself, only IPv6 support. This means that using the Yggdrasil network with twister does not ensure that you are connectable only from this network; the application's behavior in this case requires additional audit.</li>
-<li>When installing Yggdrasil, make sure your firewall is configured properly, as any service launched on <code>0.0.0.0</code> will be visible over NAT, similar to how it would be on the local network. To check which services are listening for external connections, run the command <code>netstat -tulpn | grep LISTEN</code></li>
+<li>The <code>twister-core</code> software does not provide any Yggdrasil features by itself, only <strong>partial</strong> IPv6 support. This means that using the Yggdrasil network with twister does not ensure that you are connectable only from this network; the application's behavior in this case requires additional audit</li>
+<li>As <code>twisterd</code> uses patched <a href="https://github.com/twisterarmy/twister-core/tree/twisterarmy/libtorrent">libtorrent/DHT</a> features (which run on ports <code>29333</code> and <code>4433</code>/<code>4434</code>), some original <code>bitcoind</code> options, such as <code>-bind</code>, <code>-externalip</code>, etc., are not fully integrated yet and may behave unexpectedly! See <a href="https://github.com/miguelfreitas/twister-core/issues/243#issuecomment-132237989">#243</a>, <a href="https://github.com/miguelfreitas/twister-core/issues/254">#254</a> and PR <a href="https://github.com/twisterarmy/twister-core/pull/20">#20</a>, <a href="https://github.com/twisterarmy/twister-core/pull/25">#25</a> for details</li>
+<li>When installing Yggdrasil, make sure your firewall is configured properly, as any service launched on <code>0.0.0.0</code> will be visible over NAT, similar to how it would be on the local network. To check which services are listening for external connections, run the command <code>netstat -tulpn | grep twisterd</code> or <code>netstat -tulpna | grep twisterd</code></li>
 </ul>
 </div>
 <h2 id="ipv6-support"><a class="header" href="#ipv6-support">IPv6 support</a></h2>
@@ -372,13 +373,20 @@ WantedBy=multi-user.target
 <p>This option disables finding peers using DNS lookup (<code>-dnsseed</code> argument will be ignored)</p>
 </div>
 <h3 id="connect-some-network-only"><a class="header" href="#connect-some-network-only">Connect some network only</a></h3>
-<p>By default, <code>twisterd</code> accepts connections from all available network interfaces. This option can be helpful in situations where you are using some <a href="#connect-with-proxy">proxy</a> that does not support certain address families, such as how <a href="#yggstack">Yggstack</a> does not support IPv4.</p>
-<p>To use only the IPv6 network family, launch <code>twisterd</code> with the <code>-onlynet=IPv6</code> flag:</p>
-<pre><code class="language-bash">./twisterd -onlynet=IPv6
+<p>By default, <code>twisterd</code> operates with connections from all available network interfaces. The <code>onlynet</code> option can be helpful in situations where you are using some <a href="#connect-with-proxy">proxy</a> that does not support certain address families, such as how <a href="#yggstack">Yggstack</a> does not support IPv4, or if you want to limit connections to a specific (e.g. local) network only.</p>
+<p>For example, to use only the Yggdrasil network family, launch <code>twisterd</code> with the <code>-onlynet=yggdrasil</code> (or <code>-onlynet=ygg</code>) flag:</p>
+<pre><code class="language-bash">./twisterd -onlynet=ygg
 </code></pre>
 <ul>
-<li><code>IPv4</code>|<code>IPv6</code>|<code>Tor</code> - see also <code>./twisterd --help</code></li>
+<li><code>ipv4</code>|<code>ipv6</code>|<code>tor</code>|<code>ygg</code> or <code>yggdrasil</code> - see also <code>./twisterd --help</code></li>
 </ul>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Please note that <code>onlynet</code> option only affects <strong>outgoing</strong> connections!</p>
+</div>
 <h3 id="connect-with-proxy"><a class="header" href="#connect-with-proxy">Connect with proxy</a></h3>
 <h4 id="yggstack"><a class="header" href="#yggstack">Yggstack</a></h4>
 <div class="mdbook-alerts mdbook-alerts-note">
@@ -471,7 +479,7 @@ WantedBy=multi-user.target
 <li><a href="https://github.com/neilalexander/yggmail">yggmail</a> - end-to-end encrypted email for the mesh networking age;</li>
 <li><a href="https://github.com/Revertron/Alfis/">Alfis DNS</a> - a peer-to-peer alternative to centralized DNS providers, with native Yggdrasil support, that is also useful for launching a free, independent DNS seeder for the twister network.</li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div>
+<div class="version">Generated at: <strong>2025.05</strong></div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

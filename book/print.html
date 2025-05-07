@@ -241,7 +241,7 @@ which is also available for online reading at the community <a href="https://twi
 <p>Community resources include the latest editions of <a href="https://github.com/twisterarmy/twister-core">twister-core</a>, <a href="https://github.com/twisterarmy/twister-html">twister-html</a>, and other <a href="https://github.com/orgs/twisterarmy/repositories">projects</a> also created by various individuals, such as related software collections, analytics tools, cloud servers, and more.</p>
 <p>The organization's goal is to ensure that the source code is buildable and the network is connectable.</p>
 <p>Feel free to open an <a href="https://github.com/twisterarmy/book/issues">issue</a> or mention @twisterarmy if you find that the information provided is incorrect, contains mistakes, or if you have any questions!</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><style>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-alerts {
   padding: 8px 16px;
   margin-bottom: 16px;
@@ -791,7 +791,7 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 <p>Since <code>twister-core</code> has no GUI out of the box, it requires a web UI application called <a href="https://github.com/twisterarmy/twister-html">twister-html</a> to interact using a web browser.</p>
 <h2 id="install-options"><a class="header" href="#install-options">Install options</a></h2>
 <p>The simplest way to get started is to use the latest <a href="https://github.com/twisterarmy/twister">Flatpak bundle</a>. To build from source, you will want to follow the instructions, depending on your system.</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Desktop bundle</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Desktop bundle</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -866,7 +866,7 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 <ul>
 <li><a href="https://github.com/twisterarmy/twister">Flatpak</a>, <a href="https://github.com/twisterarmy/flathub/tree/twister-bundle">RC</a> - in development: some features, such as mining, are not yet working. Visit the <a href="https://github.com/twisterarmy/twister/releases">Releases</a> page to get the latest stable version!</li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -951,9 +951,9 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 <ul>
 <li>you are using modern distributions with latest <code>-dev</code> libraries in the repository</li>
 <li>you want to improve the network connectivity, as this branch includes actual <a href="https://twisterarmy.github.io/network">seeds</a></li>
-<li>you are using IPv4+IPv6 or want to connect with <a href="https://yggdrasil-network.github.io/">Yggdrasil</a> (the legacy branch requires additional arguments in the build configuration to enable IPv6 features)</li>
+<li>you are using IPv4+IPv6 or want to connect with <a href="https://yggdrasil-network.github.io/">Yggdrasil</a> (the original branch has deprecated libtorrent/kademlia implementation without IPv6 support and requires additional arguments in the build configuration to enable partial (only port <code>28333</code>) IPv6 features)</li>
 <li>you are looking for enhanced privacy features, as the twisterarmy branch provides additional options for launching <code>twisterd</code></li>
-<li>you are interested in the latest <a href="https://github.com/twisterarmy/twister-html">twister-html</a> client updates, which also include additional features such as more themes, a configurable translation API, and more</li>
+<li>you are interested in the latest <a href="https://github.com/twisterarmy/twister-html">twister-html</a> client updates, which also include additional features such as more themes, a configurable translation API, extended network info and more</li>
 </ul>
 </div>
 <div class="mdbook-alerts mdbook-alerts-note">
@@ -964,7 +964,7 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 <p>Repository contains different branches, some of which are used to make reverse PRs to @miguelfreitas. Make sure you switch to the <code>twisterarmy</code> branch by using <code>git checkout twisterarmy</code> to continue with the build from this source!</p>
 </div>
 <p><a href="https://twisterarmy.github.io/">Website</a> | <a href="https://github.com/twisterarmy/twister-core">Source code</a></p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @twisterarmy branch &raquo; Fedora / Debian / Ubuntu</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @twisterarmy branch &raquo; Fedora / Debian / Ubuntu</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -1073,7 +1073,7 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
   <span class="mdbook-alerts-icon"></span>
   important
 </p>
-<p>Make sure you have at least 1 GB of memory to compile twister or connect a temporary swap file before continue!</p>
+<p>Make sure you have at least 1 GB of memory to compile twister or connect a temporary swap file (see the <strong>Administration</strong> page) before continue!</p>
 </div>
 <ol>
 <li>Build <a href="https://github.com/twisterarmy/twister-core">twister-core</a>
@@ -1106,7 +1106,7 @@ Both Bitcoin and libtorrent versions included here are highly patched and do not
 <li>Launch twister
 <ul>
 <li><code>./twisterd</code></li>
-<li>open <a href="http://127.0.0.1:28332">http://127.0.0.1:28332</a>
+<li>open <a href="http://127.0.0.1:28332">http://127.0.0.1:28332</a> or <a href="http://%5B::1%5D:28332">http://[::1]:28332</a>
 <ul>
 <li>enter <code>user</code> and <code>pwd</code> in the authorization dialog</li>
 </ul>
@@ -1169,7 +1169,7 @@ WantedBy=multi-user.target
 </ul>
 </li>
 </ol>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; CentOS 6</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; CentOS 6</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -1303,7 +1303,7 @@ $ git clone https://github.com/miguelfreitas/twister-html.git ~/.twister/html
 <ul>
 <li>https://gist.github.com/janx/10465121</li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; Windows</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; Windows</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -1476,7 +1476,7 @@ lines from
 <pre><code>./bootstrap.sh
 make V=1
 </code></pre>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; Client using Gitian</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; Client using Gitian</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -1618,7 +1618,7 @@ mv build/out/osx-*.tar.gz inputs/
 <p>Build twister for win 32 and 64-bits:</p>
 <pre><code>./bin/gbuild --commit twister-core=HEAD ../twister-core/contrib/gitian-descriptors/gitian-win.yml
 </code></pre>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; Visual Studio 2010</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; @miguelfreitas branch &raquo; Visual Studio 2010</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -1974,7 +1974,7 @@ bjam toolset=msvc-10.0 --build-type=complete stage</p>
 <h2 id="building-berkeley-db-4830nc"><a class="header" href="#building-berkeley-db-4830nc">Building Berkeley DB 4.8.30.NC</a></h2>
 <p>Coming soon...</p>
 <p>(Patches also coming soon.)</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; Custom dependencies &raquo; libboost / libdb</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; Custom dependencies &raquo; libboost / libdb</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -2123,7 +2123,7 @@ bjam toolset=msvc-10.0 --build-type=complete stage</p>
 </p>
 <p>Make sure that the <code>/path/to/libdb-build</code> directory exists when launching your <code>twisterd</code>!</p>
 </div>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; Custom dependencies &raquo; libtorrent on Ubuntu</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Install &raquo; Build from source &raquo; Custom dependencies &raquo; libtorrent on Ubuntu</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -2203,7 +2203,7 @@ cd libtorrent
 ./bootstrap.sh --with-boost-libdir=/usr/lib/x86_64-linux-gnu/
 ./configure --enable-logging --enable-debug --enable-dht --with-boost-libdir=/usr/lib/x86_64-linux-gnu/
 </code></pre>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -2278,6 +2278,13 @@ cd libtorrent
 <pre><code class="language-bash">./twisterd
 </code></pre>
 <h3 id="startup-options"><a class="header" href="#startup-options">Startup options</a></h3>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>As <code>twisterd</code> uses patched <a href="https://github.com/twisterarmy/twister-core/tree/twisterarmy/libtorrent">libtorrent/DHT</a> features (which run on ports <code>29333</code> and <code>4433</code>/<code>4434</code>), some original <code>bitcoind</code> options, such as <code>-bind</code>, <code>-externalip</code>, etc., are not fully integrated yet and may behave unexpectedly! See <a href="https://github.com/miguelfreitas/twister-core/issues/243#issuecomment-132237989">#243</a>, <a href="https://github.com/miguelfreitas/twister-core/issues/254">#254</a> and PR <a href="https://github.com/twisterarmy/twister-core/pull/20">#20</a>, <a href="https://github.com/twisterarmy/twister-core/pull/25">#25</a> for details.</p>
+</div>
 <p>If you want to run <code>twisterd</code> using a proxy, bind the connection to a specified network interface, or configure other settings, consider using the following options:</p>
 <pre><code class="language-bash">-?                     This help message
 -conf=&lt;file&gt;           Specify configuration file (default: ~/.twister/twister.conf)
@@ -2497,7 +2504,7 @@ verifymessage &lt;username&gt; &lt;signature&gt; &lt;message&gt;
 </ul>
 <h3 id="rss"><a class="header" href="#rss">RSS</a></h3>
 <p>If your <code>twister-core</code> is configured with the <code>--enable-rss</code> option enabled (which is <code>yes</code> by default), you can connect an external RSS application to read the recent feed updates using <a href="http://127.0.0.1:28332/rss">http://127.0.0.1:28332/rss</a> URL!</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Profile</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Profile</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -2629,7 +2636,7 @@ If you want to modify something or copy the entire folder, first stop the active
 <p>Optionally, you may archive the entire <code>.twister</code> folder or just copy <code>twisterwallet.dat</code> to use your wallet on another twister node without having to download the blockchain or import the public/private key pair in the web UI.</p>
 <h3 id="how-to-store-backup"><a class="header" href="#how-to-store-backup">How to store backup</a></h3>
 <p>Similar to Bitcoin, you can keep your profile data in digital form (by using <a href="https://keepassxc.org/">KeePassXC</a>) or you even can simply print the public/private key pair on paper.</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Remote node</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Remote node</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -2910,7 +2917,7 @@ rpcssl=1
 <p>Configure firewall/iptables rules to restrict access by using only whitelisted values.</p>
 <h3 id="remote-host-administration"><a class="header" href="#remote-host-administration">Remote host administration</a></h3>
 <p>Refer to the <strong>Administration</strong> page for a useful collection of CLI recipes!</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Administration</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Administration</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -3106,7 +3113,7 @@ MemorySwapMax=512M
 <li><code>df -h</code> - show disk usage summary</li>
 <li><code>find / -type f -size +50M</code> - find large files (provide your path and size)</li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Performance</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Performance</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -3180,7 +3187,7 @@ MemorySwapMax=512M
 <p>Do not follow too many accounts, especially RSS bots that produce massive feeds, as every message in the twister peer-to-peer network is a separate torrent that requires hash management.</p>
 <h3 id="mining"><a class="header" href="#mining">Mining</a></h3>
 <p>If you're a <a href="twister-core/Support-the-network">network supporter</a> and <a href="twister-core/Support-the-network#mine-blocks">mining blocks</a> on a powerful machine, take a look at the <a href="https://github.com/twisterarmy/twisterad">twistead</a> tool, which provides the <code>--latency</code> option that hibernates the miner for a specified time in seconds as soon as a new block has been mined. If someone mines a block after the timeout expires, the daemon will continue to sleep.</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Yggdrasil / IPv6</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Usage &raquo; Yggdrasil / IPv6</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -3270,8 +3277,9 @@ MemorySwapMax=512M
 </p>
 <ul>
 <li>Unlike Tor, Yggdrasil is not designed for anonymization; however, it can enhance your routing capabilities when combined with those technologies, but only when configured outside of the twister context!</li>
-<li>The <code>twister-core</code> software does not provide any Yggdrasil features by itself, only IPv6 support. This means that using the Yggdrasil network with twister does not ensure that you are connectable only from this network; the application's behavior in this case requires additional audit.</li>
-<li>When installing Yggdrasil, make sure your firewall is configured properly, as any service launched on <code>0.0.0.0</code> will be visible over NAT, similar to how it would be on the local network. To check which services are listening for external connections, run the command <code>netstat -tulpn | grep LISTEN</code></li>
+<li>The <code>twister-core</code> software does not provide any Yggdrasil features by itself, only <strong>partial</strong> IPv6 support. This means that using the Yggdrasil network with twister does not ensure that you are connectable only from this network; the application's behavior in this case requires additional audit</li>
+<li>As <code>twisterd</code> uses patched <a href="https://github.com/twisterarmy/twister-core/tree/twisterarmy/libtorrent">libtorrent/DHT</a> features (which run on ports <code>29333</code> and <code>4433</code>/<code>4434</code>), some original <code>bitcoind</code> options, such as <code>-bind</code>, <code>-externalip</code>, etc., are not fully integrated yet and may behave unexpectedly! See <a href="https://github.com/miguelfreitas/twister-core/issues/243#issuecomment-132237989">#243</a>, <a href="https://github.com/miguelfreitas/twister-core/issues/254">#254</a> and PR <a href="https://github.com/twisterarmy/twister-core/pull/20">#20</a>, <a href="https://github.com/twisterarmy/twister-core/pull/25">#25</a> for details</li>
+<li>When installing Yggdrasil, make sure your firewall is configured properly, as any service launched on <code>0.0.0.0</code> will be visible over NAT, similar to how it would be on the local network. To check which services are listening for external connections, run the command <code>netstat -tulpn | grep twisterd</code> or <code>netstat -tulpna | grep twisterd</code></li>
 </ul>
 </div>
 <h2 id="ipv6-support"><a class="header" href="#ipv6-support">IPv6 support</a></h2>
@@ -3393,13 +3401,20 @@ WantedBy=multi-user.target
 <p>This option disables finding peers using DNS lookup (<code>-dnsseed</code> argument will be ignored)</p>
 </div>
 <h3 id="connect-some-network-only"><a class="header" href="#connect-some-network-only">Connect some network only</a></h3>
-<p>By default, <code>twisterd</code> accepts connections from all available network interfaces. This option can be helpful in situations where you are using some <a href="twister-core/yggdrasil.html#connect-with-proxy">proxy</a> that does not support certain address families, such as how <a href="twister-core/yggdrasil.html#yggstack">Yggstack</a> does not support IPv4.</p>
-<p>To use only the IPv6 network family, launch <code>twisterd</code> with the <code>-onlynet=IPv6</code> flag:</p>
-<pre><code class="language-bash">./twisterd -onlynet=IPv6
+<p>By default, <code>twisterd</code> operates with connections from all available network interfaces. The <code>onlynet</code> option can be helpful in situations where you are using some <a href="twister-core/yggdrasil.html#connect-with-proxy">proxy</a> that does not support certain address families, such as how <a href="twister-core/yggdrasil.html#yggstack">Yggstack</a> does not support IPv4, or if you want to limit connections to a specific (e.g. local) network only.</p>
+<p>For example, to use only the Yggdrasil network family, launch <code>twisterd</code> with the <code>-onlynet=yggdrasil</code> (or <code>-onlynet=ygg</code>) flag:</p>
+<pre><code class="language-bash">./twisterd -onlynet=ygg
 </code></pre>
 <ul>
-<li><code>IPv4</code>|<code>IPv6</code>|<code>Tor</code> - see also <code>./twisterd --help</code></li>
+<li><code>ipv4</code>|<code>ipv6</code>|<code>tor</code>|<code>ygg</code> or <code>yggdrasil</code> - see also <code>./twisterd --help</code></li>
 </ul>
+<div class="mdbook-alerts mdbook-alerts-important">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  important
+</p>
+<p>Please note that <code>onlynet</code> option only affects <strong>outgoing</strong> connections!</p>
+</div>
 <h3 id="connect-with-proxy"><a class="header" href="#connect-with-proxy">Connect with proxy</a></h3>
 <h4 id="yggstack"><a class="header" href="#yggstack">Yggstack</a></h4>
 <div class="mdbook-alerts mdbook-alerts-note">
@@ -3492,7 +3507,7 @@ WantedBy=multi-user.target
 <li><a href="https://github.com/neilalexander/yggmail">yggmail</a> - end-to-end encrypted email for the mesh networking age;</li>
 <li><a href="https://github.com/Revertron/Alfis/">Alfis DNS</a> - a peer-to-peer alternative to centralized DNS providers, with native Yggdrasil support, that is also useful for launching a free, independent DNS seeder for the twister network.</li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Support the network</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Support the network</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -3573,13 +3588,13 @@ WantedBy=multi-user.target
 </ul>
 <h3 id="optional-ports"><a class="header" href="#optional-ports">Optional ports</a></h3>
 <ul>
-<li><code>29333</code> - TCP + UDP, must be open for DHT operations, supports UPnP
+<li><code>29333</code> - TCP + UDP, must be open for WS/DHT operations, supports UPnP
 <ul>
-<li>this port is related to the value of port <code>28333</code> and its final value is implemented as <code>28333</code> + <code>1000</code></li>
+<li>this port is related to the value of port <code>28333</code> and its final value is implemented as <code>28333</code> + <code>1000</code> (<code>LIBTORRENT_PORT_OFFSET</code>)</li>
 </ul>
 </li>
-<li><code>4433</code> - DHT-over-SSL, likely unused at this point</li>
-<li><code>4434</code> - <em>wants specification</em></li>
+<li><code>4433</code> - DHT-over-SSL, see <a href="https://github.com/twisterarmy/twister-core/blob/twisterarmy/libtorrent/docs/manual.html#L4100">ssl_listen</a> manual for <code>libtorrent</code></li>
+<li><code>4434</code> - same as port <code>4433</code>, but used to listen on the IPv6 interface when IPv4 one is not disabled (e.g. by the <code>-bind</code> option)</li>
 <li><code>20000+</code> outbound - <code>twisterd</code> will open outgoing connections on a number of ephemeral ports to manage both blockchain sync and DHT operations, supports UPnP</li>
 </ul>
 <pre><code class="language-bash">sudo ufw allow PORT_NUMBER
@@ -3607,7 +3622,7 @@ WantedBy=multi-user.target
 <li>see also <a href="https://github.com/twisterarmy/twisterad">twisterad</a> - CLI tool to rotate multiple twister ads on a single worker</li>
 </ul>
 </div>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Contribute</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Contribute</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -3700,7 +3715,7 @@ WantedBy=multi-user.target
 </li>
 <li>create new <a href="https://github.com/twisterarmy/twister-core/pulls">Pull request</a>!</li>
 </ol>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twisterad</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twisterad</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -3782,7 +3797,7 @@ through modified <a href="https://github.com/twisterarmy/rust-twistercore-rpc">B
 <li>after launch, <code>twisterad</code> listens for the <code>twisterd</code> connection to be established, and then begins rotation according to the configuration and startup arguments</li>
 <li>when <code>twisterd</code> connection is lost, <code>twisterad</code> will wait for reconnection and continue rotation from the previous memory state. It could be also useful for the desktop users, who running their <code>twisterd</code> nodes periodically</li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twisterad &raquo; Install</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twisterad &raquo; Install</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -3871,7 +3886,7 @@ through modified <a href="https://github.com/twisterarmy/rust-twistercore-rpc">B
 <li><code>cd twisterad</code></li>
 <li><code>cargo run -- -c path/to/config.json</code></li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twisterad &raquo; Usage</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twisterad &raquo; Usage</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4016,7 +4031,7 @@ WantedBy=multi-user.target
 <p>On change <code>config.json</code>:</p>
 <pre><code class="language-bash">systemctl restart twisterad
 </code></pre>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">CudaMiner</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">CudaMiner</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4095,7 +4110,7 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 <p>Tested with:
 ./cudaminer -D -o http://127.0.0.1:28332/ -O user:pwd</p>
 <p>Make sure your twister-core is up-to-date!</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4180,7 +4195,7 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 <li>port <code>28333</code> is open (<code>twister-core</code> is launched with <code>./twisterd -port=28333</code>)</li>
 <li><em>todo: other conditions require a revision of the existing crawl filter implementation</em></li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Install options</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Install options</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4263,7 +4278,7 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 </li>
 </ul>
 <p><a href="https://github.com/twisterarmy/twister-seeder">Source code</a> | <a href="https://github.com/twisterarmy/twister-seeder/releases">Stable releases</a></p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Install options &raquo; @twisterarmy branch</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Install options &raquo; @twisterarmy branch</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4362,7 +4377,7 @@ https://github.com/miguelfreitas/CudaMiner-twister</p>
 </ul>
 </li>
 </ol>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Domain setup</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Domain setup</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4479,7 +4494,7 @@ It also supports <a href="https://yggdrasil-network.github.io/">Yggdrasil</a> ou
 <h2 id="use-an-expired-domain"><a class="header" href="#use-an-expired-domain">Use an expired domain</a></h2>
 <p>Feel free to use any expired domain from <a href="https://twisterarmy.github.io/network">this list</a>, as defined in <a href="https://github.com/twisterarmy/twister-core/blob/twisterarmy/src/chainparams.cpp#L217">chainparams.cpp</a></p>
 <p>This could be beneficial for older nodes based on existing <code>twister-core</code> builds from the <a href="https://github.com/twisterarmy/twister-core/tree/twisterarmy">twisterarmy</a> or <a href="https://github.com/miguelfreitas/twister-core">miguelfreitas</a> branch!</p>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Usage examples</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Usage examples</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4621,7 +4636,7 @@ WantedBy=multi-user.target
 <li><code>systemctl enable twister-seeder</code> - launch <code>twister-seeder</code> on system startup</li>
 <li><code>systemctl start twister-seeder</code> - start DNS</li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Storage location</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Storage location</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4703,7 +4718,7 @@ WantedBy=multi-user.target
 </p>
 <p><code>StandardOutput</code> is not recommended in production, as a functioning <code>dnsseed</code> crawler generates massive log output!</p>
 </div>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Announce new seed</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Announce new seed</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4777,7 +4792,7 @@ WantedBy=multi-user.target
 <li><a href="https://github.com/twisterarmy/twister-seeder/blob/twisterarmy/main.cpp#L426">twister-seeder</a> (<a href="https://github.com/twisterarmy/twister-seeder/commit/9b4e7407b5f9517f189c295fffec87e378ceeae3">example</a>)</li>
 <li>optionally, submit new PR to the <a href="https://github.com/twisterarmy/twisterarmy.github.io/blob/main/network.html">Network page</a>, which is displayed on the <a href="https://twisterarmy.github.io/network">community website</a> (<a href="https://github.com/twisterarmy/twisterarmy.github.io/commit/39c2c41e9da2d81260443b687f200af322077a64">example</a>)</li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Troubleshooting</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seeder &raquo; Troubleshooting</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -4902,7 +4917,7 @@ WantedBy=multi-user.target
 </p>
 <p>This solution is not recommended, but it will work and could be useful in certain situations (e.g., when all other seeds are offline but you are using an existing hostname from <a href="https://twisterarmy.github.io/network">this list</a> and running the public peer with a static IP)</p>
 </div>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seedrs</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-seedrs</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -5004,7 +5019,7 @@ based on the original Bitcoin <a href="https://github.com/achow101/dnsseedrs">DN
 <li>the original <a href="https://crates.io/crates/bitcoin/">bitcoin crate</a> is still in use and requires a separate fork for the twister network, at least to redefine the hardcoded network magic bytes (which is temporarily hardcoded in <code>crawl.rs</code>, line <code>112</code>)</li>
 </ul>
 </div>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-rss-bot</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister-rss-bot</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -5117,7 +5132,7 @@ based on the original Bitcoin <a href="https://github.com/achow101/dnsseedrs">DN
 </ul>
 </li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Popular accounts to follow</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">Popular accounts to follow</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -5246,7 +5261,7 @@ based on the original Bitcoin <a href="https://github.com/achow101/dnsseedrs">DN
 <li>@<strong>newscn</strong> 喧哗社 [信息的自由流动是辟谣的最佳方式]</li>
 <li>@<strong>freeweibo</strong> 自由微博 [最新最热微博(包括屏蔽的)机器人。数据由自由微博http://Freeweibo.com 提供。]</li>
 </ul>
-<div class="version">Generated at: <strong>2025.04</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister 白皮书</div>
+<div class="version">Generated at: <strong>2025.05</strong></div><div style="break-before: page; page-break-before: always;"></div><div class="breadcrumbs">twister 白皮书</div>
 <style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -5639,7 +5654,7 @@ AINA 2006. 20th International Conference on, volume 1, pages 973–978.
 IEEE, 2006.</p>
 <p>[25] Tor项目. Tor (洋葱头路由).https://www.torproject.org,
 2013. [Online; accessed 23-July-2013].</p>
-<div class="version">Generated at: <strong>2025.04</strong></div>
+<div class="version">Generated at: <strong>2025.05</strong></div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
